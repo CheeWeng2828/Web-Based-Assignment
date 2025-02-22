@@ -14,7 +14,6 @@
     <nav>
         <ul>
             <li><a href="/index.php">Home</a></li>
-            <li><a href="https://shopee.com.my/">Shopee</a></li>
         </ul>
     </nav>
     
