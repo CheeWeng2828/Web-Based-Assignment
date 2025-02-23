@@ -14,6 +14,7 @@
     <nav>
         <ul>
             <li><a href="/index.php">Home</a></li>
+            <li><a href="/page/login.php">Login</a></li>
         </ul>
     </nav>
     
