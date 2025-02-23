@@ -10,11 +10,11 @@
 <body>
     <div class="login">
     <form action="login.php" method="post" autocomplete="off">
-            <label for="uname"><strong>username:</strong></label><br>
-            <input type="text" name="uname" id="uname" placeholder="example123"><br><br>
-            <label for="psword"><strong>password:</strong></label><br>
-            <input type="password" name="psword" id="psword" placeholder="abc123!"><br><br>
-            <input type="submit" value="submit">
+            <label for="uname"><strong>Username:</strong></label><br>
+            <input type="text" name="uname" id="uname" placeholder="Username"><br><br>
+            <label for="psword"><strong>Password:</strong></label><br>
+            <input type="password" name="psword" id="psword" placeholder="Password!"><br><br>
+            <input type="submit" value="Login">
     </form>
     </div>
 </body>
