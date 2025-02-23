@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="login">
-    <form action="login.php" method="post">
+    <form action="login.php" method="post" autocomplete="off">
             <label for="uname"><strong>username:</strong></label><br>
             <input type="text" name="uname" id="uname" placeholder="example123"><br><br>
             <label for="psword"><strong>password:</strong></label><br>
