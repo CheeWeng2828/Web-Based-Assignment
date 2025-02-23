@@ -23,3 +23,15 @@ nav ul li a{
 nav ul li a:hover{
     background-color: #555;
 }
+
+.login{
+    margin: 100px auto;
+    width: 200px;
+    padding: 40px;
+    border:2px solid black;
+    background-color: gray;
+}
+
+.login label{
+    color: white;
+}
