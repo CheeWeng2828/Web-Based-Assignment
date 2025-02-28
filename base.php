@@ -10,3 +10,13 @@ function is_get(){
 function is_post(){
     return $_SERVER['REQUEST_METHOD'] = 'POST';
 }
+
+function post($key,$value = null){
+    $value = $_POST[$key] ?? $value;
+    return is_array($value) ? array_map('trim',$value) : trim($value); 
+}
+
+function get($key,$value = null){
+    $value = $_GET[$key] ?? $value;
+    return is_array($value) ? array_map('trim',$value) : trim($value);
+}
