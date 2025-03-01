@@ -1,21 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link type="icon" href="/image/login icon.jpg">
-    <link rel="stylesheet" href="/css/app.css">
-</head>
-<body>
+<?php 
+require '../base.php';
+    if (is_post()){
+        $name = req('name');
+
+        if($uname == ' '){
+            $_err[$name] = 'Required';
+        }
+
+        if(!$_err){
+            redirect('/');
+        }
+    }
+include '../head.php'
+
+?>
     <div class="login">
-    <form action="login.php" method="post" autocomplete="off">
-            <label for="uname"><strong>Username:</strong></label><br>
-            <input type="text" name="uname" id="uname" placeholder="Username"><br><br>
+    <form method="post" autocomplete="off">
+            <label for="name"><strong>Username:</strong></label><br>
+            <?= html_text('name','maxlength="100"') ?>
+            <?= err('name') ?>
+            
             <label for="psword"><strong>Password:</strong></label><br>
             <input type="password" name="psword" id="psword" placeholder="Password!"><br><br>
-            <input type="submit" value="Login">
+            <section>
+                <button>Submit</button>
+            </section>
     </form>
     </div>
-</body>
-</html>
+
+<?php
+include '../foot.php';

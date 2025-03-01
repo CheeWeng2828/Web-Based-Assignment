@@ -9,11 +9,12 @@
 </head>
 
 <body>
-    <h1>Welcome To Our Bakery Store</h1>
+    <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
+    <h1 style="text-align: left;">XX bakery</h1>
 
     <nav>
         <ul>
-            <li><a href="/index.php">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/function/login.php">Login</a></li>
         </ul>
     </nav>
