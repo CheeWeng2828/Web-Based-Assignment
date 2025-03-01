@@ -37,10 +37,8 @@ function temp($key,$value = null)
     if($value !== null){
         $_SESSION["temp_$key"] == $value;
     }
-
-
     else{
-        $value = $_SESSION["temp_$key"];
+        $value = $_SESSION["temp_$key"]??null;
         unset($_SESSION["temp_$key"]);
         return $value;
     }
@@ -68,7 +66,7 @@ $_err = [];
 
 function err($key){
     global $_err;
-    if($err[$key] ?? false){
+    if($_err[$key] ?? false){
         echo "<span class ='err'>$_err[$key]</span>";
     }
     else{

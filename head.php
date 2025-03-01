@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <div id="info"><?=temp('info')?></div>
     <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
     <h1 style="text-align: left;">XX bakery</h1>
 
@@ -21,5 +22,3 @@
         </ul>
     </nav>
     
-</body>
-</html>
