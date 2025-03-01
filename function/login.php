@@ -15,6 +15,8 @@
             <label for="psword"><strong>Password:</strong></label><br>
             <input type="password" name="psword" id="psword" placeholder="Password!"><br><br>
             <input type="submit" value="Login">
+            <button type="reset">Reset</button>
+            
     </form>
     </div>
 </body>
