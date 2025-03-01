@@ -22,9 +22,15 @@ include '../head.php'
             
             <label for="psword"><strong>Password:</strong></label><br>
             <input type="password" name="psword" id="psword" placeholder="Password!"><br><br>
+<<<<<<< HEAD
             <section>
                 <button>Submit</button>
             </section>
+=======
+            <input type="submit" value="Login">
+            <button type="reset">Reset</button>
+            
+>>>>>>> 98ddc41387c5a21df98b90590c0ca69c30700ccc
     </form>
     </div>
 

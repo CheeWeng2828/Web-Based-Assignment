@@ -20,6 +20,7 @@ function get($key,$value = null){
     $value = $_GET[$key] ?? $value;
     return is_array($value) ? array_map('trim',$value) : trim($value);
 }
+<<<<<<< HEAD
 
 function req($key,$value = null){
     $value = $_REQUEST[$key];
@@ -84,3 +85,5 @@ $_db = new PDO('mysql:dbname=db7','root','',[
 ]);
 
 
+=======
+>>>>>>> 98ddc41387c5a21df98b90590c0ca69c30700ccc
