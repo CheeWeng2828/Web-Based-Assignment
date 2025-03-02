@@ -121,7 +121,7 @@ function auth(...$roles){
 //===================================================================================
 //DATABASE
 //===================================================================================
-$_db = new PDO('mysql:dbname=assignment','root','',[
+$_db = new PDO('mysql:dbname=assign','root','',[
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 ]);
 
