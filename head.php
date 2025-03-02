@@ -9,9 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/js/app.js"></script>
 </head>
-
 <body>
-    <div id="info"><?=temp('info')?></div>
+    <div id="info"><?= temp('info') ?></div>
     <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
     <h1 style="text-align: left;">XX bakery</h1>
 
@@ -19,6 +18,7 @@
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/function/login.php">Login</a></li>
+            <li><a href="/function/logout.php">Logout</a></li>
         </ul>
     </nav>
     

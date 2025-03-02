@@ -48,15 +48,22 @@ nav ul li a:hover{
 ===================================================================================*/
 
 .login{
-    margin: 100px auto;
-    width: 200px;
-    padding: 40px;
+    vertical-align: text-top;
+    display: grid;
+    grid: auto;
+    gap: 5px;
     border:2px solid black;
+    border-radius: 10px;
     background-color: gray;
+    place-content: start;
+    place-items: center start;
+    padding: 5px;
+    justify-content: center;
 }
 
 .login label{
     color: white;
+    font-weight: bold;
 }
 
 /*===================================================================================
@@ -72,6 +79,7 @@ nav ul li a:hover{
     padding: 10px 20px;
     left: 50%;
     translate: -50% 0;
+    z-index: 999;
 
     top: -100px;
     opacity: 0;

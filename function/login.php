@@ -23,6 +23,14 @@ if(!$_err){
     $stm->execute([$email,$password]);
     $u = $stm->fetch();
 
+    if($u){
+        temp('info','Login Successful');
+        login($u);
+    }
+    else{
+        $_err['password'] = "Not Matched";
+    }
+
 }
 
 $_title = 'Login';
@@ -33,7 +41,7 @@ include '../head.php';
     <?= html_text('email','maxlength:"100"') ?>
     <?= err('email') ?>
 
-    <label for="password" class="login"></label>
+    <label for="password">Password</label>
     <?= html_password('password','maxlength="100"')?>
     <?= err('password')?>
 
