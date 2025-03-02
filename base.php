@@ -2,7 +2,9 @@
 
 date_default_timezone_set('Asia/Kuala_Lumpur'); 
 session_start();
-
+//===================================================================================
+// PHP function
+//===================================================================================
 function is_get(){
     return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
@@ -44,20 +46,29 @@ function temp($key,$value = null)
     }
 }
 //===================================================================================
-// HTML
+// HTML Reusable Code
 //===================================================================================
 
 function encode($value){
     return htmlentities($value);
 }
 
-
 function html_text($key,$attr = ''){
     $value = encode($GLOBALS[$key] ?? '');
     echo "<input type='text' id='$key' name='$key' value='$value' $attr>";
 }
 
+function html_password($key,$attr =' '){
+    $value = encode($GLOBALS[$key]?? '');
+    echo "<input type='password' id='$key' name='$key'value='$value' $attr>";
+}
+//===================================================================================
+// Check Format
+//===================================================================================
 
+function is_email($value){
+    return filter_var($value,FILTER_VALIDATE_EMAIL) !== null;
+}
 
 //===================================================================================
 // Error Handling
@@ -74,4 +85,43 @@ function err($key){
     }
 }
 
+
+//===================================================================================
+//      Security
+//===================================================================================
+
+$_user = $_SESSION['user'] ?? null;
+
+// Login User
+function login($user,$url='/'){
+    $_SESSION['user'] = $user;
+    redirect($url);
+}
+
+function logout($url='/'){
+    unset($_SESSION['user']);
+    redirect($url);
+}
+
+function auth(...$roles){
+    global $_user;
+    if($_user){
+        if($roles){
+            if(in_array($_user->role,$roles)){
+                return;
+            }
+            else{
+                return;
+            }
+        }
+    }
+    redirect('/login.php');
+}
+
+//===================================================================================
+//DATABASE
+//===================================================================================
+$_db = new PDO('mysql:dbname=assignment','root','',[
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+]);
 

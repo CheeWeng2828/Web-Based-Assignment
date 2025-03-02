@@ -1,5 +1,6 @@
 <?php 
 require '../base.php';
+$_title = 'Register';
     if (is_post()){
         $name = req('name');
 

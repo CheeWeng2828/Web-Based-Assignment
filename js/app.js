@@ -14,4 +14,9 @@ $(() =>{
         f.action = url || location
         f.submit();
     })
+
+    $('[type=reset]').on('click',e=>{
+        e.preventDefault();
+        location = location;
+    })
 })
