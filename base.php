@@ -45,6 +45,16 @@ function temp($key,$value = null)
         return $value;
     }
 }
+
+function get_file($key){
+    $f = $_FILES[$key] ?? null;
+
+    if($f && $f['error'] == 0){
+        return(object)$f;
+    }
+
+    return null;
+}
 //===================================================================================
 // HTML Reusable Code
 //===================================================================================
@@ -61,6 +71,11 @@ function html_text($key,$attr = ''){
 function html_password($key,$attr =' '){
     $value = encode($GLOBALS[$key]?? '');
     echo "<input type='password' id='$key' name='$key'value='$value' $attr>";
+}
+
+function html_file($key,$accept = ' ',$attr=' '){
+    $value = encode($GLOBALS[$key]?? '');
+    echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
 }
 //===================================================================================
 // Check Format
@@ -125,3 +140,16 @@ $_db = new PDO('mysql:dbname=assign','root','',[
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 ]);
 
+function is_unique($value,$table,$field){
+    global $_db;
+    $stm = $_db->prepare("SELECT COUNT(*) FROM $table WHERE $field = ?");
+    $stm->execute([$value]);
+    return $stm->fetchColumn() == 0;
+}
+
+function is_exist($value,$table,$field){
+    global $_db;
+    $stm = $_db->prepare("SELECT COUNT(*)FROM $table WHERE $field=?");
+    $stm->execute([$value]);
+    return $stm->fetchColumn() > 0;
+}

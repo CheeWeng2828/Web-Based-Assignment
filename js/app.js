@@ -19,4 +19,20 @@ $(() =>{
         e.preventDefault();
         location = location;
     })
+
+    $('label.upload input[type=file]').on("change",e=>{
+        const f = e.target.file[0];
+        const img = $(e.target).sibling('img')[0];
+
+        if(!img) return;
+        img.dataset.src ??= img.src;
+
+        if(f?.type.startsWith('image/')){
+            img.src = URL.createObjectURL(f);
+        }
+        else{
+            img.src = img.dataset.src;
+            e.target.value = '';
+        }
+    })
 })

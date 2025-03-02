@@ -99,3 +99,17 @@ nav ul li a:hover{
 .err{
     color: red;
 }
+
+
+/*===================================================================================
+    Image layout
+===================================================================================*/
+
+label.upload img{
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid black;
+}
