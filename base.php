@@ -55,6 +55,20 @@ function get_file($key){
 
     return null;
 }
+
+function save_photo($f,$folder,$weigth = 50,$height = 50){
+
+    $photo = uniqid(). '.jpg';
+    require_once 'lib/SimpleImage.php';
+
+    $img = new SimpleImage();
+    $img->fromFile($f->tmp_name);
+    $img->thumbnail($weigth,$height);
+    $img->toFile($folder/$photo);
+
+    return $photo;
+}
+
 //===================================================================================
 // HTML Reusable Code
 //===================================================================================
@@ -153,3 +167,4 @@ function is_exist($value,$table,$field){
     $stm->execute([$value]);
     return $stm->fetchColumn() > 0;
 }
+

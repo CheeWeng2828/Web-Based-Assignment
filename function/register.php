@@ -44,6 +44,24 @@ if(is_get()){
         else if($confirm != $password){
             $_err['confirm'] = "Not Match";
         }
+
+        if(!$f){
+            $_err['photo'] = "Required";
+        }
+        else if($f->size > 1*1024*1024){
+            $_err['photo'] = "Maximun Size is 1MB";
+        }
+        else if(!str_start_with($f->type,'image/')){
+            $_err['photo'] = 'Must be image';
+        }
+
+        if(!$_err){
+            $photo = save_photo($f,'../photo');
+
+
+            $stm = $_db->prepare('INSERT INTO user (email,name,password,photo,role)VALUES (?,?,?,?,"Member")');
+            $stm->execute([$email,$name,$password,$photo]);
+        }
 }
 
 $_title = 'Register';
