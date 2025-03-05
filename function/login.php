@@ -16,7 +16,7 @@ if(is_post()){
     if($password == ''){
         $_err['password'] = 'Required';
     }
-}
+
 if(!$_err){
     $stm = $_db->prepare('SELECT * FROM user
                           WHERE email = ? AND password = SHA1(?)');
@@ -26,11 +26,13 @@ if(!$_err){
     if($u){
         temp('info','Login Successful');
         login($u);
+
     }
     else{
         $_err['password'] = "Not Matched";
     }
 
+    }
 }
 
 $_title = 'Login';

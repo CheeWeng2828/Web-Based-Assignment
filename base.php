@@ -34,17 +34,17 @@ function redirect($url = null){
     exit();
 }
 
-function temp($key,$value = null)
-{
+function temp($key, $value = null) {
     if($value !== null){
-        $_SESSION["temp_$key"] == $value;
+        $_SESSION["temp_$key"] = $value;
     }
     else{
-        $value = $_SESSION["temp_$key"]??null;
+        $value = $_SESSION["temp_$key"] ?? null;
         unset($_SESSION["temp_$key"]);
         return $value;
     }
 }
+
 
 function get_file($key){
     $f = $_FILES[$key] ?? null;
@@ -64,7 +64,7 @@ function save_photo($f,$folder,$weigth = 50,$height = 50){
     $img = new SimpleImage();
     $img->fromFile($f->tmp_name);
     $img->thumbnail($weigth,$height);
-    $img->toFile($folder/$photo);
+    $img->toFile("$folder/$photo",'image/jpeg');
 
     return $photo;
 }
@@ -90,6 +90,16 @@ function html_password($key,$attr =' '){
 function html_file($key,$accept = ' ',$attr=' '){
     $value = encode($GLOBALS[$key]?? '');
     echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
+}
+
+function html_search($key,$attr=' '){
+    $value = encode($GLOBALS[$key]?? '');
+    echo "<input type ='search' id='$key' name='$key' value='$value' $attr>";
+}
+
+function html_number($key,$min = '',$max = '',$step = '',$attr = ''){
+    $value = encode($GLOBALS[$key]?? '');
+    echo"<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
 }
 //===================================================================================
 // Check Format
@@ -168,3 +178,33 @@ function is_exist($value,$table,$field){
     return $stm->fetchColumn() > 0;
 }
 
+//===================================================================================
+//          Shopping Cart
+//===================================================================================
+
+function get_cart(){
+    return $_SESSION['cart'] ?? [];
+}
+
+function set_cart($cart = []){
+    $_SESSION['cart'] = $cart;
+}
+
+function update_cart($id,$unit){
+    $cart = get_cart();
+
+    if($unit <= 1 && $unit > 10 && is_exist($id,'product','id')){
+        $cart[$id] = $unit;
+    }
+    else{
+        unset($cart[$id]);
+    }
+    
+    set_cart($cart);
+}
+
+//===================================================================================
+//          Global variable
+//===================================================================================
+
+$_units = array_combine(range(1,10),range(1,10));

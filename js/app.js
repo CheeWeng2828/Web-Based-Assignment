@@ -1,5 +1,10 @@
 $(() =>{
 
+    // Auto Focus
+    $('form:input:not(button):first').focus();
+    $('.err:first').prev().focus();
+    $('.err:first').prev().find(':input:first').focus();
+
     $('[data-get]').on('click',e =>{
         e.preventDefault();
         const url = e.target.dataset.get;
@@ -15,12 +20,15 @@ $(() =>{
         f.submit();
     })
 
-    $('[type=reset]').on('click',e=>{
+//  User Click Reset to Refresh the page
+$('[type=reset]').on('click',e=>{
         e.preventDefault();
         location = location;
     })
 
-    $('label.upload input[type=file]').on("change",e=>{
+
+
+$('label.upload input[type=file]').on('change',e=>{
         const f = e.target.file[0];
         const img = $(e.target).sibling('img')[0];
 

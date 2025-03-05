@@ -11,14 +11,28 @@
 </head>
 <body>
     <div id="info"><?= temp('info') ?></div>
+    <header>
     <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
     <h1 style="text-align: left;">XX bakery</h1>
-
+    <?php if($_user):?>
+        <div>
+            <?=$_user->name ?><br>
+            <?=$_user->role?>
+        </div>
+        <img src="/photo/<?= $_user->photo ?>">
+        <?php endif?>
+    </header>
     <nav>
         <ul>
             <li><a href="/">Home</a></li>
+            <?php if(!$_user):?>
             <li><a href="/function/login.php">Login</a></li>
+            <li><a href="/function/register.php">Register</a></li>
+            <?php endif ?>
+            <?php if($_user):?>
             <li><a href="/function/logout.php">Logout</a></li>
+            <li><a href="/function/profile.php">Profile</a></li>
+            <?php endif ?>
         </ul>
     </nav>
     
