@@ -29,10 +29,11 @@ $('[type=reset]').on('click',e=>{
 
 
 $('label.upload input[type=file]').on('change',e=>{
-        const f = e.target.file[0];
-        const img = $(e.target).sibling('img')[0];
+        const f = e.target.files[0];
+        const img = $(e.target).siblings('img')[0];
 
         if(!img) return;
+        
         img.dataset.src ??= img.src;
 
         if(f?.type.startsWith('image/')){
