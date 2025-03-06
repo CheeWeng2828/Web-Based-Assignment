@@ -3,20 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?= $_title ?? 'Untitled' ?></title>
     <link rel="icon" href="/image/icon.jpg">
     <link rel="stylesheet" href="/css/app.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
 </head>
-
 <body>
-    <h1>Welcome To Our Bakery Store</h1>
-
+    <div id="info"><?= temp('info') ?></div>
+    <header>
+    <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
+    <h1 style="text-align: left;">XX bakery</h1>
+    <?php if($_user):?>
+        <div>
+            <?=$_user->name ?><br>
+            <?=$_user->role?>
+        </div>
+        <img src="/photo/<?= $_user->photo ?>">
+        <?php endif?>
+    </header>
     <nav>
         <ul>
-            <li><a href="/index.php">Home</a></li>
+            <li><a href="/">Home</a></li>
+            <?php if(!$_user):?>
             <li><a href="/function/login.php">Login</a></li>
+            <li><a href="/function/register.php">Register</a></li>
+            <?php endif ?>
+            <?php if($_user):?>
+            <li><a href="/function/logout.php">Logout</a></li>
+            <li><a href="/function/profile.php">Profile</a></li>
+            <?php endif ?>
         </ul>
     </nav>
     
-</body>
-</html>
+<main>
+    <h1><?=$_title ?? 'Untitled'?></h1>
