@@ -23,17 +23,16 @@
         <?php endif?>
     </header>
     <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
+            <a href="/">Home</a>
             <?php if(!$_user):?>
-            <li><a href="/function/login.php">Login</a></li>
-            <li><a href="/function/register.php">Register</a></li>
+            <a href="/function/login.php">Login</a>
+            <a href="/function/register.php">Register</a>
             <?php endif ?>
+            <div></div>
             <?php if($_user):?>
-            <li><a href="/function/logout.php">Logout</a></li>
-            <li><a href="/function/profile.php">Profile</a></li>
+            <a href="/function/logout.php">Logout</a>
+            <a href="/function/profile.php">Profile</a>
             <?php endif ?>
-        </ul>
     </nav>
     
 <main>
