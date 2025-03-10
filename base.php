@@ -88,7 +88,6 @@ function html_password($key,$attr =' '){
 }
 
 function html_file($key,$accept = ' ',$attr=' '){
-    $value = encode($GLOBALS[$key]?? '');
     echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
 }
 
