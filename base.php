@@ -101,6 +101,19 @@ function html_number($key,$min = '',$max = '',$step = '',$attr = ''){
     $value = encode($GLOBALS[$key]?? '');
     echo"<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
 }
+
+function html_header($fields,$sort,$dir,$href = ''){
+    foreach($fields as $k=>$v){
+    $d = 'esc';
+    $c = '';
+    }
+    if($k == $sort){
+        $d = $dir == 'asc' ? 'desc' : 'asc';
+        $c = $dir;
+    }
+
+    echo"<th><a href='?sort=$k&dir=$d&href' class='$c'>$v</a></th>";
+}
 //===================================================================================
 // Check Format
 //===================================================================================

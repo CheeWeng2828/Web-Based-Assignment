@@ -28,6 +28,9 @@
             <a href="/function/login.php">Login</a>
             <a href="/function/register.php">Register</a>
             <?php endif ?>
+            <?php if($_user?->role == "Admin"): ?>
+            <a href="/function/user_list.php">User List</a>
+            <?php endif ?>
             <div></div>
             <?php if($_user):?>
             <a href="/function/logout.php">Logout</a>
