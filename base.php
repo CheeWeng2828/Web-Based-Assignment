@@ -56,15 +56,15 @@ function get_file($key){
     return null;
 }
 
-function save_photo($f,$folder,$weigth = 50,$height = 50){
+function save_photo($f,$folder,$weigth = 200,$height = 200){
 
     $photo = uniqid(). '.jpg';
     require_once 'lib/SimpleImage.php';
 
     $img = new SimpleImage();
-    $img->fromFile($f->tmp_name);
-    $img->thumbnail($weigth,$height);
-    $img->toFile("$folder/$photo",'image/jpeg');
+    $img->fromFile($f->tmp_name)
+        ->thumbnail($weigth,$height)
+        ->toFile("$folder/$photo",'image/jpeg');
 
     return $photo;
 }

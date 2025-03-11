@@ -1,6 +1,7 @@
 <?php
 require '../base.php';
 
+auth();
 if(is_get()){
     $stm = $_db->prepare('SELECT * FROM user WHERE id = ?');
     $stm->execute([$_user->id]);
@@ -54,11 +55,16 @@ if(is_post()){
     }
 
         if(!$_err){
+            if($f){
             unlink("../photo/$photo");
             save_photo($f,'../photo');
-
-            $stm = $_db->prepare('UPDATE user SET email = ?,name = ?,photo = ? WHERE id =?');
-            $stm->execute([$email,$name,$photo,$_user->id]);
+            }
+            $stm = $_db->prepare('
+            UPDATE user
+            SET email = ?,name = ?,photo = ?
+            WHERE id = ?
+        ');
+        $stm->execute([$email,$name,$photo,$_user->id]);
 
             $_user->email = $email;
             $_user->name = $name;
