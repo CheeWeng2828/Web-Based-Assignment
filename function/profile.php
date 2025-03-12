@@ -1,7 +1,8 @@
 <?php
-require '../base.php';
+include '../base.php';
 
 auth();
+
 if(is_get()){
     $stm = $_db->prepare('SELECT * FROM user WHERE id = ?');
     $stm->execute([$_user->id]);

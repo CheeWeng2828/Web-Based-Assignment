@@ -143,30 +143,33 @@ function err($key){
 
 $_user = $_SESSION['user'] ?? null;
 
-// Login User
-function login($user,$url='/'){
+// Login user
+function login($user, $url = '/') {
     $_SESSION['user'] = $user;
     redirect($url);
 }
 
-function logout($url='/'){
+// Logout user
+function logout($url = '/') {
     unset($_SESSION['user']);
     redirect($url);
 }
 
-function auth(...$roles){
+// Authorization
+function auth(...$roles) {
     global $_user;
-    if($_user){
-        if($roles){
-            if(in_array($_user->role,$roles)){
-                return;
-            }
-            else{
+    if ($_user) {
+        if ($roles) {
+            if (in_array($_user->role, $roles)) {
                 return;
             }
         }
+        else {
+            return;
+        }
     }
-    redirect('/login.php');
+    
+    redirect('/function/login.php');
 }
 
 //===================================================================================
