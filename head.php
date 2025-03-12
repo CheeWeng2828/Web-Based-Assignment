@@ -35,6 +35,7 @@
             <?php if($_user):?>
             <a href="/function/logout.php">Logout</a>
             <a href="/function/profile.php">Profile</a>
+            <a href="/function/password.php">Password</a>
             <?php endif ?>
     </nav>
     

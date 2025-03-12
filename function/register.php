@@ -1,68 +1,81 @@
 <?php
 require '../base.php';
 
-if(is_post()){
-    $email = req('email');
-    $name = req('name');
+if (is_post()) {
+    $email    = req('email');
     $password = req('password');
-    $confirm = req('confirm');
+    $confirm  = req('confirm');
+    $name     = req('name');
     $f = get_file('photo');
 
-        if(!$email){
-            $_err['email'] = "Required";
-        }
-        else if(!is_email($email)){
-            $_err['email'] = "Invalid email";
-        }
-        else if(strlen($email)>100){
-            $_err['email'] = "Maximun 100 charater";
-        }
-        else if (!is_unique($email, 'user', 'email')) {
-            $_err['email'] = 'Duplicated';
-        }
+    // Validate: email
+    if (!$email) {
+        $_err['email'] = 'Required';
+    }
+    else if (strlen($email) > 100) {
+        $_err['email'] = 'Maximum 100 characters';
+    }
+    else if (!is_email($email)) {
+        $_err['email'] = 'Invalid email';
+    }
+    else if (!is_unique($email, 'user', 'email')) {
+        $_err['email'] = 'Duplicated';
+    }
 
-        if(!$name){
-            $_err['name'] = "Required";
-        }
-        else if(strlen($name)>100){
-            $_err['name'] = "Maximun 100 charater";
-        }
+    // Validate: password
+    if (!$password) {
+        $_err['password'] = 'Required';
+    }
+    else if (strlen($password) < 5 || strlen($password) > 100) {
+        $_err['password'] = 'Between 5-100 characters';
+    }
 
-        if(!$password){
-            $_err['password'] = "Required";
-        }
-        else if (strlen($password) < 5 || strlen($password) > 100) {
-            $_err['password'] = 'Between 5-100 characters';
-        }
+    // Validate: confirm
+    if (!$confirm) {
+        $_err['confirm'] = 'Required';
+    }
+    else if (strlen($confirm) < 5 || strlen($confirm) > 100) {
+        $_err['confirm'] = 'Between 5-100 characters';
+    }
+    else if ($confirm != $password) {
+        $_err['confirm'] = 'Not matched';
+    }
 
-        if(!$confirm){
-            $_err['confirm'] = "Required";
-        }
-        else if (strlen($confirm) < 5 || strlen($confirm) > 100) {
-            $_err['confirm'] = 'Between 5-100 characters';
-        }
-        else if($confirm != $password){
-            $_err['confirm'] = "Not Match";
-        }
+    // Validate: name
+    if (!$name) {
+        $_err['name'] = 'Required';
+    }
+    else if (strlen($name) > 100) {
+        $_err['name'] = 'Maximum 100 characters';
+    }
 
-        if(!$f){
-            $_err['photo'] = "Required";
-        }
-        else if($f->size > 1*1024*1024){
-            $_err['photo'] = "Maximun Size is 1MB";
-        }
-        else if(!str_starts_with($f->type,'image/')){
-            $_err['photo'] = 'Must be image';
-        }
+    // Validate: photo (file)
+    if (!$f) {
+        $_err['photo'] = 'Required';
+    }
+    else if (!str_starts_with($f->type, 'image/')) {
+        $_err['photo'] = 'Must be image';
+    }
+    else if ($f->size > 1 * 1024 * 1024) {
+        $_err['photo'] = 'Maximum 1MB';
+    }
 
-        if(!$_err){
-            $photo = save_photo($f,'../photo');
-            $stm = $_db->prepare('INSERT INTO user (email,name,password,photo,role)VALUES (?,?,SHA1(?),?,"Member")');
-            $stm->execute([$email,$name,$password,$photo]);
+    // DB operation
+    if (!$_err) {
 
-            temp('info', 'You Are SIgn Up Successful !!!');
-            redirect('login.php');
-        }
+        //Save photo
+        $photo = save_photo($f, '../photo');
+        
+        // Insert data
+        $stm = $_db->prepare('
+            INSERT INTO user (email, password, name, photo, role)
+            VALUES (?,SHA1(?),?,?,"Member")
+        ');
+        $stm->execute([$email,$name,$photo,$_user->id]);
+
+        temp('info', 'Record inserted');
+        redirect('/login.php');
+    }
 }
 
 $_title = 'Register';

@@ -45,17 +45,9 @@ function temp($key, $value = null) {
     }
 }
 
-
-function get_file($key){
-    $f = $_FILES[$key] ?? null;
-
-    if($f && $f['error'] == 0){
-        return(object)$f;
-    }
-
-    return null;
-}
-
+//===================================================================================
+// Photo function
+//===================================================================================
 function save_photo($f,$folder,$weigth = 200,$height = 200){
 
     $photo = uniqid(). '.jpg';
@@ -67,6 +59,20 @@ function save_photo($f,$folder,$weigth = 200,$height = 200){
         ->toFile("$folder/$photo",'image/jpeg');
 
     return $photo;
+}
+
+function get_file($key) {
+    $f = $_FILES[$key] ?? null;
+    
+    if ($f && $f['error'] == 0) {
+        return (object)$f;
+    }
+
+    return null;
+}
+
+function html_file($key, $accept = '', $attr = '') {
+    echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
 }
 
 //===================================================================================
@@ -85,10 +91,6 @@ function html_text($key,$attr = ''){
 function html_password($key,$attr =' '){
     $value = encode($GLOBALS[$key]?? '');
     echo "<input type='password' id='$key' name='$key'value='$value' $attr>";
-}
-
-function html_file($key,$accept = ' ',$attr=' '){
-    echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
 }
 
 function html_search($key,$attr=' '){
