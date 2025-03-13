@@ -133,3 +133,8 @@ header img{
     border: 1 px solid gray;
     padding: 5px;
 }
+
+.productList th, .productList tr{
+    border: 10 px solid black;
+    padding: 5px;
+}
