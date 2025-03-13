@@ -25,18 +25,18 @@
     <nav>
             <a href="/">Home</a>
             <?php if(!$_user):?>
-            <a href="/function/login.php">Login</a>
-            <a href="/function/register.php">Register</a>
+            <a href="/user/login.php">Login</a>
+            <a href="/user/register.php">Register</a>
             <?php endif ?>
             <?php if($_user?->role == "Admin"): ?>
             
-            <a href="/function/product_maintenance.php">Product List</a>
+            <a href="/product/product_maintenance.php">Product List</a>
             <?php endif ?>
             <div></div>
             <?php if($_user):?>
-            <a href="/function/logout.php">Logout</a>
-            <a href="/function/profile.php">Profile</a>
-            <a href="/function/password.php">Password</a>
+            <a href="/user/logout.php">Logout</a>
+            <a href="/user/profile.php">Profile</a>
+            <a href="/user/password.php">Password</a>
             <?php endif ?>
     </nav>
     
