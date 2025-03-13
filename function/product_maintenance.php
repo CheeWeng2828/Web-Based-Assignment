@@ -3,13 +3,13 @@ require '../base.php';
 // Fetch data from database
 $fields = [
     'id' => 'ID',
-    'email' => 'email',
     'name' => "Name",
-    'role' => 'Role'
+    'price' => 'Price'
+    
 
 ];
 
-$arr=$_db->query('SELECT * FROM user')->fetchAll();
+$arr=$_db->query('SELECT * FROM product')->fetchAll();
 
 
 include '../head.php';
@@ -18,17 +18,19 @@ $_title = "Product List";
 <table class="productList">
 <tr>
     <th>Id</th>
-    <th>Email</th>
     <th>Name</th>
-    <th>Role</th>
+    <th>Price</th>
 </tr>
 
 <?php foreach ($arr as $s) :?>
 <tr>
     <td><?= $s->id ?></td>
-    <td><?= $s->email ?></td>
     <td><?= $s->name ?></td>
-    <td><?= $s->role ?></td>
+    <td><?= $s->price ?></td>
+    <td> 
+        <button data-get="update.php?id=<?= $s->id ?>">Update</button>
+        <button data-post="delete.php?id=<?= $s->id ?>">Delete</button>
+    </td>
 <?php endforeach ?>
 </tr>
 </table>

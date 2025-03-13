@@ -135,6 +135,6 @@ header img{
 }
 
 .productList th, .productList tr{
-    border: 10 px solid black;
+    border: 1 px solid gray;
     padding: 5px;
 }
