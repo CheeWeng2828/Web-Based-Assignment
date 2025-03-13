@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 06, 2025 at 07:30 AM
+-- Generation Time: Mar 13, 2025 at 09:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -26,6 +26,35 @@ USE `assign`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `id` char(4) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `price` decimal(4,2) NOT NULL,
+  `photo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `name`, `price`, `photo`) VALUES
+('B001', 'croissant', 3.50, 'croissant.jpg'),
+('B002', 'sourdough bread', 4.50, 'sourdough bread.jpg'),
+('B003', 'garlic bread', 4.00, 'garlic bread.jpg'),
+('B004', 'chocolate cake', 50.00, 'chocolate cake.jpg'),
+('B005', 'toast', 5.00, 'toast.jpg'),
+('B006', 'coffee bun', 4.50, 'coffee bun.jpg'),
+('B007', 'sausage bread', 3.70, 'sausage bread.jpg'),
+('B008', 'egg tart', 2.70, 'egg tart.jpg'),
+('B009', 'cheese cake', 25.00, 'cheese cake.jpg'),
+('B010', 'croissant pizza', 7.50, 'croissant pizza.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -43,12 +72,18 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `password`, `name`, `photo`, `role`) VALUES
-(1, 'hello@gmail.com', '8308550b79973e5e455cb4101d0bda6847966c8b', 'Admin', 'admin.jpg', 'Admin'),
+(1, '1@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Admin', '67d14ea8c9e87.jpg', 'Admin'),
 (4, '2@gmail.com', '8308550b79973e5e455cb4101d0bda6847966c8b', 'Member1', '67c6f6eb5c8bb.jpg', 'Member');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
