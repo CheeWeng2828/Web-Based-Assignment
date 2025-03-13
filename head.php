@@ -29,7 +29,7 @@
             <a href="/function/register.php">Register</a>
             <?php endif ?>
             <?php if($_user?->role == "Admin"): ?>
-            <a href="/function/user_list.php">User List</a>
+            
             <a href="/function/product_maintenance.php">Product List</a>
             <?php endif ?>
             <div></div>
