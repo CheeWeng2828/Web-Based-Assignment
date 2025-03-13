@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2025 at 09:04 AM
+-- Generation Time: Mar 13, 2025 at 09:14 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,15 +42,15 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `name`, `price`, `photo`) VALUES
 ('B001', 'croissant', 3.50, 'croissant.jpg'),
-('B002', 'sourdough bread', 4.50, 'sourdough bread.jpg'),
-('B003', 'garlic bread', 4.00, 'garlic bread.jpg'),
-('B004', 'chocolate cake', 50.00, 'chocolate cake.jpg'),
+('B002', 'sourdough bread', 4.50, 'sourdoughBread.jpg'),
+('B003', 'garlic bread', 4.00, 'garlicBread.jpg'),
+('B004', 'chocolate cake', 50.00, 'chocolateCake.jpg'),
 ('B005', 'toast', 5.00, 'toast.jpg'),
-('B006', 'coffee bun', 4.50, 'coffee bun.jpg'),
-('B007', 'sausage bread', 3.70, 'sausage bread.jpg'),
-('B008', 'egg tart', 2.70, 'egg tart.jpg'),
-('B009', 'cheese cake', 25.00, 'cheese cake.jpg'),
-('B010', 'croissant pizza', 7.50, 'croissant pizza.jpg');
+('B006', 'coffee bun', 4.50, 'coffeeBun.jpg'),
+('B007', 'sausage bread', 3.70, 'sausageBread.jpg'),
+('B008', 'egg tart', 2.70, 'eggTart.jpg'),
+('B009', 'cheese cake', 25.00, 'cheeseCake.jpg'),
+('B010', 'croissant pizza', 7.50, 'croissantPizza.jpg');
 
 -- --------------------------------------------------------
 
