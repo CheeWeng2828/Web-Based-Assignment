@@ -14,6 +14,7 @@ if(!$s){
 $id =$s->id;
 $name =$s->name;
 $price =$s->price;
+$photo =$s->photo;
 
 }
 
@@ -21,7 +22,8 @@ if (is_post()) {
     $id         = req('id'); 
     $name       = req('name');
     $price     = req('price');
-    
+    $photo = $_SESSION['photo'];
+    $f = get_file('photo');
 }
 
 include '../head.php';
@@ -40,6 +42,13 @@ $_title = "Product Update";
     <label for="price">Price</label>
     <?= html_text('price', 'maxlength="5"') ?>
     <?= err('price') ?>
+
+    <label for="photo">Photo</label>
+    <label class="upload" tabindex="0">
+        <?= html_file('photo', 'image/*', 'hidden') ?>
+        <img src="/product_img/<?= $photo ?>">
+    </label>
+    <?= err('photo') ?>
 
     <section>
         <button>Submit</button>
