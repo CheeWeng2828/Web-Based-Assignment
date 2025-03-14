@@ -11,9 +11,8 @@ $fields = [
 
 $arr=$_db->query('SELECT * FROM product')->fetchAll();
 
-
-include '../head.php';
 $_title = "Product List";
+include '../head.php';
 ?>
 <table class="productList">
 <tr>
