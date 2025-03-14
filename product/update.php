@@ -26,8 +26,8 @@ if (is_post()) {
     $f = get_file('photo');
 }
 
-include '../head.php';
 $_title = "Product Update";
+include '../head.php';
 ?> 
 
 <form method="post" class="form">
