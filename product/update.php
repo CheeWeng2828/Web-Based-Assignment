@@ -25,7 +25,7 @@ if (is_post()) {
     $price     = req('price');
     $photo = $_SESSION['photo'];
     $f = get_file('photo');
-}
+
 
 if(!$price){
     $_err['price'] = "Required";
@@ -71,6 +71,7 @@ $stm->execute([$price,$name,$photo,$id]);
 
     temp('info','Update Sucessful');
     redirect('/');
+}
 }
 
 $_title = "Product Update";
