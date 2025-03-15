@@ -2,20 +2,21 @@
 require '../base.php';
 
 if(is_get()){
-$id=req('id');
+    $id=req('id');
+    
+    $stm = $_db->prepare('SELECT * FROM product WHERE id=?');
+    $stm->execute([$id]);
+    $s = $stm->fetch();
+    
+    if(!$s){
+        redirect('/');
+    }
 
-$stm = $_db->prepare('SELECT * FROM product WHERE id=?');
-$stm->execute([$id]);
-$s = $stm->fetch();
-
-if(!$s){
-    redirect('/');
-}
-$id =$s->id;
-$name =$s->name;
-$price =$s->price;
-$photo =$s->photo;
-
+    $id =$s->id;
+    $name =$s->name;
+    $price =$s->price;
+    $photo =$s->photo;
+    
 }
 
 if (is_post()) {
@@ -24,6 +25,52 @@ if (is_post()) {
     $price     = req('price');
     $photo = $_SESSION['photo'];
     $f = get_file('photo');
+}
+
+if(!$price){
+    $_err['price'] = "Required";
+}
+else{
+    $stm = $_db->prepare('SELECT COUNT(*) FROM product WHERE name=? AND id != ?');
+    $stm->execute([$name,$id]);
+
+    if($stm->fetchColumn() > 0){
+        $_err['name'] = 'Duplicated';
+    }
+}
+
+if(!$name){
+    $_err['name'] = "Required";
+}
+else if(strlen($name)>100){
+    $_err['name'] = "Maximun 100 charater";
+}
+
+if($f){
+    if($f->size > 1*1024*1024){
+    $_err['photo'] = "Maximun Size is 1MB";
+}
+    else if(!str_starts_with($f->type,'image/')){
+    $_err['photo'] = 'Must be image';
+}
+}
+
+if(!$_err){
+    if($f){
+    unlink("../photo/$photo");
+    save_photo($f,'../photo');
+    }
+    $stm = $_db->prepare('
+    UPDATE product
+    SET price = ?,name = ?,photo = ?
+    WHERE id = ?
+');
+$stm->execute([$price,$name,$photo,$id]);
+
+
+
+    temp('info','Update Sucessful');
+    redirect('/');
 }
 
 $_title = "Product Update";

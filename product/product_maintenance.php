@@ -11,6 +11,8 @@ $fields = [
 
 $arr=$_db->query('SELECT * FROM product')->fetchAll();
 
+
+
 $_title = "Product List";
 include '../head.php';
 ?>
