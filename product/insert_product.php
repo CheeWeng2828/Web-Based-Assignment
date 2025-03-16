@@ -1,0 +1,93 @@
+<?php
+require '../base.php';
+
+if (is_post()) {
+    $id         = req('id'); 
+    $name       = req('name');
+    $price     = req('price');
+    $photo = $_SESSION['photo'];
+    $f = get_file('photo');
+
+    if($id==""){
+        $_err['id'] = 'Required';
+    }
+    else if(!preg_match('/^[A-Z]\d{3}$/', $id)){
+        $_err['id'] = 'Invalid Format';
+    }
+    else if(!is_unique($id,'product','id')){
+            $_err['id'] = 'Duplicated';
+            
+        }
+    
+
+if(!$price){
+    $_err['price'] = "Required";
+}
+
+
+if(!$name){
+    $_err['name'] = "Required";
+}
+else if(strlen($name)>100){
+    $_err['name'] = "Maximun 100 charater";
+}
+
+if($f){
+    if($f->size > 1*1024*1024){
+    $_err['photo'] = "Maximun Size is 1MB";
+}
+    else if(!str_starts_with($f->type,'image/')){
+    $_err['photo'] = 'Must be image';
+}
+}
+
+if(!$_err){
+    if($f){
+    $photo = save_photo($f,'../photo');
+    }
+    $stm = $_db->prepare('
+    INSERT INTO product
+    ( id , name , price , photo)
+     VALUES(?,?,?,?)') ;
+
+$stm->execute([$id,$name,$price,$photo]);
+
+
+    temp('info','Insert Sucessful');
+    redirect('/');
+}
+}
+
+$_title = "Insert Product";
+include '../head.php';
+?> 
+
+<form method="post" class="form" enctype="multipart/form-data">
+    <label for="id">Id</label>
+    <?= html_text('id', 'maxlength="4" data-upper') ?>
+    <?= err('id') ?>
+
+
+    <label for="name">Name</label>
+    <?= html_text('name', 'maxlength="100"') ?>
+    <?= err('name') ?>
+
+    <label for="price">Price</label>
+    <?= html_text('price', 'maxlength="5"') ?>
+    <?= err('price') ?>
+
+    <label for="photo">Photo</label> 
+    <label class="upload" tabindex="0">
+        <?= html_file('photo', 'image/*', 'hidden') ?>
+        <img src="/product_img/<?= $photo ?>">
+    </label>
+    <?= err('photo') ?>
+
+    <section>
+        <button>Submit</button>
+        <button type="reset">Reset</button>
+    </section>
+</form>
+
+<?php
+include '../foot.php';

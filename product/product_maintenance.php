@@ -30,7 +30,8 @@ include '../head.php';
     <td><?= $s->price ?></td>
     <td> 
         <button data-get="update.php?id=<?= $s->id ?>">Update</button>
-        <button data-post="delete.php?id=<?= $s->id ?>">Delete</button>
+        <button data-post="delete.php?id=<?= $s->id ?>"data-confirm="Permanently Delete?"
+        >Delete</button>
     </td>
 <?php endforeach ?>
 </tr>

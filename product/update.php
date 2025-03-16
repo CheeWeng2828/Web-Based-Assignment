@@ -7,10 +7,14 @@ if(is_get()){
     $stm = $_db->prepare('SELECT * FROM product WHERE id=?');
     $stm->execute([$id]);
     $s = $stm->fetch();
-    
+
     if(!$s){
         redirect('/');
     }
+    extract((array)$s);
+    $_SESSION['photo'] = $s->photo;
+    
+   
 
     $id =$s->id;
     $name =$s->name;
@@ -30,6 +34,14 @@ if (is_post()) {
 if(!$price){
     $_err['price'] = "Required";
 }
+
+
+if(!$name){
+    $_err['name'] = "Required";
+}
+else if(strlen($name)>100){
+    $_err['name'] = "Maximun 100 charater";
+}
 else{
     $stm = $_db->prepare('SELECT COUNT(*) FROM product WHERE name=? AND id != ?');
     $stm->execute([$name,$id]);
@@ -37,13 +49,6 @@ else{
     if($stm->fetchColumn() > 0){
         $_err['name'] = 'Duplicated';
     }
-}
-
-if(!$name){
-    $_err['name'] = "Required";
-}
-else if(strlen($name)>100){
-    $_err['name'] = "Maximun 100 charater";
 }
 
 if($f){
@@ -57,8 +62,10 @@ if($f){
 
 if(!$_err){
     if($f){
+        if($photo){ 
     unlink("../photo/$photo");
-    save_photo($f,'../photo');
+        }
+    $photo = save_photo($f,'../photo');
     }
     $stm = $_db->prepare('
     UPDATE product
@@ -66,7 +73,6 @@ if(!$_err){
     WHERE id = ?
 ');
 $stm->execute([$price,$name,$photo,$id]);
-
 
 
     temp('info','Update Sucessful');
@@ -78,7 +84,7 @@ $_title = "Product Update";
 include '../head.php';
 ?> 
 
-<form method="post" class="form">
+<form method="post" class="form" enctype="multipart/form-data">
     <label for="id">Id</label>
     <b><?= $id ?></b>
     <?= err('id') ?>
@@ -91,7 +97,7 @@ include '../head.php';
     <?= html_text('price', 'maxlength="5"') ?>
     <?= err('price') ?>
 
-    <label for="photo">Photo</label>
+    <label for="photo">Photo</label> 
     <label class="upload" tabindex="0">
         <?= html_file('photo', 'image/*', 'hidden') ?>
         <img src="/product_img/<?= $photo ?>">

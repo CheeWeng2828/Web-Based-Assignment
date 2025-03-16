@@ -29,8 +29,8 @@
             <a href="/user/register.php">Register</a>
             <?php endif ?>
             <?php if($_user?->role == "Admin"): ?>
-            
             <a href="/product/product_maintenance.php">Product List</a>
+            <a href="/product/insert_product.php">Insert Product</a>
             <?php endif ?>
             <div></div>
             <?php if($_user):?>
