@@ -1,16 +1,6 @@
 <?php
 require '../base.php';
 $name = req('name');
-// Fetch data from database
-$fields = [
-    'id' => 'ID',
-    'name' => "Name",
-    'price' => 'Price',
-    'photo'=>'Photo'
-];
-
-
-$arr=$_db->query('SELECT * FROM product')->fetchAll();
 
 
 $stm = $_db->prepare('SELECT * FROM product WHERE name LIKE ?');
@@ -38,9 +28,7 @@ include '../head.php';
 <?php foreach ($arr as $s) :?>
 <tr>
     <td><?= $s->id ?></td>
-    <td><?= $s->name ?>
-      <img src="<?=$s->photo ?>" class="test">
-    </td>
+    <td><?= $s->name ?></td>
     <td><?= $s->price ?></td>
     <td> 
         <button data-get="update.php?id=<?= $s->id ?>">Update</button>
