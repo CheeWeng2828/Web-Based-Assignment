@@ -1,5 +1,5 @@
 <?php
-include '../_base.php';
+include '../base.php';
 
 
 if (is_post()) {
@@ -17,7 +17,7 @@ if (is_post()) {
 
 
 $_title = 'Order | Shopping Cart';
-include '../_head.php';
+include '../head.php';
 ?>
 
 <style>
@@ -91,4 +91,4 @@ include '../_head.php';
 </script>
 
 <?php
-include '../_foot.php';
+include '../foot.php';

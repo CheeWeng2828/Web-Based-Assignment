@@ -4,6 +4,7 @@ include '../base.php';
 auth();
 
 if(is_get()){
+
     $stm = $_db->prepare('SELECT * FROM user WHERE id = ?');
     $stm->execute([$_user->id]);
     $u = $stm->fetch();
@@ -12,14 +13,15 @@ if(is_get()){
         redirect('/');
     }
     extract((array)$u);
-    $_SESSION['photo'] = $u->photo;
+    $_SESSION['profile'] = $u->photo;
 
 }
 if(is_post()){
+
     $email = req('email');
     $name = req('name');
-    $photo = $_SESSION['photo'];
-    $f = get_file('photo');
+    $profile = $_SESSION['profile'];
+    $f = get_file('profile');
 
         if(!$email){
             $_err['email'] = "Required";
@@ -48,28 +50,29 @@ if(is_post()){
 
         if($f){
             if($f->size > 1*1024*1024){
-            $_err['photo'] = "Maximun Size is 1MB";
+            $_err['profile'] = "Maximun Size is 1MB";
         }
             else if(!str_starts_with($f->type,'image/')){
-            $_err['photo'] = 'Must be image';
+            $_err['profile'] = 'Must be image';
         }
     }
 
         if(!$_err){
             if($f){
-            unlink("../photo/$photo");
-            save_photo($f,'../photo');
+            unlink("../photo/$profile");
+            $profile = save_photo($f,'../photo');
+            $_SESSION['profile'] = $profile;
             }
             $stm = $_db->prepare('
             UPDATE user
             SET email = ?,name = ?,photo = ?
             WHERE id = ?
         ');
-        $stm->execute([$email,$name,$photo,$_user->id]);
+        $stm->execute([$email,$name,$profile,$_user->id]);
 
             $_user->email = $email;
             $_user->name = $name;
-            $_user->photo = $photo;
+            $_user->photo = $profile;
 
             temp('info','Update Sucessful');
             redirect('/');
@@ -87,12 +90,12 @@ include '../head.php'
     <?=html_text('name','maxlength="100"')?>
     <?= err('name') ?>
 
-    <label for="photo">Photo</label>
+    <label for="photos">Photo</label>
     <label class="upload" tabindex="0">
-        <?= html_file('photo', 'image/*', 'hidden') ?>
-        <img src="/photo/<?= $photo ?>">
+        <?= html_file('profile', 'image/*', 'hidden') ?>
+        <img src="/photo/<?= $profile ?>">
     </label>
-    <?= err('photo') ?>
+    <?= err('photos') ?>
 
     <section>
         <button>Submit</button>

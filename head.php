@@ -34,6 +34,7 @@
             <?php endif ?>
             <div></div>
             <?php if($_user):?>
+            <a href="/function/shopping _cart.php">Shopping Cart</a>
             <a href="/user/logout.php">Logout</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
