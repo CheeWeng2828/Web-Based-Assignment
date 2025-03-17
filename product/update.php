@@ -65,7 +65,7 @@ if(!$_err){
         if($photo){ 
     unlink("../product_img/$photo");
         }
-    $photo = save_photo($f,'../product_img');
+     save_photo($f,'../product_img');
     }
     $stm = $_db->prepare('
     UPDATE product

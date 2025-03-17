@@ -5,7 +5,6 @@ if (is_post()) {
     $id         = req('id'); 
     $name       = req('name');
     $price     = req('price');
-    $photo = $_SESSION['photo'];
     $f = get_file('photo');
 
     if($id==""){
@@ -32,19 +31,19 @@ else if(strlen($name)>100){
     $_err['name'] = "Maximun 100 charater";
 }
 
-if($f){
-    if($f->size > 1*1024*1024){
-    $_err['photo'] = "Maximun Size is 1MB";
+if (!$f) {
+    $_err['photo'] = 'Required';
 }
-    else if(!str_starts_with($f->type,'image/')){
+else if (!str_starts_with($f->type, 'image/')) {
     $_err['photo'] = 'Must be image';
 }
+else if ($f->size > 1 * 1024 * 1024) {
+    $_err['photo'] = 'Maximum 1MB';
 }
 
+
 if(!$_err){
-    if($f){
-    $photo = save_photo($f,'../photo');
-    }
+     $photo = save_photo($f,'../product_img');
     $stm = $_db->prepare('
     INSERT INTO product
     ( id , name , price , photo)
@@ -57,6 +56,7 @@ $stm->execute([$id,$name,$price,$photo]);
     redirect('/');
 }
 }
+
 
 $_title = "Insert Product";
 include '../head.php';

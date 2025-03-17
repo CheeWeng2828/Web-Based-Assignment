@@ -7,7 +7,6 @@ $stm = $_db->prepare('SELECT * FROM product WHERE name LIKE ?');
 $stm->execute(["%$name%"]);
 $arr= $stm->fetchAll();
 
-
 $_title = "Product List";
 include '../head.php';
 ?>
@@ -16,6 +15,7 @@ include '../head.php';
     <?= html_search('name') ?>
     <button>Search</button>
 </form>
+
 <p><?= count($arr) ?> record(s)</p>
 
 <table class="productList">
