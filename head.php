@@ -34,7 +34,14 @@
             <?php endif ?>
             <div></div>
             <?php if($_user):?>
-            <a href="/function/shopping _cart.php">Shopping Cart</a>
+            <a href="/function/shopping _cart.php">
+            Shopping Cart
+            <?php
+            $cart = get_cart();
+            $count = array_sum($cart);
+            if($count)echo"($count)";
+            ?>
+        </a>
             <a href="/user/logout.php">Logout</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>

@@ -131,6 +131,7 @@ function html_hidden($key, $attr = '') {
     $value ??= encode($GLOBALS[$key] ?? '');
     echo "<input type='hidden' id='$key' name='$key' value='$value' $attr>";
 }
+
 //===================================================================================
 // Check Format
 //===================================================================================

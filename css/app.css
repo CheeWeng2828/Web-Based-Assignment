@@ -29,8 +29,8 @@ nav div{
 
 .logo{
     float: left;
-    width: 50px;
-    height:50px;
+    width: 30px;
+    height:30px;
     cursor:pointer;  
 }
 #img{
@@ -137,4 +137,48 @@ header img{
 .productList th, .productList tr{
     border: 1 px solid gray;
     padding: 5px;
+}
+
+
+/*===================================================================================
+                Product List
+===================================================================================*/
+
+.productContainer{
+    
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: row;
+}
+.product{
+
+    display: block;
+    background: #894e3f;
+    border: 2px solid black;
+    align-items: center;
+    border-radius: 10px;
+    
+}
+
+.productImg{
+
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+    align-self: center;
+
+}
+
+.productDetail{
+
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+
 }
