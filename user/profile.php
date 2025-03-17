@@ -90,7 +90,7 @@ include '../head.php'
     <?=html_text('name','maxlength="100"')?>
     <?= err('name') ?>
 
-    <label for="photos">Photo</label>
+    <label for="photo">Photo</label>
     <label class="upload" tabindex="0">
         <?= html_file('profile', 'image/*', 'hidden') ?>
         <img src="/photo/<?= $profile ?>">

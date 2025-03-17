@@ -79,7 +79,7 @@ include '../head.php';
     <label for="photo">Photo</label> 
     <label class="upload" tabindex="0">
         <?= html_file('photo', 'image/*', 'hidden') ?>
-        <img src="/product_img/<?= $photo ?>">
+        <img src="/image/placeholder.jpg">
     </label>
     <?= err('photo') ?>
 
