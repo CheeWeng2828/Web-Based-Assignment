@@ -27,10 +27,9 @@ if (is_post()) {
     $id         = req('id'); 
     $name       = req('name');
     $price     = req('price');
-    $photo = $_SESSION['photo'];
     $f = get_file('photo');
-
-
+    $photo = $_SESSION['photo'];
+    
 if(!$price){
     $_err['price'] = "Required";
 }
@@ -62,10 +61,8 @@ if($f){
 
 if(!$_err){
     if($f){
-        if($photo){ 
-    unlink("../product_img/$photo");
-        }
-     save_photo($f,'../product_img');
+        unlink("../product_img/$photo");
+        $photo = save_photo($f,'../product_img');
     }
     $stm = $_db->prepare('
     UPDATE product
@@ -93,8 +90,8 @@ include '../head.php';
     <?= html_text('name', 'maxlength="100"') ?>
     <?= err('name') ?>
 
-    <label for="price">Price</label>
-    <?= html_text('price', 'maxlength="5"') ?>
+    <label for="price">Price(RM)</label>
+    <?= html_number('price','1','30','0.5') ?>
     <?= err('price') ?>
 
     <label for="photo">Photo</label> 

@@ -73,7 +73,7 @@ include '../head.php';
     <?= err('name') ?>
 
     <label for="price">Price</label>
-    <?= html_text('price', 'maxlength="5"') ?>
+    <?= html_number('price','1','30','0.5') ?>
     <?= err('price') ?>
 
     <label for="photo">Photo</label> 

@@ -61,7 +61,6 @@ if(is_post()){
             if($f){
             unlink("../photo/$profile");
             $profile = save_photo($f,'../photo');
-            $_SESSION['profile'] = $profile;
             }
             $stm = $_db->prepare('
             UPDATE user
@@ -90,12 +89,12 @@ include '../head.php'
     <?=html_text('name','maxlength="100"')?>
     <?= err('name') ?>
 
-    <label for="photo">Photo</label>
+    <label for="profile">Photo</label>
     <label class="upload" tabindex="0">
-        <?= html_file('profile', 'image/*', 'hidden') ?>
+        <?= html_file('photo', 'image/*', 'hidden') ?>
         <img src="/photo/<?= $profile ?>">
     </label>
-    <?= err('photos') ?>
+    <?= err('profile') ?>
 
     <section>
         <button>Submit</button>
