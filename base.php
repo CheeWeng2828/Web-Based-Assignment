@@ -216,18 +216,18 @@ function is_exist($value,$table,$field){
 //          Shopping Cart
 //===================================================================================
 
-function get_cart(){
+function get_cart() {
     return $_SESSION['cart'] ?? [];
 }
 
-function set_cart($cart = []){
+function set_cart($cart = []) {
     $_SESSION['cart'] = $cart;
 }
 
 function update_cart($id,$unit){
     $cart = get_cart();
 
-    if($unit <= 1 && $unit > 10 && is_exist($id,'product','id')){
+    if($unit >= 1 && $unit <= 10 && is_exist($id,'product','id')){
         $cart[$id] = $unit;
     }
     else{

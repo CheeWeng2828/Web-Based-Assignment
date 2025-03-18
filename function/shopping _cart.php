@@ -56,13 +56,13 @@ include '../head.php';
             <td class="right"><?= $p->price ?></td>
             <td>
                 <form method="post">
-                    <?= html_hidden($id) ?>
+                    <?=html_hidden('id',$id) ?>
                     <?=html_select('unit',$_units,' ') ?>
                 </form>            
             </td>
             <td class="right">
                 <?= sprintf('%.2f',$subtotal) ?>
-                <img src="/products/<?= $p->photo ?>" class="popup">
+                <img src="/product_img/<?= $p->photo ?>" class="popup">
             </td>
         </tr>
     <?php endforeach ?>
