@@ -4,13 +4,13 @@ include '../base.php';
 
 if (is_post()) {
     $btn = req('btn');
-    if($btn == 'clear'){
+    if ($btn == 'clear') {
         set_cart();
         redirect('?');
     }
     $id = req('id');
     $unit = req('unit');
-    update_cart($id,$unit);
+    update_cart($id, $unit);
     redirect();
 }
 
@@ -37,18 +37,18 @@ include '../head.php';
     </tr>
 
     <?php
-        $count = 0;
-        $total = 0;
+    $count = 0;
+    $total = 0;
 
-        $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
-        $cart = get_cart();
-        foreach ($cart as $id=>$unit):
-            $stm->execute([$id]);
-            $p = $stm->fetch();
+    $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
+    $cart = get_cart();
+    foreach ($cart as $id => $unit):
+        $stm->execute([$id]);
+        $p = $stm->fetch();
 
-            $subtotal = $p->price * $unit;
-            $count += $unit;
-            $total += $subtotal;
+        $subtotal = $p->price * $unit;
+        $count += $unit;
+        $total += $subtotal;
     ?>
         <tr>
             <td><?= $p->id ?></td>
@@ -56,12 +56,12 @@ include '../head.php';
             <td class="right"><?= $p->price ?></td>
             <td>
                 <form method="post">
-                    <?=html_hidden('id',$id) ?>
-                    <?=html_select('unit',$_units,' ') ?>
-                </form>            
+                    <?= html_hidden('id', $id) ?>
+                    <?= html_select('unit', $_units, ' ') ?>
+                </form>
             </td>
             <td class="right">
-                <?= sprintf('%.2f',$subtotal) ?>
+                <?= sprintf('%.2f', $subtotal) ?>
                 <img src="/product_img/<?= $p->photo ?>" class="popup">
             </td>
         </tr>
@@ -70,7 +70,7 @@ include '../head.php';
     <tr>
         <th colspan="3"></th>
         <th class="right"><?= $count ?></th>
-        <th class="right"><?= sprintf('%.2f',$total) ?></th>
+        <th class="right"><?= sprintf('%.2f', $total) ?></th>
     </tr>
 </table>
 
@@ -80,14 +80,14 @@ include '../head.php';
 
         <?php if ($_user?->role == 'Member'): ?>
             <button data-post="checkout.php">Checkout</button>
-        <?php  else:?>
+        <?php else: ?>
             Please <a href="/login.php">login</a> as member to checkout
         <?php endif ?>
-        <?php endif ?>
+    <?php endif ?>
 </p>
 
 <script>
-    $('select').on('change',e=>e.target.submit());
+    $('select').on('change', e => e.target.submit());
 </script>
 
 <?php

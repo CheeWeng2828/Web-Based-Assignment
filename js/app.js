@@ -4,7 +4,7 @@ $(() => {
     $('form :input:not(button):first').focus();
     $('.err:first').prev().focus();
     $('.err:first').prev().find(':input:first').focus();
-    
+
     // Confirmation message
     $('[data-confirm]').on('click', e => {
         const text = e.target.dataset.confirm || 'Are you sure?';

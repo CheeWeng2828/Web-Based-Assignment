@@ -1,44 +1,50 @@
 <?php
 
-date_default_timezone_set('Asia/Kuala_Lumpur'); 
+date_default_timezone_set('Asia/Kuala_Lumpur');
 session_start();
 //===================================================================================
 // PHP function
 //===================================================================================
-function is_get(){
+function is_get()
+{
     return $_SERVER['REQUEST_METHOD'] == 'GET';
 }
 
-function is_post(){
+function is_post()
+{
     return $_SERVER['REQUEST_METHOD'] == 'POST';
 }
 
-function post($key,$value = null){
+function post($key, $value = null)
+{
     $value = $_POST[$key] ?? $value;
-    return is_array($value) ? array_map('trim',$value) : trim($value); 
+    return is_array($value) ? array_map('trim', $value) : trim($value);
 }
 
-function get($key,$value = null){
+function get($key, $value = null)
+{
     $value = $_GET[$key] ?? $value;
-    return is_array($value) ? array_map('trim',$value) : trim($value);
+    return is_array($value) ? array_map('trim', $value) : trim($value);
 }
 
-function req($key,$value = null){
+function req($key, $value = null)
+{
     $value = $_REQUEST[$key] ?? $value;
-    return is_array($value) ? array_map("trim",$value) : trim($value);
+    return is_array($value) ? array_map("trim", $value) : trim($value);
 }
 
-function redirect($url = null){
+function redirect($url = null)
+{
     $url ??= $_SERVER['REQUEST_URI'];
     header("Location:$url");
     exit();
 }
 
-function temp($key, $value = null) {
-    if($value !== null){
+function temp($key, $value = null)
+{
+    if ($value !== null) {
         $_SESSION["temp_$key"] = $value;
-    }
-    else{
+    } else {
         $value = $_SESSION["temp_$key"] ?? null;
         unset($_SESSION["temp_$key"]);
         return $value;
@@ -48,22 +54,24 @@ function temp($key, $value = null) {
 //===================================================================================
 // Photo function
 //===================================================================================
-function save_photo($f,$folder,$weigth = 200,$height = 200){
+function save_photo($f, $folder, $weigth = 200, $height = 200)
+{
 
-    $photo = uniqid(). '.jpg';
+    $photo = uniqid() . '.jpg';
     require_once 'lib/SimpleImage.php';
 
     $img = new SimpleImage();
     $img->fromFile($f->tmp_name)
-        ->thumbnail($weigth,$height)
-        ->toFile("$folder/$photo",'image/jpeg');
+        ->thumbnail($weigth, $height)
+        ->toFile("$folder/$photo", 'image/jpeg');
 
     return $photo;
 }
 
-function get_file($key) {
+function get_file($key)
+{
     $f = $_FILES[$key] ?? null;
-    
+
     if ($f && $f['error'] == 0) {
         return (object)$f;
     }
@@ -71,7 +79,8 @@ function get_file($key) {
     return null;
 }
 
-function html_file($key, $accept = '', $attr = '') {
+function html_file($key, $accept = '', $attr = '')
+{
     echo "<input type='file' id='$key' name='$key' accept='$accept' $attr>";
 }
 
@@ -79,43 +88,50 @@ function html_file($key, $accept = '', $attr = '') {
 // HTML Reusable Code
 //===================================================================================
 
-function encode($value){
+function encode($value)
+{
     return htmlentities($value);
 }
 
-function html_text($key,$attr = ''){
+function html_text($key, $attr = '')
+{
     $value = encode($GLOBALS[$key] ?? '');
     echo "<input type='text' id='$key' name='$key' value='$value' $attr>";
 }
 
-function html_password($key,$attr =' '){
-    $value = encode($GLOBALS[$key]?? '');
+function html_password($key, $attr = ' ')
+{
+    $value = encode($GLOBALS[$key] ?? '');
     echo "<input type='password' id='$key' name='$key'value='$value' $attr>";
 }
 
-function html_search($key,$attr=' '){
-    $value = encode($GLOBALS[$key]?? '');
+function html_search($key, $attr = ' ')
+{
+    $value = encode($GLOBALS[$key] ?? '');
     echo "<input type ='search' id='$key' name='$key' value='$value' $attr>";
 }
 
-function html_number($key,$min = '',$max = '',$step = '',$attr = ''){
-    $value = encode($GLOBALS[$key]?? '');
-    echo"<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
+function html_number($key, $min = '', $max = '', $step = '', $attr = '')
+{
+    $value = encode($GLOBALS[$key] ?? '');
+    echo "<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
 }
 
-function html_header($fields,$sort,$dir,$href = ''){
-    foreach($fields as $k=>$v){
-    $d = 'esc';
-    $c = '';
+function html_header($fields, $sort, $dir, $href = '')
+{
+    foreach ($fields as $k => $v) {
+        $d = 'esc';
+        $c = '';
     }
-    if($k == $sort){
+    if ($k == $sort) {
         $d = $dir == 'asc' ? 'desc' : 'asc';
         $c = $dir;
     }
 
-    echo"<th><a href='?sort=$k&dir=$d&href' class='$c'>$v</a></th>";
+    echo "<th><a href='?sort=$k&dir=$d&href' class='$c'>$v</a></th>";
 }
-function html_select($key, $items, $default = '- Select One -', $attr = '') {
+function html_select($key, $items, $default = '- Select One -', $attr = '')
+{
     $value = encode($GLOBALS[$key] ?? '');
     echo "<select id='$key' name='$key' $attr>";
     if ($default !== null) {
@@ -127,7 +143,8 @@ function html_select($key, $items, $default = '- Select One -', $attr = '') {
     }
     echo '</select>';
 }
-function html_hidden($key, $attr = '') {
+function html_hidden($key, $attr = '')
+{
     $value ??= encode($GLOBALS[$key] ?? '');
     echo "<input type='hidden' id='$key' name='$key' value='$value' $attr>";
 }
@@ -136,8 +153,9 @@ function html_hidden($key, $attr = '') {
 // Check Format
 //===================================================================================
 
-function is_email($value){
-    return filter_var($value,FILTER_VALIDATE_EMAIL) !== null;
+function is_email($value)
+{
+    return filter_var($value, FILTER_VALIDATE_EMAIL) !== null;
 }
 
 //===================================================================================
@@ -145,12 +163,12 @@ function is_email($value){
 //===================================================================================
 $_err = [];
 
-function err($key){
+function err($key)
+{
     global $_err;
-    if($_err[$key] ?? false){
+    if ($_err[$key] ?? false) {
         echo "<span class ='err'>$_err[$key]</span>";
-    }
-    else{
+    } else {
         echo '<span> </span>';
     }
 }
@@ -163,49 +181,53 @@ function err($key){
 $_user = $_SESSION['user'] ?? null;
 
 // Login user
-function login($user, $url = '/') {
+function login($user, $url = '/')
+{
     $_SESSION['user'] = $user;
     redirect($url);
 }
 
 // Logout user
-function logout($url = '/') {
+function logout($url = '/')
+{
     unset($_SESSION['user']);
     redirect($url);
 }
 
 // Authorization
-function auth(...$roles) {
+function auth(...$roles)
+{
     global $_user;
     if ($_user) {
         if ($roles) {
             if (in_array($_user->role, $roles)) {
                 return;
             }
-        }
-        else {
+        } else {
             return;
         }
     }
-    
+
     redirect('/function/login.php');
 }
 
 //===================================================================================
 //DATABASE
 //===================================================================================
-$_db = new PDO('mysql:dbname=assign','root','',[
+$_db = new PDO('mysql:dbname=assign', 'root', '', [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 ]);
 
-function is_unique($value,$table,$field){
+function is_unique($value, $table, $field)
+{
     global $_db;
     $stm = $_db->prepare("SELECT COUNT(*) FROM $table WHERE $field = ?");
     $stm->execute([$value]);
     return $stm->fetchColumn() == 0;
 }
 
-function is_exist($value,$table,$field){
+function is_exist($value, $table, $field)
+{
     global $_db;
     $stm = $_db->prepare("SELECT COUNT(*)FROM $table WHERE $field=?");
     $stm->execute([$value]);
@@ -216,24 +238,26 @@ function is_exist($value,$table,$field){
 //          Shopping Cart
 //===================================================================================
 
-function get_cart() {
+function get_cart()
+{
     return $_SESSION['cart'] ?? [];
 }
 
-function set_cart($cart = []) {
+function set_cart($cart = [])
+{
     $_SESSION['cart'] = $cart;
 }
 
-function update_cart($id,$unit){
+function update_cart($id, $unit)
+{
     $cart = get_cart();
 
-    if($unit >= 1 && $unit <= 10 && is_exist($id,'product','id')){
+    if ($unit >= 1 && $unit <= 10 && is_exist($id, 'product', 'id')) {
         $cart[$id] = $unit;
-    }
-    else{
+    } else {
         unset($cart[$id]);
     }
-    
+
     set_cart($cart);
 }
 
@@ -241,4 +265,4 @@ function update_cart($id,$unit){
 //          Global variable
 //===================================================================================
 
-$_units = array_combine(range(1,10),range(1,10));
+$_units = array_combine(range(1, 10), range(1, 10));

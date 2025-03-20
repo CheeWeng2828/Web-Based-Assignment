@@ -2,56 +2,58 @@
     Header Layout
 ===================================================================================*/
 
-h1{
+h1 {
     text-align: center;
 }
-nav{
+
+nav {
     background-color: #333;
     padding: 0 50px;
     display: flex;
 }
 
 
-nav a{
+nav a {
     color: white;
     text-decoration: none;
     padding: 5px 10px;
     white-space: nowrap;
 }
 
-nav a:hover{
+nav a:hover {
     background-color: #555;
 }
 
-nav div{
-    flex:1;
+nav div {
+    flex: 1;
 }
 
-.logo{
+.logo {
     float: left;
     width: 30px;
-    height:30px;
-    cursor:pointer;  
+    height: 30px;
+    cursor: pointer;
 }
-#img{
-    width:200px;
-    height:200px;
-    border:5px solid #fff; 
-    box-shadow : 0 0 5px #000;
-    border-radius:5px;
-    cursor:pointer;  
+
+#img {
+    width: 200px;
+    height: 200px;
+    border: 5px solid #fff;
+    box-shadow: 0 0 5px #000;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /*===================================================================================
     Login Layout
 ===================================================================================*/
 
-.login{
+.login {
     vertical-align: text-top;
     display: grid;
     grid: auto;
     gap: 5px;
-    border:2px solid black;
+    border: 2px solid black;
     border-radius: 10px;
     background-color: gray;
     place-content: start;
@@ -60,7 +62,7 @@ nav div{
     justify-content: center;
 }
 
-.login label{
+.login label {
     color: white;
     font-weight: bold;
 }
@@ -69,7 +71,7 @@ nav div{
     Flash Message
 ===================================================================================*/
 
-#info{
+#info {
     color: #fff;
     background: #555;
     position: fixed;
@@ -84,18 +86,33 @@ nav div{
     opacity: 0;
 }
 
-#info:not(:empty){
+#info:not(:empty) {
     animation: fade 5s;
 }
 
-@keyframes fade{
-    0%  {top:-100px;opacity:0;}
-    10% {top:100px;opacity:1;}
-    90% {top:100px;opacity:1;}
-    100%{top:-100px;opacity:0;}
+@keyframes fade {
+    0% {
+        top: -100px;
+        opacity: 0;
+    }
+
+    10% {
+        top: 100px;
+        opacity: 1;
+    }
+
+    90% {
+        top: 100px;
+        opacity: 1;
+    }
+
+    100% {
+        top: -100px;
+        opacity: 0;
+    }
 }
 
-.err{
+.err {
     color: red;
 }
 
@@ -104,7 +121,7 @@ nav div{
     Image layout
 ===================================================================================*/
 
-label.upload img{
+label.upload img {
     display: block;
     width: 200px;
     height: 200px;
@@ -113,11 +130,11 @@ label.upload img{
     border: 1px solid black;
 }
 
-header div{
+header div {
     text-align: right;
 }
 
-header img{
+header img {
     width: 25px;
     height: 25px;
     float: right;
@@ -129,12 +146,14 @@ header img{
     Table layout
 ===================================================================================*/
 
-.userList th, .userList tr{
+.userList th,
+.userList tr {
     border: 1 px solid gray;
     padding: 5px;
 }
 
-.productList th, .productList tr{
+.productList th,
+.productList tr {
     border: 1 px solid gray;
     padding: 5px;
 }
@@ -144,25 +163,26 @@ header img{
                 Product List
 ===================================================================================*/
 
-.productContainer{
-    
+.productContainer {
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
     flex-direction: row;
 }
-.product{
+
+.product {
 
     display: block;
     background: #894e3f;
     border: 2px solid black;
     align-items: center;
     border-radius: 10px;
-    
+
 }
 
-.productImg{
+.productImg {
 
     display: block;
     width: 150px;
@@ -173,12 +193,12 @@ header img{
 
 }
 
-.productDetail{
+.productDetail {
 
     display: block;
     text-align: center;
     font-size: 16px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #fff;
 
 }

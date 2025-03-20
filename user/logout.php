@@ -3,7 +3,7 @@ require '../base.php';
 
 include '../head.php';
 
-temp('info','Logout successfully');
+temp('info', 'Logout successfully');
 logout();
 
 ?>
