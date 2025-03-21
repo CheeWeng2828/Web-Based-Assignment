@@ -23,7 +23,7 @@ if (is_post()) {
     VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
     ');
 
-    foreach ($cart as $product_id => $units) {
+    foreach ($cart as $product_id => $unit) {
         $stm->execute([$id, $product_id, $product_id, $unit]);
     }
 
@@ -40,10 +40,10 @@ if (is_post()) {
 
     set_cart();
     temp('info','Record inserted');
-    redirect("detail.php");
+    redirect("orderdetail.php");
 }
 
-
+redirect('cart.php');
 include '../head.php';
 $_title = "Check Out"
 ?>

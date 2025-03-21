@@ -31,7 +31,7 @@ $_title = 'Order History';
             <td><?=$h->total?></td>
         </tr>
         <tr>
-            <button data-get="detail.php?id=<?= $h->id?>">Detail</button>
+            <button data-get="orderdetail.php?id=<?= $h->id?>">Detail</button>
         </tr>
         <?php endforeach?>
 </table>

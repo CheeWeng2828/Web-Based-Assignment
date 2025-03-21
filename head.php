@@ -37,6 +37,7 @@
             if ($count) echo "($count)";
             ?>
         </a>
+        <a href="/order/history.php">History</a>
         <?php if ($_user): ?>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
