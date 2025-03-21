@@ -29,7 +29,7 @@
             <a href="/user/login.php">Login</a>
             <a href="/user/register.php">Register</a>
         <?php endif ?>
-        <a href="/function/shopping _cart.php">
+        <a href="/order/shopping _cart.php">
             Shopping Cart
             <?php
             $cart = get_cart();

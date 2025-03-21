@@ -1,0 +1,51 @@
+<?php
+include '../base.php';
+
+auth("Member");
+
+if (is_post()) {
+
+    $cart = get_cart();
+    if (!$cart) redirect('shopping_cart.php');
+
+    $_db->beginTransaction();
+
+    $stm = $_db->prepare('
+    INSERT INTO `order` (datetime,user_id)
+    VALUES (NOW(),?)
+    ');
+
+    $stm->execute([$_user->id]);
+    $id = $_db->lastInsertId();
+
+    $stm = $_db->prepare('
+    INSERT INTO item(order_id,product_id,price,unit,subtotal)
+    VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
+    ');
+
+    foreach ($cart as $product_id => $units) {
+        $stm->execute([$id, $product_id, $product_id, $unit]);
+    }
+
+    $stm = $_db->prepare('
+    UPDATE `order`
+    SET count = (SELECT SUM(unit) FROM item WHERE order_id = ?),
+        total = (SELECT SUM(subtotal)FROM item WHERE order_id = ?)
+        WHERE id = ?
+    ');
+
+    $stm->execute([$id,$id,$id]);
+
+    $_db->commit();
+
+    set_cart();
+    temp('info','Record inserted');
+    redirect("detail.php");
+}
+
+
+include '../head.php';
+$_title = "Check Out"
+?>
+<?php
+include '../foot.php';
