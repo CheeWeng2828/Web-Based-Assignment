@@ -74,7 +74,7 @@ if (is_post()) {
 $_title = 'Profile';
 include '../head.php'
 ?>
-<form method="post" class="register" enctype="multipart/form-data">
+<form method="post" class="profile" enctype="multipart/form-data">
     <label for="email">Email</label>
     <?= html_text('email', 'maxlength="100"') ?>
     <?= err('email') ?>

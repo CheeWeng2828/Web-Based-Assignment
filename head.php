@@ -13,41 +13,40 @@
 
 <body>
     <div id="info"><?= temp('info') ?></div>
-    <header>
-        <a href="/"><img class="logo" src="/image/icon.jpg" alt="Logo"></a>
-        <h1 style="text-align: left;">XX bakery</h1>
-        <?php if ($_user): ?>
-            <div>
-                <?= $_user->name ?><br>
-                <?= $_user->role ?>
-            </div>
-            <img src="/photo/<?= $_user->photo ?>">
-        <?php endif ?>
-    </header>
     <nav>
-        <a href="/">Home</a>
-        <?php if (!$_user): ?>
-            <a href="/user/login.php">Login</a>
-            <a href="/user/register.php">Register</a>
-
-        <?php endif ?>
+        <div class="Logo" >
+            <a href="/">
+            <img src="/image/icon.jpg" alt="Logo">
+            <h2>XX bakery</h2>
+            </a>
+        </div>
         <?php if ($_user?->role == "Admin"): ?>
             <a href="/product/product_maintenance.php">Product List</a>
             <a href="/product/insert_product.php">Insert Product</a>
         <?php endif ?>
         <div></div>
+        <?php if (!$_user): ?>
+            <a href="/user/login.php">Login</a>
+            <a href="/user/register.php">Register</a>
+        <?php endif ?>
         <a href="/function/shopping _cart.php">
-                Shopping Cart
-                <?php
-                $cart = get_cart();
-                $count = array_sum($cart);
-                if ($count) echo "($count)";
-                ?>
-            </a>
+            Shopping Cart
+            <?php
+            $cart = get_cart();
+            $count = array_sum($cart);
+            if ($count) echo "($count)";
+            ?>
+        </a>
         <?php if ($_user): ?>
-            <a href="/user/logout.php">Logout</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
+            <a href="/user/logout.php">Logout</a>
+            <?php if ($_user): ?>
+            <div class="user">
+                <img src="/photo/<?= $_user->photo ?>">
+                <?= $_user->name ?>
+            </div>
+        <?php endif ?>
         <?php endif ?>
     </nav>
 

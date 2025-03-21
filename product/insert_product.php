@@ -56,25 +56,25 @@ $_title = "Insert Product";
 include '../head.php';
 ?>
 
-<form method="post" class="form" enctype="multipart/form-data">
+<form method="post" class="insert" enctype="multipart/form-data">
     <label for="id">Id</label>
-    <?= html_text('id', 'maxlength="4" data-upper') ?>
+    <?= html_text('id', 'maxlength="4" data-upper') ?><br>
     <?= err('id') ?>
 
 
     <label for="name">Name</label>
-    <?= html_text('name', 'maxlength="100"') ?>
+    <?= html_text('name', 'maxlength="100"') ?><br>
     <?= err('name') ?>
 
     <label for="price">Price</label>
-    <?= html_number('price', '1', '30', '0.5') ?>
+    <?= html_number('price', '1', '30', '0.5') ?><br>
     <?= err('price') ?>
 
     <label for="photo">Photo</label>
     <label class="upload" tabindex="0">
         <?= html_file('photo', 'image/*', 'hidden') ?>
         <img src="/image/placeholder.jpg">
-    </label>
+    </label><br>
     <?= err('photo') ?>
 
     <section>

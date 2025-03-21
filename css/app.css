@@ -2,38 +2,64 @@
     Header Layout
 ===================================================================================*/
 
+body {
+    padding-top: 60px;
+}
+
 h1 {
+    color: #4E342E;
     text-align: center;
 }
 
 nav {
-    background-color: #333;
-    padding: 0 50px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #6D4C41;
+    padding: 5 10px;
     display: flex;
+
 }
 
+nav .Logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav .Logo img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+nav .Logo h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #F8ECD1;
+}
 
 nav a {
-    color: white;
+
+    color: #F8ECD1;
     text-decoration: none;
     padding: 5px 10px;
     white-space: nowrap;
+    margin: 10px;
 }
 
+
 nav a:hover {
-    background-color: #555;
+    background-color: #4E342E;
 }
 
 nav div {
     flex: 1;
 }
 
-.logo {
-    float: left;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
 
 #img {
     width: 200px;
@@ -49,20 +75,44 @@ nav div {
 ===================================================================================*/
 
 .login {
-    vertical-align: text-top;
     display: grid;
-    grid: auto;
+    grid-template-rows: repeat(6, 20px);
+    background-color: #6D4C41;
     gap: 5px;
-    border: 2px solid black;
-    border-radius: 10px;
-    background-color: gray;
-    place-content: start;
-    place-items: center start;
     padding: 5px;
     justify-content: center;
+    width: 250px;
+    height: 250px;
+    align-content: center;
+    margin: auto;
+    border: #4E342E;
+    border-radius: 5px;
 }
 
 .login label {
+    color: white;
+    font-weight: bold;
+}
+
+/*===================================================================================
+    Register Layout
+===================================================================================*/
+
+.register {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    background-color: #6D4C41;
+    gap: 5px;
+    padding: 10px;
+    width: 450px;
+    height: 450px;
+    align-content: center;
+    margin: auto;
+    border: #4E342E;
+    border-radius: 5px;
+}
+
+.register label {
     color: white;
     font-weight: bold;
 }
@@ -81,7 +131,6 @@ nav div {
     left: 50%;
     translate: -50% 0;
     z-index: 999;
-
     top: -100px;
     opacity: 0;
 }
@@ -130,16 +179,22 @@ label.upload img {
     border: 1px solid black;
 }
 
-header div {
+.user {
+
     text-align: right;
+    color: #fff;
+    margin: 5px;
+
 }
 
-header img {
+
+.user img {
+    float: right;
     width: 25px;
     height: 25px;
-    float: right;
     border: 1px solid #000;
     border-radius: 5px;
+
 }
 
 /*===================================================================================
@@ -164,26 +219,24 @@ header img {
 ===================================================================================*/
 
 .productContainer {
-
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(5, 200px);
+    gap: 10px;
+    padding: 20px;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    flex-direction: row;
 }
 
-.product {
 
+.product {
     display: block;
-    background: #894e3f;
-    border: 2px solid black;
+    background: #6D4C41;
+    border: 2px solid #4E342E;
     align-items: center;
     border-radius: 10px;
 
 }
 
 .productImg {
-
     display: block;
     width: 150px;
     height: 150px;
@@ -194,11 +247,33 @@ header img {
 }
 
 .productDetail {
-
     display: block;
     text-align: center;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #fff;
+    color: #F8ECD1;
 
+}
+
+select {
+    border-radius: 5px;
+    color: #F8ECD1;
+    background-color: #4E342E;
+}
+
+/*Insert Product Layout*/
+.insert {
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    gap: 5px;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    background-color: #4E342E;
+    padding: 10px;
+    align-items: center;
+}
+
+.insert label{
+    color: #F8ECD1;
 }

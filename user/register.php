@@ -75,26 +75,26 @@ include '../head.php';
 ?>
 <form method="post" class="register" enctype="multipart/form-data">
     <label for="email">Email</label>
-    <?= html_text('email', 'maxlength="100"') ?>
+    <?= html_text('email', 'maxlength="100"') ?><br>
     <?= err('email') ?>
 
     <label for="name">Name</label>
-    <?= html_text('name', 'maxlength="100"') ?>
+    <?= html_text('name', 'maxlength="100"') ?><br>
     <?= err('name') ?>
 
     <label for="password">Password</label>
-    <?= html_password('password', 'maxlength="100"') ?>
+    <?= html_password('password', 'maxlength="100"') ?><br>
     <?= err('password') ?>
 
     <label for="confirm">Confirm</label>
-    <?= html_password('confirm', 'maxlength="100"') ?>
+    <?= html_password('confirm', 'maxlength="100"') ?><br>
     <?= err('confirm') ?>
 
     <label for="upload">Upload Photo</label>
     <label class="upload" tabindex="0">
         <?= html_file("photo", "image/*,hidden") ?>
         <img src="../image/placeholder.jpg">
-    </label>
+    </label><br>
     <?= err("photo") ?>
 
     <section>
