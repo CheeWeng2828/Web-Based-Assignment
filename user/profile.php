@@ -85,7 +85,7 @@ include '../head.php'
 
     <label for="profile">Photo</label>
     <label class="upload" tabindex="0">
-        <?= html_file('photo', 'image/*', 'hidden') ?>
+        <?= html_file('profile', 'image/*', 'hidden') ?>
         <img src="/photo/<?= $profile ?>">
     </label>
     <?= err('profile') ?>

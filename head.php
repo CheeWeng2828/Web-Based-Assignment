@@ -29,14 +29,14 @@
         <?php if (!$_user): ?>
             <a href="/user/login.php">Login</a>
             <a href="/user/register.php">Register</a>
+
         <?php endif ?>
         <?php if ($_user?->role == "Admin"): ?>
             <a href="/product/product_maintenance.php">Product List</a>
             <a href="/product/insert_product.php">Insert Product</a>
         <?php endif ?>
         <div></div>
-        <?php if ($_user): ?>
-            <a href="/function/shopping _cart.php">
+        <a href="/function/shopping _cart.php">
                 Shopping Cart
                 <?php
                 $cart = get_cart();
@@ -44,6 +44,7 @@
                 if ($count) echo "($count)";
                 ?>
             </a>
+        <?php if ($_user): ?>
             <a href="/user/logout.php">Logout</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>

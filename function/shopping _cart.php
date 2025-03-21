@@ -81,7 +81,7 @@ include '../head.php';
         <?php if ($_user?->role == 'Member'): ?>
             <button data-post="checkout.php">Checkout</button>
         <?php else: ?>
-            Please <a href="/login.php">login</a> as member to checkout
+            Please <a href="/user/login.php">login</a> as member to checkout
         <?php endif ?>
     <?php endif ?>
 </p>
