@@ -36,7 +36,7 @@ if (is_post()) {
     }
 
 
-    if (!$_err) {
+    if (!$_err) {       
         $photo = save_photo($f, '../product_img');
         $stm = $_db->prepare('
     INSERT INTO product
