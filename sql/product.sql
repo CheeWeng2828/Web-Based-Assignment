@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2025 at 09:00 AM
+-- Generation Time: Mar 22, 2025 at 07:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `photo`) VALUES
-('B001', 'croissant', 3.50, 'croissant.jpg'),
+('B001', 'croissant', 3.50, '67d96fbb477af.jpg'),
 ('B002', 'sourdough bread', 4.50, 'sourdoughBread.jpg'),
 ('B003', 'garlic bread', 4.00, 'garlicBread.jpg'),
 ('B004', 'chocolate cake', 50.00, 'chocolateCake.jpg'),
