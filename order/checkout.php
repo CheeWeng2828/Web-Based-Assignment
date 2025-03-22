@@ -44,8 +44,9 @@ if (is_post()) {
 }
 
 redirect('cart.php');
+
+$_title = "Check Out";
 include '../head.php';
-$_title = "Check Out"
 ?>
 <?php
 include '../foot.php';

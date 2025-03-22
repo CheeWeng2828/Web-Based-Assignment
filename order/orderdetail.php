@@ -22,8 +22,8 @@ $stm->execute([$id]);
 $arr = $stm->fetchAll();
 
 
-include '../head.php';
 $_title = "Order Detail";
+include '../head.php';
 ?>
 <form class="OrderDetail">
     <label>Order Id</label>

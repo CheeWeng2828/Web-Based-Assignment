@@ -12,8 +12,8 @@ $stm = $_db->prepare('
 $stm->execute([$_user->id]);
 $arr = $stm->fetchAll();
 
-include '../head.php';
 $_title = 'Order History';
+include '../head.php';
 ?>
 
 <table class="history">

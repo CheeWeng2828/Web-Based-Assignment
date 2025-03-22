@@ -62,10 +62,10 @@ if (is_post()) {
             INSERT INTO user (email, password, name, photo, role)
             VALUES (?,SHA1(?),?,?,"Member")
         ');
-        $stm->execute([$email, $name, $photo, $_user->id]);
+        $stm->execute([$email,$password ,$name, $photo]);
 
         temp('info', 'Record inserted');
-        redirect('/login.php');
+        redirect('login.php');
     }
 }
 
