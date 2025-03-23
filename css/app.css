@@ -207,12 +207,22 @@ label.upload img {
     padding: 5px;
 }
 
-.productList th,
-.productList tr {
-    border: 1 px solid gray;
-    padding: 5px;
+.productList{
+    border-collapse: collapse;
 }
 
+.productList th,
+.productList tr,
+.productList td {
+    border: 1px solid black;
+    padding: 5px;
+  
+}
+
+.productList th{
+    background-color: #6D4C41;
+    color:white;
+}
 
 /*===================================================================================
                 Product List
@@ -276,4 +286,30 @@ select {
 
 .insert label{
     color: #F8ECD1;
+}
+
+/*===================================================================================
+                Product image pop up 
+===================================================================================*/
+.popup {
+    width: 100px;
+    height: 100px;
+}
+
+.productList td:has(.popup) {
+    position:relative;
+}
+
+.productList .popup {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    translate: 5px -50%;
+    z-index: 1;
+    border: 1px solid #333;
+    display: none;
+}
+
+.productList tr:hover .popup {
+    display: block;
 }

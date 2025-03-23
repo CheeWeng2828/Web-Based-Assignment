@@ -2,7 +2,6 @@
 require '../base.php';
 $name = req('name');
 
-
 $stm = $_db->prepare('SELECT * FROM product WHERE name LIKE ?');
 $stm->execute(["%$name%"]);
 $arr = $stm->fetchAll();
@@ -23,6 +22,7 @@ include '../head.php';
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
+        <th></th>
     </tr>
 
     <?php foreach ($arr as $s) : ?>
@@ -33,6 +33,7 @@ include '../head.php';
             <td>
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
                 <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
+                <img src="/product_img/<?= $s->photo ?>" class="popup">
             </td>
         <?php endforeach ?>
         </tr>
