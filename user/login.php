@@ -1,7 +1,6 @@
 <?php
 require '../base.php';
 
-
 if (is_post()) {
     $email = req('email');
     $password = req('password');
@@ -18,8 +17,7 @@ if (is_post()) {
     }
 
     if (!$_err) {
-        $stm = $_db->prepare('SELECT * FROM user
-                          WHERE email = ? AND password = SHA1(?)');
+        $stm = $_db->prepare('SELECT * FROM user WHERE email = ? AND password = SHA1(?)');
         $stm->execute([$email, $password]);
         $u = $stm->fetch();
 
@@ -35,20 +33,34 @@ if (is_post()) {
 $_title = 'Login';
 include '../head.php';
 ?>
-<form method="post" class="login">
-    <label for="email">Email</label>
-    <?= html_text('email', 'maxlength:"100"') ?>
-    <?= err('email') ?>
 
-    <label for="password">Password</label>
-    <?= html_password('password', 'maxlength="100"') ?>
-    <?= err('password') ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="app.css"> <link rel="stylesheet" href="app.css">
+</head>
+<body>
 
-    <section>
-        <button>Login</button>
-        <button type="reset">Reset</button>
-    </section>
-</form>
+<div class="neumorphic-card">
+    <h1>Login</h1>
+    <form method="post">
+        <input type="text" name="email" class="neumorphic-input" placeholder="Enter Email">
+        <?= err('email') ?>
+
+        <input type="password" name="password" class="neumorphic-input" placeholder="Enter Password">
+        <?= err('password') ?>
+
+        <button type="submit" class="neumorphic-button">Login</button>
+        <button type="reset" class="neumorphic-button">Reset</button>
+    </form>
+</div>
+
+</body>
+</html>
+
 
 <?php
 include '../foot.php';
