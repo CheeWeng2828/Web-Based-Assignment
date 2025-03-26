@@ -85,7 +85,7 @@ body {
 }
 
 /* Neumorphic Card */
-.neumorphic-card {
+.login-page {
     background: #e0e0e0;
     border-radius: 15px;
     box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
@@ -95,13 +95,13 @@ body {
 }
 
 /* Title */
-.neumorphic-card h1 {
+.login-page h1 {
     margin-bottom: 20px;
     color: #555;
 }
 
 /* Neumorphic Input Fields */
-.neumorphic-input {
+.login-input {
     width: 85%;
     padding: 12px;
     margin: 10px 0;
@@ -115,12 +115,12 @@ body {
 }
 
 /* Input Focus Effect */
-.neumorphic-input:focus {
+.login-input:focus {
     box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
 }
 
 /* Neumorphic Buttons */
-.neumorphic-button {
+.login-button {
     padding: 12px 20px;
     margin: 10px;
     border: none;
@@ -133,7 +133,7 @@ body {
 }
 
 /* Button Active Effect */
-.neumorphic-button:active {
+.login-button:active {
     box-shadow: inset 5px 5px 10px #bebebe, inset -5px -5px 10px #ffffff;
 }
 
