@@ -89,7 +89,6 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* Neumorphic Card */
 .login-page {
     background: #e0e0e0;
     border-radius: 15px;
@@ -99,13 +98,13 @@ body {
     width: 350px;
 }
 
-/* Title */
+
 .login-page h1 {
     margin-bottom: 20px;
     color: #555;
 }
 
-/* Neumorphic Input Fields */
+
 .login-input {
     width: 85%;
     padding: 12px;
@@ -119,12 +118,12 @@ body {
     text-align: center;
 }
 
-/* Input Focus Effect */
+
 .login-input:focus {
     box-shadow: inset 3px 3px 6px #bebebe, inset -3px -3px 6px #ffffff;
 }
 
-/* Neumorphic Buttons */
+
 .login-button {
     padding: 12px 20px;
     margin: 10px;
@@ -150,7 +149,7 @@ body {
 }
 
 .login label {
-    color: white;
+    color: #4E342E;
     font-weight: bold;
 }
 
@@ -356,6 +355,16 @@ select {
     height: 100px;
 }
 
+.productList th {
+    background-color: #000;
+    color: #F8ECD1;
+}
+
+.productList {
+    background: #6D4C41;
+    color: #fff;
+}
+
 .productList td:has(.popup) {
     position: relative;
 }
@@ -372,4 +381,8 @@ select {
 
 .productList tr:hover .popup {
     display: block;
+}
+
+.productList tr:hover {
+    background: #4E342E;
 }

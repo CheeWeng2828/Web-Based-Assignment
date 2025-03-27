@@ -35,24 +35,24 @@ include '../head.php';
 ?>
 
 <div class="login-page">
-<form method="post" class="login">
-    <label for="email">Email</label>
-    <div class="login-input">
-    <?= html_text('email', 'maxlength:"100"') ?>
-</div>
-    <?= err('email') ?>
+    <form method="post" class="login">
+        <label for="email">Email</label>
+        <div class="login-input">
+            <?= html_text('email', 'maxlength:"100"') ?>
+        </div>
+        <?= err('email') ?>
 
-    <label for="password">Password</label>
-    <div class="login-input">
-    <?= html_password('password', 'maxlength="100"') ?>
-</div>
-    <?= err('password') ?>
+        <label for="password">Password</label>
+        <div class="login-input">
+            <?= html_password('password', 'maxlength="100"') ?>
+        </div>
+        <?= err('password') ?>
 
-    <section>
-        <button class="login-button">Login</button>
-        <button class="login-button" type="reset">Reset</button>
-    </section>
-</form>
+        <section>
+            <button class="login-button">Login</button>
+            <button class="login-button" type="reset">Reset</button>
+        </section>
+    </form>
 </div>
 
 

@@ -62,7 +62,7 @@ if (is_post()) {
             INSERT INTO user (email, password, name, photo, role)
             VALUES (?,SHA1(?),?,?,"Member")
         ');
-        $stm->execute([$email,$password ,$name, $photo]);
+        $stm->execute([$email, $password, $name, $photo]);
 
         temp('info', 'Record inserted');
         redirect('login.php');
