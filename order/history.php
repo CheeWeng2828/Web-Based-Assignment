@@ -22,6 +22,7 @@ include '../head.php';
         <th>Date Time</th>
         <th>Count</th>
         <th>Total(RM)</th>
+        <th> </th>
     </tr>
     <?php foreach($arr as $h):?>
         <tr>

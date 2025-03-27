@@ -14,21 +14,15 @@
 <body>
     <div id="info"><?= temp('info') ?></div>
     <nav>
-        <div class="Logo" >
+        <div class="Logo">
             <a href="/">
-            <img src="/image/icon.jpg" alt="Logo">
-            <h2>XX bakery</h2>
+                <img src="/image/icon.jpg" alt="Logo">
+                <h2>XX bakery</h2>
             </a>
         </div>
-        <?php if ($_user?->role == "Admin"): ?>
-            <a href="/product/product_maintenance.php">Product List</a>
-            <a href="/product/insert_product.php">Insert Product</a>
-        <?php endif ?>
-        <div></div>
-        <?php if (!$_user): ?>
-            <a href="/user/login.php">Login</a>
-            <a href="/user/register.php">Register</a>
-        <?php endif ?>
+        <?php if (!$_user || $_user?->role == "Member"): ?>
+        <a href="/function/shop.php">Shop</a>
+
         <a href="/order/shopping _cart.php">
             Shopping Cart
             <?php
@@ -37,19 +31,49 @@
             if ($count) echo "($count)";
             ?>
         </a>
+        <?php endif ?>
+
+        <?php if ($_user?->role == "Admin"): ?>
+
+            <a href="/product/product_maintenance.php">Product List</a>
+            <a href="/product/insert_product.php">Insert Product</a>
+
+        <?php endif ?>
+
+        <div></div>
+
+        
+
+        <?php if (!$_user): ?>
+
+            <a href="/user/login.php">Login</a>
+            <a href="/user/register.php">Register</a>
+
+        <?php endif ?>
+
+        <?php if ($_user?->role == "Member"): ?>
+
+            <a href="/order/history.php">History</a>
+
+        <?php endif ?>
 
         <?php if ($_user): ?>
-            <a href="/order/history.php">History</a>
+
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
             <a href="/user/logout.php">Logout</a>
+
             <?php if ($_user): ?>
-            <div class="user">
-                <img src="/photo/<?= $_user->photo ?>">
-                <?= $_user->name ?>
-            </div>
+
+                <div class="user">
+                    <img src="/photo/<?= $_user->photo ?>">
+                    <?= $_user->name ?>
+                </div>
+
+            <?php endif ?>
+
         <?php endif ?>
-        <?php endif ?>
+
     </nav>
 
     <main>

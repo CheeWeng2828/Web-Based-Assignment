@@ -33,6 +33,7 @@ nav .Logo a {
     text-decoration: none;
     padding: 0;
     margin: 0;
+    width: 0;
 }
 
 nav .Logo img {
@@ -259,7 +260,7 @@ label.upload img {
 /*===================================================================================
     Table layout
 ===================================================================================*/
-
+/*
 .userList th,
 .userList tr,
 .userList td {
@@ -270,6 +271,7 @@ label.upload img {
 .userList{
     border-collapse: collapse;
 }
+*/
 
 .productList{
     border-collapse: collapse;
@@ -390,4 +392,68 @@ select {
 
 .productList tr:hover {
     background: #4E342E;
+}
+
+/*===================================================================================
+                Shopping cart
+===================================================================================*/
+
+.cart {
+    background: #6D4C41;
+    color: #F8ECD1;
+}
+
+.cart th {
+    background: #6D4C41;
+    color: #fff;
+    padding: 10px;
+}
+
+.cart td{
+    background: #e0e0e0;
+    color: #4E342E;
+}
+
+.cart td:has(.popup) {
+    position: relative;
+}
+
+.cart .popup {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    translate: 5px -50%;
+    z-index: 1;
+    border: 1px solid #333;
+    display: none;
+}
+
+.cart tr:hover .popup {
+    display: block;
+}
+
+.cart tr:hover {
+    background: #4E342E;
+}
+
+/*===================================================================================
+                History
+===================================================================================*/
+.history, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+
+.history th{
+    padding: 50px;
+    background: #6D4C41;
+    color: #F8ECD1;
+}
+
+.history td{
+    color: #F8ECD1;
+    background: #4E342E;
+    padding: 20px;
+    text-align: center;
 }

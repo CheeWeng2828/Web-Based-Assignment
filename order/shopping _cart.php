@@ -15,19 +15,11 @@ if (is_post()) {
 }
 
 
-
 $_title = 'Order | Shopping Cart';
 include '../head.php';
 ?>
 
-<style>
-    .popup {
-        width: 100px;
-        height: 100px;
-    }
-</style>
-
-<table class="table">
+<table class="cart">
     <tr>
         <th>Id</th>
         <th>Name</th>
