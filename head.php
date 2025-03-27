@@ -29,7 +29,6 @@
             <a href="/user/login.php">Login</a>
             <a href="/user/register.php">Register</a>
         <?php endif ?>
-        <?php if($_user?->role == "Member"):?>
         <a href="/order/shopping _cart.php">
             Shopping Cart
             <?php
@@ -38,9 +37,9 @@
             if ($count) echo "($count)";
             ?>
         </a>
-        <a href="/order/history.php">History</a>
-        <?php endif?>
+
         <?php if ($_user): ?>
+            <a href="/order/history.php">History</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
             <a href="/user/logout.php">Logout</a>
