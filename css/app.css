@@ -1,14 +1,19 @@
 /*===================================================================================
     Header Layout
 ===================================================================================*/
-
-body {
-    padding-top: 60px;
-}
-
 h1 {
     color: #4E342E;
     text-align: center;
+}
+
+footer {
+    background-color: #6D4C41;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 nav {
@@ -276,12 +281,12 @@ label.upload img {
 .productList td {
     border: 1px solid black;
     padding: 5px;
-  
+
 }
 
-.productList th{
+.productList th {
     background-color: #6D4C41;
-    color:white;
+    color: white;
 }
 
 /*===================================================================================
@@ -344,7 +349,7 @@ select {
     align-items: center;
 }
 
-.insert label{
+.insert label {
     color: #F8ECD1;
 }
 
@@ -357,7 +362,7 @@ select {
 }
 
 .productList td:has(.popup) {
-    position:relative;
+    position: relative;
 }
 
 .productList .popup {
