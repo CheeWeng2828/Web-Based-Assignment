@@ -28,14 +28,18 @@ require_once '../lib/SimplePager.php';
 $stm = new SimplePager("SELECT * FROM user ORDER BY $sort $dir", [], 10, $page);
 $arr = $stm->result;
 
-include '../head.php';
 $_title = "User List";
+include '../head.php';
 ?>
+<p>
+    <?= $stm->count ?> of <?= $stm->item_count ?> record(s) |
+    Page <?= $stm->page ?> of <?= $stm->page_count ?>
+</p>
 <table class="userList">
     <tr>
         <?= html_header($fields, $sort, $dir, "page=$page") ?>
     </tr>
-
+    
     <?php foreach ($arr as $s) : ?>
         <tr>
             <td><?= $s->id ?></td>

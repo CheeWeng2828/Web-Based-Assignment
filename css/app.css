@@ -261,12 +261,17 @@ label.upload img {
 ===================================================================================*/
 
 .userList th,
-.userList tr {
-    border: 1 px solid gray;
+.userList tr,
+.userList td {
+    border: 1px solid black;
     padding: 5px;
 }
 
-.productList {
+.userList{
+    border-collapse: collapse;
+}
+
+.productList{
     border-collapse: collapse;
 }
 

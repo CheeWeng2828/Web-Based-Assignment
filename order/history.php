@@ -29,9 +29,7 @@ include '../head.php';
             <td><?=$h->datetime?></td>
             <td><?=$h->count?></td>
             <td><?=$h->total?></td>
-        </tr>
-        <tr>
-            <button data-get="orderdetail.php?id=<?= $h->id?>">Detail</button>
+            <td> <button data-get="orderdetail.php?id=<?= $h->id?>">Detail</button></td>
         </tr>
         <?php endforeach?>
 </table>
