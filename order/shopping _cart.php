@@ -34,6 +34,7 @@ include '../head.php';
 
     $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
     $cart = get_cart();
+    $unit = $cart[$product->id] ?? 0;
     foreach ($cart as $id => $unit):
         $stm->execute([$id]);
         $p = $stm->fetch();
@@ -49,7 +50,7 @@ include '../head.php';
             <td>
                 <form method="post">
                     <?= html_hidden('id', $id) ?>
-                    <?= html_select('unit', $_units, ' ') ?>
+                    <?= html_select('unit', $_units, '') ?>
                 </form>
             </td>
             <td class="right">

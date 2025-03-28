@@ -1,5 +1,5 @@
 <?php
-include 'base.php';
+include '../base.php';
 
 if (is_post()) {
     $id = req('id');
@@ -15,7 +15,7 @@ $product = $stm->fetch();
 if (!$product) redirect('index.php');
 
 $_title = 'Detail';
-include 'head.php';
+include '../head.php';
 ?>
 
 <p>
@@ -57,4 +57,4 @@ include 'head.php';
     $('select').on('change', e => e.target.form.submit());
 </script>
 <?php
-include 'foot.php';
+include '../foot.php';
