@@ -5,7 +5,7 @@ $_title = 'Index';
 include 'head.php';
 ?>
 
-<h1>Hello World</h1>
+<h2>Hello World</h2>
 
 <?php
 include 'foot.php';
