@@ -5,7 +5,10 @@ if (is_post()) {
 
     $id = req('id');
     
-    
+    $stm = $_db->prepare('SELECT photo FROM product WHERE id = ?');
+    $stm->execute([$id]);
+    $photo = $stm->fetchColumn();
+    unlink("../product_img/$photo");
 
     $stm = $_db->prepare('DELETE FROM product WHERE id=?');
     $stm->execute([$id]);
