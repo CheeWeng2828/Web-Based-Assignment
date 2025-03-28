@@ -16,7 +16,7 @@ footer {
     width: 100%;
 }
 
-nav {
+nav.navigation{
     position: fixed;
     top: 0;
     left: 0;
@@ -27,7 +27,7 @@ nav {
 
 }
 
-nav .Logo a {
+nav.navigation .Logo a {
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -36,13 +36,13 @@ nav .Logo a {
     width: 0;
 }
 
-nav .Logo img {
+nav.navigation .Logo img {
     width: 50px;
     height: auto;
     margin-right: 10px;
 }
 
-nav .Logo h2 {
+nav.navigation .Logo h2 {
     font-size: 24px;
     margin: 0;
     color: #F8ECD1;
@@ -260,18 +260,46 @@ label.upload img {
 /*===================================================================================
     Table layout
 ===================================================================================*/
-/*
-.userList th,
-.userList tr,
-.userList td {
+.pager {
+    text-align: center;
+    background:#6D4C41;
+    color: #F8ECD1;
+    padding: 5px;
+    
+  }
+  
+.pager a {
+    color: #F8ECD1;
+    text-decoration: none;
+    padding: 5px;
+    margin: 5px;
+  }
+  
+.pager a:hover {
+    background-color: #4E342E;
+    color: #F8ECD1;
+}
+
+.memberList th a.asc::after {
+    content: ' ▴';
+}
+
+.memberList th a.desc::after {
+    content: ' ▾';
+}
+
+
+.memberList th,
+.memberList tr,
+.memberList td {
     border: 1px solid black;
     padding: 5px;
 }
 
-.userList{
+.memberList{
     border-collapse: collapse;
 }
-*/
+
 
 .productList{
     border-collapse: collapse;

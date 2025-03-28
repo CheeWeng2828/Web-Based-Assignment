@@ -13,7 +13,7 @@
 
 <body>
     <div id="info"><?= temp('info') ?></div>
-    <nav>
+    <nav class="navigation">
         <div class="Logo">
             <a href="/">
                 <img src="/image/icon.jpg" alt="Logo">
@@ -36,6 +36,7 @@
         <?php if ($_user?->role == "Admin"): ?>
 
             <a href="/product/product_maintenance.php">Product</a>
+            <a href="/function/memberList.php">Member List</a>
 
         <?php endif ?>
 

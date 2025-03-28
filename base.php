@@ -117,19 +117,21 @@ function html_number($key, $min = '', $max = '', $step = '', $attr = '')
     echo "<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
 }
 
-function html_header($fields, $sort, $dir, $href = '')
+function table_headers($fields, $sort, $dir, $href = '')
 {
     foreach ($fields as $k => $v) {
-        $d = 'esc';
-        $c = '';
-    }
-    if ($k == $sort) {
-        $d = $dir == 'asc' ? 'desc' : 'asc';
-        $c = $dir;
-    }
+        $d = 'asc'; // Default direction
+        $c = '';    // Default class
 
-    echo "<th><a href='?sort=$k&dir=$d&href' class='$c'>$v</a></th>";
+        if ($k == $sort) {
+            $d = $dir == 'asc' ? 'desc' : 'asc';
+            $c = $dir;
+        }
+
+        echo "<th><a href='?sort=$k&dir=$d&$href' class='$c'>$v</a></th>";
+    }
 }
+
 function html_select($key, $items, $default = '- Select One -', $attr = '')
 {
     $value = encode($GLOBALS[$key] ?? '');
