@@ -318,6 +318,23 @@ label.upload img {
     color: white;
 }
 
+.orderList{
+    border-collapse: collapse;
+}
+
+.orderList th,
+.orderList tr,
+.orderList td {
+    border: 1px solid black;
+    padding: 5px;
+
+}
+
+.orderList th {
+    background-color: #6D4C41;
+    color: white;
+}
+
 /*===================================================================================
                 Product List
 ===================================================================================*/
