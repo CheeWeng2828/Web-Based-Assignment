@@ -54,17 +54,17 @@ if (is_post()) {
 ?>
 <form method="post" class="reset_password" enctype="multipart/form-data">
 
-    <label for="password">Password</label>
+    <label for="password">Password:</label><br>
     <?= html_password('password', 'maxlength = "100"') ?>
-    <? err('password') ?>
+    <? err('password') ?><br><br>
 
-    <label for="new_password">New Password</label>
+    <label for="new_password">New Password:</label><br>
     <?= html_password('new_password', 'maxlength = "100"') ?>
-    <? err('new_password') ?>
+    <? err('new_password') ?><br><br>
 
-    <label for="confirm">Confirm</label>
+    <label for="confirm">Confirm:</label><br>
     <?= html_password('confirm', 'maxlength = "100"') ?>
-    <? err('confirm') ?>
+    <? err('confirm') ?><br><br>
     <section>
         <button>Submit</button>
         <button type="reset">Reset</button>

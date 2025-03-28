@@ -75,18 +75,18 @@ $_title = 'Profile';
 include '../head.php'
 ?>
 <form method="post" class="profile" enctype="multipart/form-data">
-    <label for="email">Email</label>
+    <label for="email">Email:</label><br>
     <?= html_text('email', 'maxlength="100"') ?>
-    <?= err('email') ?>
+    <?= err('email') ?><br><br>
 
-    <label for="name">Name</label>
+    <label for="name">Name:</label><br>
     <?= html_text('name', 'maxlength="100"') ?>
-    <?= err('name') ?>
+    <?= err('name') ?><br><br>
 
-    <label for="profile">Photo</label>
+    <label for="profile">Photo:</label><br>
     <label class="upload" tabindex="0">
         <?= html_file('profile', 'image/*', 'hidden') ?>
-        <img src="/photo/<?= $_user->photo ?>">
+        <img src="/photo/<?= $_user->photo ?>"><br><br>
     </label>
     <?= err('profile') ?>
 
