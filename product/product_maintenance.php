@@ -11,12 +11,13 @@ include '../head.php';
 ?>
 
 <form>
+    <p><?= count($arr) ?> record(s)</p>
     <?= html_search('name') ?>
     <button>Search</button>
-    <button data-get="insert_product.php">Insert Product</button>
+    <p>Any New Product? <button data-get="insert_product.php">Insert Product</button> </p>
 </form>
 
-<p><?= count($arr) ?> record(s)</p>
+
 
 <table class="productList">
     <tr>
