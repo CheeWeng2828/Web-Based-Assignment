@@ -13,6 +13,7 @@ include '../head.php';
 <form>
     <?= html_search('name') ?>
     <button>Search</button>
+    <button data-get="insert_product.php">Insert Product</button>
 </form>
 
 <p><?= count($arr) ?> record(s)</p>

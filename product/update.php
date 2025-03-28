@@ -69,7 +69,7 @@ if (is_post()) {
 
 
         temp('info', 'Update Sucessful');
-        redirect('/');
+        redirect('product_maintenance.php');
     }
 }
 

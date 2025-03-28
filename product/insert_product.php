@@ -47,7 +47,7 @@ if (is_post()) {
 
 
         temp('info', 'Insert Sucessful');
-        redirect('/');
+        redirect('product_maintenance.php');
     }
 }
 

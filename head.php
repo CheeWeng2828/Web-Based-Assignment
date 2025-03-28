@@ -35,8 +35,7 @@
 
         <?php if ($_user?->role == "Admin"): ?>
 
-            <a href="/product/product_maintenance.php">Product List</a>
-            <a href="/product/insert_product.php">Insert Product</a>
+            <a href="/product/product_maintenance.php">Product</a>
 
         <?php endif ?>
 

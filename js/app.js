@@ -4,7 +4,7 @@ $(() => {
     $('form :input:not(button):first').focus();
     $('.err:first').prev().focus();
     $('.err:first').prev().find(':input:first').focus();
-
+    
     // Confirmation message
     $('[data-confirm]').on('click', e => {
         const text = e.target.dataset.confirm || 'Are you sure?';
@@ -14,14 +14,14 @@ $(() => {
         }
     });
 
-    // GET request
+    // Initiate GET request
     $('[data-get]').on('click', e => {
         e.preventDefault();
         const url = e.target.dataset.get;
         location = url || location;
     });
 
-    // POST request
+    // Initiate POST request
     $('[data-post]').on('click', e => {
         e.preventDefault();
         const url = e.target.dataset.post;
@@ -31,13 +31,13 @@ $(() => {
         f.submit();
     });
 
-    // Reset button
+    // Reset form
     $('[type=reset]').on('click', e => {
         e.preventDefault();
         location = location;
     });
 
-    // Uppercase
+    // Auto uppercase
     $('[data-upper]').on('input', e => {
         const a = e.target.selectionStart;
         const b = e.target.selectionEnd;
