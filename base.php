@@ -210,7 +210,7 @@ function auth(...$roles)
         }
     }
 
-    redirect('/function/login.php');
+    redirect('/user/login.php');
 }
 
 //===================================================================================

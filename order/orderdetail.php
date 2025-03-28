@@ -1,14 +1,13 @@
 <?php
 include '../base.php';
-auth("Member");
 
 $id = req('id');
 $stm = $_db->prepare('
 SELECT * FROM `order`
-WHERE id = ? AND user_id = ?
+WHERE id = ?
 ');
 
-$stm->execute([$id, $_user->id]);
+$stm->execute([$id]);
 $o = $stm->fetch();
 if (!$o) redirect('history.php');
 

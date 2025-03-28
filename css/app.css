@@ -1,6 +1,11 @@
 /*===================================================================================
     Header Layout
 ===================================================================================*/
+main {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px;
+}
 h1 {
     color: #4E342E;
     text-align: center;
@@ -9,12 +14,12 @@ h1 {
 footer {
     background-color: #6D4C41;
     color: #fff;
-    text-align: center;
-    padding: 20px 0;
+    text-align: left;
+    padding: 15px 20px;
     position: fixed;
     bottom: 0;
     width: 100%;
-}
+  }
 
 nav.navigation{
     position: fixed;
@@ -239,23 +244,24 @@ label.upload img {
     border: 1px solid black;
 }
 
-.user {
-
-    text-align: right;
-    color: #fff;
-    margin: 5px;
-
-}
+.navigation .user {
+    display: flex;
+    align-items: right;
+    color: #F8ECD1;
+  }
 
 
-.user img {
-    float: right;
-    width: 25px;
-    height: 25px;
-    border: 1px solid #000;
-    border-radius: 5px;
-
-}
+.navigation .user {
+    display: flex;
+    align-items: center;
+  }
+  
+.navigation .user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
 
 /*===================================================================================
     Table layout
@@ -280,11 +286,11 @@ label.upload img {
     color: #F8ECD1;
 }
 
-.memberList th a.asc::after {
+.memberList,.history th a.asc::after {
     content: ' ▴';
 }
 
-.memberList th a.desc::after {
+.memberList,.history th a.desc::after {
     content: ' ▾';
 }
 
@@ -503,7 +509,7 @@ select {
 
 
 .history th{
-    padding: 50px;
+    padding: 10px;
     background: #6D4C41;
     color: #F8ECD1;
 }
@@ -511,6 +517,6 @@ select {
 .history td{
     color: #F8ECD1;
     background: #4E342E;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }

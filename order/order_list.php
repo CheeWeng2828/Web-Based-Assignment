@@ -48,6 +48,7 @@ include '../head.php';
             <td><?= $s->count ?></td>
             <td><?= $s->total ?></td>
             <td><?= $s->user_id ?></td>
+            <td> <button data-get="orderdetail.php?id=<?= $s->id?>">Detail</button></td>
         </tr>
     <?php endforeach ?>
 </table>
