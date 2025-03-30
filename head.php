@@ -6,43 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $_title ?? 'Untitled' ?></title>
     <link rel="icon" href="/image/icon.jpg">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/bakery.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="/js/app.js"></script>
 </head>
 
 <body>
-
-    <header>
-        <a href="/">
-            <img src="/image/icon.jpg" alt="logo" class="logo">
-            <h1 class="name">XX bakery</h1>
-        </a>
-        <div></div>
-        <?php if ($_user): ?>
-
-            <div class="user">
-                <img src="/photo/<?= $_user->photo ?>">
-                <?= $_user->name ?>
-            </div>
-
-        <?php endif ?>
-    </header>
+<header>
+         <a href="/">
+             <img src="/image/icon.jpg" alt="logo" class="logo">
+             <h1 class="name">XX bakery</h1>
+         </a>
+         <div></div>
+         <?php if ($_user): ?>
+ 
+             <div class="user">
+                 <img src="/photo/<?= $_user->photo ?>">
+                 <?= $_user->name ?>
+             </div>
+ 
+         <?php endif ?>
+     </header>
     <div id="info"><?= temp('info') ?></div>
     <nav class="navigation">
-        <a href="/">Home</a>
-
+        
         <?php if (!$_user || $_user?->role == "Member"): ?>
-            <a href="/function/shop.php">Shop</a>
+        <a href="/function/shop.php">Shop</a>
 
-            <a href="/order/shopping _cart.php">
-                Shopping Cart
-                <?php
-                $cart = get_cart();
-                $count = array_sum($cart);
-                if ($count) echo "($count)";
-                ?>
-            </a>
+        <a href="/order/shopping _cart.php">
+            Shopping Cart
+            <?php
+            $cart = get_cart();
+            $count = array_sum($cart);
+            if ($count) echo "($count)";
+            ?>
+        </a>
         <?php endif ?>
 
         <?php if ($_user?->role == "Admin"): ?>
@@ -55,7 +53,7 @@
 
         <div></div>
 
-
+        
 
         <?php if (!$_user): ?>
 
@@ -76,9 +74,11 @@
             <a href="/user/password.php">Password</a>
             <a href="/user/logout.php">Logout</a>
 
+
         <?php endif ?>
 
     </nav>
 
     <main>
-        <h2><?= $_title ?? 'Untitled' ?></h2>
+        <h1><?= $_title ?? 'Untitled' ?></h1>
+
