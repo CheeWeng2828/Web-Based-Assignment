@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2025 at 09:26 AM
+-- Generation Time: Mar 30, 2025 at 04:29 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,22 @@ CREATE TABLE `inventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `inventory`
+--
+
+INSERT INTO `inventory` (`id`, `quantity`, `product_id`) VALUES
+(1, 100, 'B001'),
+(2, 50, 'B002'),
+(3, 30, 'B003'),
+(4, 20, 'B004'),
+(5, 55, 'B005'),
+(6, 66, 'B006'),
+(7, 34, 'B007'),
+(8, 11, 'B008'),
+(9, 44, 'B009'),
+(11, 11, 'B010');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -52,7 +68,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
