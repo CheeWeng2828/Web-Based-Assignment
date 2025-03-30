@@ -3,33 +3,33 @@
 ===================================================================================*/
 
 main {
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
 }
 
-
-header div{
+header div {
     flex: 1;
 }
-a {
+
+header a {
     color: #4E342E;
     text-align: left;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
 }
-h1{
+
+h1 {
     font-size: 25px;
 }
+
 .logo {
-    width: 50px;
+    width: 40px;
     height: auto;
     margin-right: 8px;
 }
 
-h2{
+h2 {
     text-align: center;
     font-size: 30px;
 }
@@ -38,10 +38,10 @@ footer {
     background-color: #6D4C41;
     color: #fff;
     text-align: center;
-    position:fixed;
     padding: 20px 0;
     bottom: 0;
     width: 100%;
+    margin-top: 50px;
 }
 
 nav.navigation {
@@ -305,9 +305,10 @@ label.upload img {
     border-collapse: collapse;
 }
 
-.memberList th{
-    background-color:#debeb3;
+.memberList th {
+    background-color: #debeb3;
 }
+
 .productList {
     border-collapse: collapse;
 }
@@ -339,7 +340,7 @@ label.upload img {
 
 .orderList th {
     background-color: #debeb3;
-    color:#4E342E;
+    color: #4E342E;
 }
 
 .orderList th a.asc::after {
@@ -414,7 +415,7 @@ select {
     color: #F8ECD1;
 }
 
-#productDetailIMG{
+#productDetailIMG {
     width: 300px;
     height: 300px;
 }

@@ -29,7 +29,7 @@
      </header>
     <div id="info"><?= temp('info') ?></div>
     <nav class="navigation">
-        
+        <a href="/">Home</a>
         <?php if (!$_user || $_user?->role == "Member"): ?>
         <a href="/function/shop.php">Shop</a>
 

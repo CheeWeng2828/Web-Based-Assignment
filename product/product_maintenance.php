@@ -2,7 +2,11 @@
 require '../base.php';
 $name = req('name');
 
-$stm = $_db->prepare('SELECT * FROM product WHERE name LIKE ?');
+
+$stm = $_db->prepare('SELECT p.*,i.quantity
+                      FROM product AS p
+                      LEFT JOIN inventory AS i ON p.id = i.product_id
+                      WHERE p.name LIKE ?');
 $stm->execute(["%$name%"]);
 $arr = $stm->fetchAll();
 
@@ -24,7 +28,8 @@ include '../head.php';
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
-        <th></th>
+        <th>Quantity</th>
+        <th>Action</th>
     </tr>
 
     <?php foreach ($arr as $s) : ?>
@@ -32,6 +37,7 @@ include '../head.php';
             <td><?= $s->id ?></td>
             <td><?= $s->name ?></td>
             <td><?= $s->price ?></td>
+            <td><?= $s->quantity?></td>
             <td>
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
                 <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>

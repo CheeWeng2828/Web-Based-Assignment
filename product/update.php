@@ -4,13 +4,13 @@ require '../base.php';
 if (is_get()) {
     $id = req('id');
 
-    $stm = $_db->prepare('SELECT * FROM product WHERE id=?');
+    $stm = $_db->prepare('SELECT p.*, i.quantity 
+                      FROM inventory AS i 
+                      RIGHT JOIN product AS p ON i.product_id = p.id
+                      WHERE p.id = ?');
     $stm->execute([$id]);
     $s = $stm->fetch();
 
-    if (!$s) {
-        redirect('/');
-    }
     extract((array)$s);
     $_SESSION['photo'] = $s->photo;
 
@@ -20,19 +20,23 @@ if (is_get()) {
     $name = $s->name;
     $price = $s->price;
     $photo = $s->photo;
+    $quantity = $s->quantity;
 }
 
 if (is_post()) {
     $id         = req('id');
     $name       = req('name');
     $price     = req('price');
+    $quantity   = req('quantity');
     $f = get_file('photo');
     $photo = $_SESSION['photo'];
 
     if (!$price) {
         $_err['price'] = "Required";
     }
-
+    if (!$quantity) {
+        $_err['quantity'] = "Required";
+    }
 
     if (!$name) {
         $_err['name'] = "Required";
@@ -60,13 +64,25 @@ if (is_post()) {
             unlink("../product_img/$photo");
             $photo = save_photo($f, '../product_img');
         }
-        $stm = $_db->prepare('
-    UPDATE product
-    SET price = ?,name = ?,photo = ?
-    WHERE id = ?
-');
+        $stm = $_db->prepare('UPDATE product 
+                              SET price = ?,name = ?,photo = ?
+                              WHERE id = ?
+                            ');
         $stm->execute([$price, $name, $photo, $id]);
 
+        $inv = $_db->prepare('SELECT * FROM inventory WHERE product_id = ?');
+        $inv->execute([$id]);
+        $i = $inv->fetchColumn();
+
+        if (!$i) {
+            $stm1 = $_db->prepare('INSERT INTO inventory (quantity,product_id) VALUES(?,?)');
+            $stm1->execute([$quantity, $id]);
+        }
+        if ($i) {
+            $stm1 = $_db->prepare('UPDATE inventory SET quantity = ?
+            WHERE product_id = ?');
+            $stm1->execute([$quantity, $id]);
+        }
 
         temp('info', 'Update Sucessful');
         redirect('product_maintenance.php');
@@ -78,7 +94,7 @@ include '../head.php';
 ?>
 
 <form method="post" class="form" enctype="multipart/form-data">
-    <label for="id">Id    :</label>
+    <label for="id">Id :</label>
     <b><?= $id ?></b>
     <?= err('id') ?><br>
 
@@ -89,6 +105,10 @@ include '../head.php';
     <label for="price">Price(RM) :</label>
     <?= html_number('price', '1', '30', '0.5') ?>
     <?= err('price') ?><br>
+
+    <label for="quantity">Quantity :</label>
+    <?= html_number('quantity', '0', '100', '1', 'value = $quantity') ?>
+    <?= err('quaantity') ?><br>
 
     <label for="photo">Photo:</label>
     <label class="upload" tabindex="0">
