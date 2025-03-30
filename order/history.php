@@ -32,6 +32,7 @@ include '../head.php';
 <table class="history">
     <tr>
         <?= table_headers($fields, $sort, $dir, "page=$page") ?>
+        <th> </th>
     </tr>
     <?php foreach ($arr as $h): ?>
         <tr>

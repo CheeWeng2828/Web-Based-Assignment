@@ -25,20 +25,20 @@ $_title = "Order Detail";
 include '../head.php';
 ?>
 <form class="OrderDetail">
-    <label>Order Id</label>
+    <label>Order Id:</label>
     <b><?= $o->id ?></b>
     <br>
 
-    <label>Date Time</label>
-    <div><?= $o->datetime ?></div>
+    <label>Date Time:</label>
+    <?= $o->datetime ?>
     <br>
 
-    <label>Count</label>
-    <div><?= $o->count ?></div>
+    <label>Count:</label>
+    <?= $o->count ?>
     <br>
 
-    <label>Total</label>
-    <div>RM <?= $o->total ?></div>
+    <label>Total:</label>
+    RM <?= $o->total ?>
     <br>
 </form>
 

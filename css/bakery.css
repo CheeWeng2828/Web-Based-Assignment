@@ -339,7 +339,7 @@ label.upload img {
 
 .orderList th {
     background-color: #debeb3;
-    color: white;
+    color:#4E342E;
 }
 
 .orderList th a.asc::after {
@@ -412,6 +412,11 @@ select {
 
 .insert label {
     color: #F8ECD1;
+}
+
+#productDetailIMG{
+    width: 300px;
+    height: 300px;
 }
 
 /*===================================================================================
