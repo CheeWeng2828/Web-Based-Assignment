@@ -38,6 +38,7 @@ footer {
     background-color: #6D4C41;
     color: #fff;
     text-align: center;
+    position:fixed;
     padding: 20px 0;
     bottom: 0;
     width: 100%;
@@ -304,7 +305,9 @@ label.upload img {
     border-collapse: collapse;
 }
 
-
+.memberList th{
+    background-color:#debeb3;
+}
 .productList {
     border-collapse: collapse;
 }
@@ -335,7 +338,7 @@ label.upload img {
 }
 
 .orderList th {
-    background-color: #6D4C41;
+    background-color: #debeb3;
     color: white;
 }
 
@@ -456,7 +459,7 @@ select {
 ===================================================================================*/
 
 .cart {
-    background: #6D4C41;
+    background: #a47262;
     color: #F8ECD1;
 }
 
