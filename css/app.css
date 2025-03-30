@@ -1,9 +1,36 @@
 /*===================================================================================
     Header Layout
 ===================================================================================*/
-h1 {
+
+main {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+header div{
+    flex: 1;
+}
+a {
     color: #4E342E;
+    text-align: left;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+h1{
+    font-size: 25px;
+}
+.logo {
+    width: 50px;
+    height: auto;
+    margin-right: 8px;
+}
+
+h2{
     text-align: center;
+    font-size: 30px;
 }
 
 footer {
@@ -11,41 +38,17 @@ footer {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }
 
-nav.navigation{
-    position: fixed;
+nav.navigation {
     top: 0;
     left: 0;
     width: 100%;
     background-color: #6D4C41;
     padding: 5 10px;
     display: flex;
-
-}
-
-nav.navigation .Logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    width: 0;
-}
-
-nav.navigation .Logo img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-}
-
-nav.navigation .Logo h2 {
-    font-size: 24px;
-    margin: 0;
-    color: #F8ECD1;
 }
 
 nav a {
@@ -80,13 +83,11 @@ nav div {
     Login Layout
 ===================================================================================*/
 
-/* Body Styling */
-body {
+.login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #e0e0e0;
+    height: 50vh;
     font-family: Arial, sans-serif;
 }
 
@@ -240,11 +241,10 @@ label.upload img {
 }
 
 .user {
-
     text-align: right;
-    color: #fff;
+    color: #4E342E;
     margin: 5px;
-
+    margin-top: 0;
 }
 
 
@@ -254,7 +254,6 @@ label.upload img {
     height: 25px;
     border: 1px solid #000;
     border-radius: 5px;
-
 }
 
 /*===================================================================================
@@ -262,19 +261,19 @@ label.upload img {
 ===================================================================================*/
 .pager {
     text-align: center;
-    background:#6D4C41;
+    background: #6D4C41;
     color: #F8ECD1;
     padding: 5px;
-    
-  }
-  
+
+}
+
 .pager a {
     color: #F8ECD1;
     text-decoration: none;
     padding: 5px;
     margin: 5px;
-  }
-  
+}
+
 .pager a:hover {
     background-color: #4E342E;
     color: #F8ECD1;
@@ -288,7 +287,7 @@ label.upload img {
     content: ' ▾';
 }
 
-.memberList img{
+.memberList img {
     width: 50px;
     height: 50px;
 }
@@ -300,12 +299,12 @@ label.upload img {
     padding: 5px;
 }
 
-.memberList{
+.memberList {
     border-collapse: collapse;
 }
 
 
-.productList{
+.productList {
     border-collapse: collapse;
 }
 
@@ -322,7 +321,7 @@ label.upload img {
     color: white;
 }
 
-.orderList{
+.orderList {
     border-collapse: collapse;
 }
 
@@ -466,7 +465,7 @@ select {
     padding: 10px;
 }
 
-.cart td{
+.cart td {
     background: #e0e0e0;
     color: #4E342E;
 }
@@ -496,19 +495,21 @@ select {
 /*===================================================================================
                 History
 ===================================================================================*/
-.history, th, td {
+.history,
+th,
+td {
     border: 1px solid black;
     border-collapse: collapse;
-  }
+}
 
 
-.history th{
+.history th {
     padding: 50px;
     background: #6D4C41;
     color: #F8ECD1;
 }
 
-.history td{
+.history td {
     color: #F8ECD1;
     background: #4E342E;
     padding: 20px;
