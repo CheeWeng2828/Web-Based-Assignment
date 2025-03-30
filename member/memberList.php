@@ -38,6 +38,8 @@ include '../head.php';
     <tr>
 
         <?= table_headers($fields, $sort, $dir, "page=$page") ?>
+        <th colspan="2"></th>
+        
     </tr>
 
     <?php foreach ($arr as $s): ?>

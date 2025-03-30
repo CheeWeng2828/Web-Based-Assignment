@@ -78,19 +78,19 @@ include '../head.php';
 ?>
 
 <form method="post" class="form" enctype="multipart/form-data">
-    <label for="id">Id</label>
+    <label for="id">Id    :</label>
     <b><?= $id ?></b>
-    <?= err('id') ?>
+    <?= err('id') ?><br>
 
-    <label for="name">Name</label>
+    <label for="name">Name :</label>
     <?= html_text('name', 'maxlength="100"') ?>
-    <?= err('name') ?>
+    <?= err('name') ?><br>
 
-    <label for="price">Price(RM)</label>
+    <label for="price">Price(RM) :</label>
     <?= html_number('price', '1', '30', '0.5') ?>
-    <?= err('price') ?>
+    <?= err('price') ?><br>
 
-    <label for="photo">Photo</label>
+    <label for="photo">Photo:</label>
     <label class="upload" tabindex="0">
         <?= html_file('photo', 'image/*', 'hidden') ?>
         <img src="/product_img/<?= $photo ?>">

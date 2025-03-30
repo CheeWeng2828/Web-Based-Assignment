@@ -297,8 +297,23 @@ label.upload img {
 .memberList tr,
 .memberList td {
     border: 1px solid black;
+    color: #fff;
+    background-color:#4E342E;
     padding: 5px;
 }
+
+.memberList th{
+    background-color:#000000;
+    color:#fdebb9;
+    font-size: 18px; 
+    font-weight: bold;
+}
+
+.memberList th a {
+    color: #fdebb9; 
+    text-decoration: none;
+}
+
 
 .memberList{
     border-collapse: collapse;
@@ -338,7 +353,22 @@ label.upload img {
     background-color: #6D4C41;
     color: white;
 }
+.orderList th a {
+    color: #fdebb9;
+    text-decoration:none;
+    cursor: pointer;
+}
 
+.orderList th a.asc::after,
+.orderList th a.desc::after {
+    color: white; 
+    font-size: 12px; 
+    margin-left: 5px; 
+}
+
+.orderList th a:hover {
+    color: #FDEBD0; 
+}
 .orderList th a.asc::after {
     content: ' ▴';
 }
@@ -425,8 +455,8 @@ select {
 }
 
 .productList {
-    background: #6D4C41;
     color: #fff;
+    background-color:#4E342E
 }
 
 .productList td:has(.popup) {
@@ -456,8 +486,9 @@ select {
 ===================================================================================*/
 
 .cart {
-    background: #6D4C41;
+    background: #ce927ec2;
     color: #F8ECD1;
+
 }
 
 .cart th {
@@ -505,7 +536,11 @@ select {
 .history th{
     padding: 50px;
     background: #6D4C41;
-    color: #F8ECD1;
+    color: #daaf4a;
+}
+.history th a {
+    color: #FFD700; 
+    text-decoration: none;
 }
 
 .history td{

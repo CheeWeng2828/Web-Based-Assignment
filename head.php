@@ -17,7 +17,7 @@
         <div class="Logo">
             <a href="/">
                 <img src="/image/icon.jpg" alt="Logo">
-                <h2>XX bakery</h2>
+                <h2>SEM3's Bakery</h2>
             </a>
         </div>
         <?php if (!$_user || $_user?->role == "Member"): ?>

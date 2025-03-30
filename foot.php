@@ -1,6 +1,6 @@
 </main>
 
 <footer>
-    Developed by <strong>Group 1</strong>
+    Developed by <strong>Group 8</strong>
     Copyrighted <?= date('Y') ?>
 </footer>

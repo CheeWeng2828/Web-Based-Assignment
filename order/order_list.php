@@ -8,7 +8,7 @@ $fields = [
     'datetime' => 'Date Time',
     'count' => "Quantity",
     'total' => 'Total Amount(RM)',
-    'user_id' => 'User_id',
+    'user_id' => 'User_Id',
 ];
 
 $sort = req('sort');
@@ -39,6 +39,7 @@ include '../head.php';
     <tr>
 
         <?= table_headers($fields, $sort, $dir, "page=$page") ?>
+        <th>More</th>
     </tr>
 
     <?php foreach ($arr as $s): ?>
