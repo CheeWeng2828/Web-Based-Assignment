@@ -50,7 +50,7 @@ include '../head.php';
     </tr>
 </table>
 <p>
-    <button data-get="index.php">List</button>
+    <button data-get="shop.php">List</button>
 </p>
 
 <script>
