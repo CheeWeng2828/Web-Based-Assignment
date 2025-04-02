@@ -3,36 +3,21 @@ include '../base.php';
 
 auth("Member");
 
-$fields = [
-    'id' => 'ID',
-    'datetime' => 'Date Time',
-    'count' => "Quantity",
-    'total' => 'Total Amount(RM)',
-];
-
-$sort = req('sort');
-key_exists($sort, $fields) || $sort = 'id';
-
-$dir = req('dir');
-in_array($dir, ['asc', 'desc']) || $dir = 'asc';
-
-$page = req('page', 1);
-
-require_once '../lib/SimplePager.php';
-$p = new SimplePager("SELECT * FROM `order` ORDER BY $sort $dir", [], 5, $page);
-$arr = $p->result;
+$p = $_db->prepare("SELECT * FROM `order` WHERE user_id = ?");
+$p->execute([$_user->id]);
+$arr = $p->fetchAll();
 
 $_title = 'Order History';
 include '../head.php';
 ?>
-<p>
-    <?= $p->count ?> of <?= $p->item_count ?> record(s) |
-    Page <?= $p->page ?> of <?= $p->page_count ?>
-</p>
+
 <table class="history">
     <tr>
-        <?= table_headers($fields, $sort, $dir, "page=$page") ?>
-        <th> </th>
+        <th>ID</th>
+        <th>DATE</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th></th>
     </tr>
     <?php foreach ($arr as $h): ?>
         <tr>
@@ -45,9 +30,5 @@ include '../head.php';
     <?php endforeach ?>
 </table>
 
-<br>
-<div class="pager">
-    <?= $p->html("sort=$sort&dir=$dir",) ?>
-
-    <?php
-    include '../foot.php';
+<?php
+include '../foot.php';
