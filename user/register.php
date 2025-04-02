@@ -92,7 +92,7 @@ include '../head.php';
 
     <label for="upload">Upload Photo</label>
     <label class="upload" tabindex="0">
-        <?= html_file("photo", "image/*,hidden") ?>
+        <?= html_file("photo", "image/*","hidden") ?>
         <img src="../image/placeholder.jpg">
     </label><br>
     <?= err("photo") ?>
