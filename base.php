@@ -245,16 +245,20 @@ function get_cart()
     return $_SESSION['cart'] ?? [];
 }
 
+function remove_cart() {
+    unset($_SESSION['cart']);
+}
+
 function set_cart($cart = [])
 {
     $_SESSION['cart'] = $cart;
 }
 
-function update_cart($id, $unit)
+function update_cart($id, $unit,$quantity = 0)
 {
     $cart = get_cart();
 
-    if ($unit >= 1 && $unit <= 10 && is_exist($id, 'product', 'id')) {
+    if ($unit >= 1 && $unit <= 10 && is_exist($id, 'product', 'id') && $unit <= $quantity ) {
         $cart[$id] = $unit;
     } else {
         unset($cart[$id]);

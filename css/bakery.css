@@ -408,7 +408,13 @@ label.upload img {
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #F8ECD1;
+    background-color: #4E342E;
 
+}
+
+.productDetailIMG{
+    width: 100px;
+    height: 100px;
 }
 
 select {
