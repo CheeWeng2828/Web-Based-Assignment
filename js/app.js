@@ -62,5 +62,8 @@ $(() => {
             e.target.value = '';
         }
     });
+    $('form :input:not(button):first').focus();
+    $('.err:first').prev().focus();
+    
 
 });

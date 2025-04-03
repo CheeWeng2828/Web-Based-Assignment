@@ -43,7 +43,7 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 50px;
-    position:fixed;
+    
 }
 
 nav.navigation {
@@ -88,7 +88,9 @@ nav div {
 ===================================================================================*/
 
 .login-container {
-    
+    background-image: url('/image/breadbackground.jpg');
+    background-size: cover;       
+    background-position: center; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,9 +99,9 @@ nav div {
 }
 
 .login-page {
-    background: #e0e0e0;
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
-    box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+    box-shadow: 10px 10px 20px #bebebeaf, -10px -10px 20px #ffffffac;
     padding: 30px;
     text-align: center;
     width: 350px;
@@ -572,4 +574,103 @@ td {
     padding: 30px;
     background: #fdebb976;
     border-radius: 15px;
+}
+
+/*===================================================================================
+               menu
+===================================================================================*/
+
+.category-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 20px;
+    flex-wrap: wrap;
+}
+
+.category-cards .card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.category-cards .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.category-cards .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 3px solid #e8c07d;
+}
+
+.category-cards .card span {
+    display: block;
+    padding: 15px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #5a3921;
+    background: white;
+}
+
+/* ===== Product Grid ===== */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #f1c27d;
+}
+
+.product-card h3 {
+    margin: 15px;
+    font-size: 1.2rem;
+    color: #5a3921;
+}
+
+.product-card p {
+    margin: 0 15px 15px;
+    font-size: 1.1rem;
+    color: #b85c38; 
+    font-weight: 600;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .category-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
 }

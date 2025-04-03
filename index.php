@@ -4,8 +4,28 @@ require 'base.php';
 $_title = 'Welcome ';
 include 'head.php';
 ?>
+<h2>Bakery Menu</h2>
 
-<h2>Hello World</h2>
-
+<div class="category-cards">
+   
+    <a href="../product/products.php" class="card">  
+        <img src="/image/all.jpg" alt="All Products">
+        <span>All Products</span>
+    </a>
+<div class="category-cards">
+    <a href="../product/products.php?category=cake" class="card">
+        <img src="/image/cake.jpg" alt="Delicious Cakes">
+        <span>Cakes</span>
+    </a>
+    <a href="../product/products.php?category=bread" class="card">
+        <img src="/image/breadbackground.jpg" alt="Fresh Bread">
+        <span>Bread</span>
+    </a>
+    
+    <a href="../product/products.php?category=pastries" class="card">
+        <img src="/image/tartt.png" alt="Pastries">
+        <span>Pastries</span>
+    </a>
+</div>
 <?php
 include 'foot.php';
