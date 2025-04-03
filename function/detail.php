@@ -18,48 +18,36 @@ if (!$product) redirect('index.php');
 $_title = 'Detail';
 include '../head.php';
 ?>
-
+<div class="productDetailContainer">
+    <p>
+        <img src="/product_img/<?= $product->photo ?>" class="productDetailIMG">
+    </p>
+    <div class="productDetail">
+        <p class="productName"><?= $product->name ?></p>
+        <p class="productName">RM<?= $product->price ?></p><br>
+        <div class="productDescription">
+            <p>
+                <?= $product->description ?>
+            </p>
+        </div>
+    </div>
+</div>
+<?php
+$cart = get_cart();
+$id = $product->id;
+$quantity = $product->quantity;
+$unit = $cart[$product->id] ?? 0;
+?>
+<form method="post" class="productDetailQuantity">
+    <?= html_hidden('id') ?>
+    Quantity: <?= html_hidden('quantity') ?>
+    <?= html_select('unit', $_units, '') ?>
+    <?= $unit ? '✅' : '' ?>
+    <?= $product->quantity ?> Piece Available
+</form>
 <p>
-    <img src="/product_img/<?= $product->photo ?>" class="productDetailIMG">
+    <button data-get="shop.php" class="backButton">Back</button>
 </p>
-<table class="productDetail">
-    <tr>
-        <th>ID</th>
-        <td><?= $product->id ?></td>
-    </tr>
-    <tr>
-        <th>Name</th>
-        <td><?= $product->name ?></td>
-    </tr>
-    <tr>
-        <th>Price</th>
-        <td><?= $product->price ?></td>
-    </tr>
-    <tr>
-        <th>Quantity</th>
-        <td><?= $product->quantity ?>
-    </tr>
-    <tr>
-        <td>
-            <?php
-            $cart = get_cart();
-            $id = $product->id;
-            $quantity = $product->quantity;
-            $unit = $cart[$product->id] ?? 0;
-            ?>
-            <form method="post">
-                <?= html_hidden('id') ?>
-                <?= html_hidden('quantity') ?>
-                <?= html_select('unit', $_units, '') ?>
-                <?= $unit ? '✅' : '' ?>
-            </form>
-        </td>
-    </tr>
-</table>
-<p>
-    <button data-get="shop.php">Back</button>
-</p>
-
 <script>
     $('select').on('change', e => e.target.form.submit());
 </script>

@@ -5,6 +5,7 @@
 main {
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 100px;
 }
 
 header div {
@@ -43,34 +44,33 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 50px;
-    position:fixed;
 }
 
-nav.navigation {
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #6D4C41;
-    padding: 5 10px;
+.navigation {
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #6D4C41;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    gap: 10px;
 }
 
-nav a {
-
-    color: #F8ECD1;
-    text-decoration: none;
-    padding: 5px 10px;
-    white-space: nowrap;
-    margin: 10px;
-}
-
-
-nav a:hover {
-    background-color: #4E342E;
-}
-
-nav div {
+.navigation div {
     flex: 1;
+}
+
+.navigation a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 15px;
+}
+
+
+.navigation a:hover {
+    background-color: #4E342E;
+    border-radius: 4px;
 }
 
 
@@ -88,7 +88,7 @@ nav div {
 ===================================================================================*/
 
 .login-container {
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -168,7 +168,7 @@ nav div {
 .register {
     display: grid;
     grid-template-columns: repeat(4, 200px);
-    background-color:#fdebb976;
+    background-color: #fdebb976;
     gap: 5px;
     padding: 10px;
     width: 450px;
@@ -182,7 +182,7 @@ nav div {
 .register label {
     color: rgb(0, 0, 0);
     font-weight: bold;
-    
+
 }
 
 /*===================================================================================
@@ -283,7 +283,7 @@ label.upload img {
 
 .pager a:hover {
     background-color: #4E342E;
-    color:  #fdebb976;
+    color: #fdebb976;
 }
 
 .memberList th a.asc::after {
@@ -294,7 +294,7 @@ label.upload img {
     content: ' ▾';
 }
 
-.memberList th a{
+.memberList th a {
     text-decoration: none;
     color: #4E342E;
 }
@@ -328,8 +328,8 @@ label.upload img {
 .productList td {
     border: 1px solid black;
     padding: 5px;
-    background-color:#f4e8ce;
-    color:#46322b;
+    background-color: #f4e8ce;
+    color: #46322b;
 
 
 }
@@ -352,11 +352,11 @@ label.upload img {
 }
 
 .orderList th {
-    background-color:#fdebb976;
+    background-color: #fdebb976;
     color: #4E342E;
 }
 
-.orderList th a{
+.orderList th a {
     text-decoration: none;
     color: #4E342E;
 }
@@ -379,7 +379,7 @@ label.upload img {
     gap: 10px;
     padding: 20px;
     justify-content: center;
-    
+
 }
 
 
@@ -403,24 +403,60 @@ label.upload img {
 }
 
 .productDetail {
-    display: block;
-    text-align: center;
+    margin-top: 15px;
+    text-align: left;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #F8ECD1;
-    background-color: #4E342E;
-
+    color: #f4e8ce;
+    border-radius: 10px;
 }
 
-.productDetailIMG{
-    width: 100px;
-    height: 100px;
+.productName{
+    padding-left: 20px;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: black;
 }
 
+.productDescription{
+    padding-left: 20px;
+    color: #f4e8ce;
+    border-radius: 10px;
+    text-align: left;
+    display: block;
+    background: #4E342E;
+    border: 2px solid black;
+}
+
+.productDetailIMG {
+    width: 300px;
+    height: 300px;
+    border: 5px solid black;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.productDetailContainer{
+    display: flex;
+    align-items: flex-start;
+    margin: 20px 0; 
+    gap: 20px;
+}
+
+.productDetailQuantity{
+    font-size: larger;
+    text-align: center;
+}
+
+.backButton{
+    font-size: 20px;
+}
+  
 select {
     border-radius: 5px;
     color: #F8ECD1;
     background-color: #4E342E;
+    height: 30px;
+    width: 50px;
 }
 
 /*Insert Product Layout*/
@@ -438,11 +474,6 @@ select {
 
 .insert label {
     color: #F8ECD1;
-}
-
-#productDetailIMG {
-    width: 300px;
-    height: 300px;
 }
 
 /*===================================================================================
@@ -554,19 +585,20 @@ td {
 /*===================================================================================
                 Profile
 ===================================================================================*/
-.profile{
+.profile {
     max-width: 600px;
     margin: 20px auto;
     padding: 30px;
     background: #fdebb976;
     border-radius: 15px;
-    
+
 }
+
 /*===================================================================================
                Password reset page
 ===================================================================================*/
-.reset_password{
-    position:center;
+.reset_password {
+    position: center;
     max-width: 600px;
     margin: 20px auto;
     padding: 30px;
