@@ -271,3 +271,5 @@ function update_cart($id, $unit,$quantity = 0)
 //===================================================================================
 
 $_units = array_combine(range(1, 10), range(1, 10));
+
+$_orderStatus = ['Pending','Delivered','To Ship','Out Of Delivery'];
