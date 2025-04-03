@@ -1,7 +1,7 @@
 <?php
 require 'base.php';
 
-$_title = '~Welcome~';
+$_title = 'Welcome ';
 include 'head.php';
 ?>
 

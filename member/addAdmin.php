@@ -71,6 +71,7 @@ if (is_post()) {
 
 
 $_title = 'New Admin';
+
 include '../head.php';
 ?>
 

@@ -88,6 +88,7 @@ nav div {
 ===================================================================================*/
 
 .login-container {
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -155,7 +156,7 @@ nav div {
 }
 
 .login label {
-    color: #4E342E;
+    color: #5c362d;
     font-weight: bold;
 }
 
@@ -163,10 +164,11 @@ nav div {
     Register Layout
 ===================================================================================*/
 
+
 .register {
     display: grid;
     grid-template-columns: repeat(4, 200px);
-    background-color: #6D4C41;
+    background-color:#fdebb976;
     gap: 5px;
     padding: 10px;
     width: 450px;
@@ -178,8 +180,9 @@ nav div {
 }
 
 .register label {
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
+    
 }
 
 /*===================================================================================
@@ -280,7 +283,7 @@ label.upload img {
 
 .pager a:hover {
     background-color: #4E342E;
-    color: #F8ECD1;
+    color:  #fdebb976;
 }
 
 .memberList th a.asc::after {
@@ -304,7 +307,7 @@ label.upload img {
 .memberList th,
 .memberList tr,
 .memberList td {
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
     padding: 5px;
 }
 
@@ -313,7 +316,7 @@ label.upload img {
 }
 
 .memberList th {
-    background-color: #debeb3;
+    background-color: #fdebb976;
 }
 
 .productList {
@@ -325,6 +328,9 @@ label.upload img {
 .productList td {
     border: 1px solid black;
     padding: 5px;
+    background-color:#f4e8ce;
+    color:#46322b;
+
 
 }
 
@@ -346,7 +352,7 @@ label.upload img {
 }
 
 .orderList th {
-    background-color: #debeb3;
+    background-color:#fdebb976;
     color: #4E342E;
 }
 
@@ -373,6 +379,7 @@ label.upload img {
     gap: 10px;
     padding: 20px;
     justify-content: center;
+    
 }
 
 
@@ -536,4 +543,27 @@ td {
     background: #4E342E;
     padding: 20px;
     text-align: center;
+}
+
+/*===================================================================================
+                Profile
+===================================================================================*/
+.profile{
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fdebb976;
+    border-radius: 15px;
+    
+}
+/*===================================================================================
+               Password reset page
+===================================================================================*/
+.reset_password{
+    position:center;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fdebb976;
+    border-radius: 15px;
 }
