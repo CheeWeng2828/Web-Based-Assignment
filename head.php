@@ -15,7 +15,7 @@
 <header>
          <a href="/">
              <img src="/image/icon.jpg" alt="logo" class="logo">
-             <h1 class="name">SEM3's Bakery</h1>
+             <h1 class="name">SEM 3's Bakery</h1>
          </a>
          <div></div>
          <?php if ($_user): ?>
