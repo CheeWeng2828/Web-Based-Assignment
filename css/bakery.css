@@ -9,6 +9,7 @@ main {
 
 header div {
     flex: 1;
+
 }
 
 header a {
@@ -42,6 +43,7 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 50px;
+    position:fixed;
 }
 
 nav.navigation {
