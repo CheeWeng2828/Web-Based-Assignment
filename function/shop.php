@@ -32,8 +32,8 @@ include '../head.php';
             </form>
             <img src="../product_img/<?= $product->photo ?>"
                 data-get="detail.php?id=<?= $product->id ?>" class="productImg">
-            <div class="productDetail">
-                <p><?= $product->name ?><br>RM<?= $product->price ?><br>Stock Quantity: <?= $product->quantity ?></p>
+            <div class="productInfo">
+                <p><?= $product->name ?><br>RM<?= $product->price ?><br><?= $product->quantity ?> pieces available</p>
             </div>
         </div>
     <?php endforeach ?>
