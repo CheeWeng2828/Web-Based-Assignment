@@ -54,10 +54,6 @@ footer {
     bottom: 0;
     width: 100%;
     margin-top: 50px;
-<<<<<<< HEAD
-    
-=======
->>>>>>> 3b3423ac50da05b03a0772b41719343b24249b5c
 }
 
 .navigation {
@@ -102,13 +98,6 @@ footer {
 ===================================================================================*/
 
 .login-container {
-<<<<<<< HEAD
-    background-image: url('/image/breadbackground.jpg');
-    background-size: cover;       
-    background-position: center; 
-=======
-
->>>>>>> 3b3423ac50da05b03a0772b41719343b24249b5c
     display: flex;
     justify-content: center;
     align-items: center;
@@ -484,7 +473,7 @@ label.upload img {
 select {
     border-radius: 5px;
     color: #F8ECD1;
-    background-color: #4E342E;
+    background-color: #6D4C41;
     height: 30px;
     width: 50px;
 }
@@ -634,7 +623,6 @@ td {
     padding: 30px;
     background: #fdebb976;
     border-radius: 15px;
-<<<<<<< HEAD
 }
 
 /*===================================================================================
@@ -724,6 +712,13 @@ td {
     font-weight: 600;
 }
 
+.product-card label {
+    margin: 0 15px 15px;
+    font-size: 1.1rem;
+    color: #b85c38; 
+    font-weight: 600;
+}
+
 /* ===== Responsive Design ===== */
 @media (max-width: 768px) {
     .category-cards {
@@ -734,6 +729,4 @@ td {
     .product-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     }
-=======
->>>>>>> 3b3423ac50da05b03a0772b41719343b24249b5c
 }
