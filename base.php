@@ -51,6 +51,10 @@ function temp($key, $value = null)
     }
 }
 
+function base($path = '') {
+    return "http://$_SERVER[SERVER_NAME]:$_SERVER[SERVER_PORT]/$path";
+}
+
 //===================================================================================
 // Photo function
 //===================================================================================
@@ -91,6 +95,11 @@ function html_file($key, $accept = '', $attr = '')
 function encode($value)
 {
     return htmlentities($value);
+}
+
+function html_textarea($key, $attr = '') {
+    $value = encode($GLOBALS[$key] ?? '');
+    echo "<textarea id='$key' name='$key' $attr>$value</textarea>";
 }
 
 function html_text($key, $attr = '')
@@ -266,6 +275,27 @@ function update_cart($id, $unit,$quantity = 0)
 
     set_cart($cart);
 }
+
+//===================================================================================
+//          Email
+//===================================================================================
+function get_mail() {
+    require_once 'lib/PHPMailer.php';
+    require_once 'lib/SMTP.php';
+
+    $m = new PHPMailer(true);
+    $m->isSMTP();
+    $m->SMTPAuth = true;
+    $m->Host = 'smtp.gmail.com';
+    $m->Port = 587;
+    $m->Username = 'lamcheeweng2006@gmail.com';
+    $m->Password = 'pwxs fqwi kkhs impd';
+    $m->CharSet = 'utf-8';
+    $m->setFrom($m->Username, '😺 Admin');
+
+    return $m;
+}
+
 //===================================================================================
 //          Global variable
 //===================================================================================
