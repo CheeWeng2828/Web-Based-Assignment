@@ -103,7 +103,7 @@ include '../head.php';
     <?= err('name') ?><br>
 
     <label for="price">Price(RM) :</label>
-    <?= html_number('price', '1', '30', '0.5') ?>
+    <?= html_number('price', '1', '30', '0.1') ?>
     <?= err('price') ?><br>
 
     <label for="quantity">Quantity :</label>
