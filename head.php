@@ -31,7 +31,7 @@
     <nav class="navigation">
         <a href="/">Home</a>
         <?php if (!$_user || $_user?->role == "Member"): ?>
-        <a href="/order/shopping _cart.php">
+        <a href="/order/shopping_cart.php">
             Shopping Cart
             <?php
             $cart = get_cart();
