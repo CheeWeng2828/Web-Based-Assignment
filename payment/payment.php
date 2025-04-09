@@ -1,19 +1,19 @@
 <?php
 include '../base.php';
 
-$id = req('id');
+$id = $_order->id;
 
 $stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
 
 $stm2 = $_db->prepare('SELECT p.name,i.unit FROM product AS p JOIN item AS i ON p.id = i.product_id WHERE i.order_id = ?');
-$stm->execute([$id]);
-$n = $stm->fetch();
+$stm2->execute([$id]);
+$n = $stm2->fetch();
 
 $m = get_mail();
 
-$url = base("order/orderdetail.php?id=$id");
+$url = base("payment/confirm.php?id=$id");
 $m->addAddress($u->email, $u->name);
 $m->isHTML(true);
 $m->Subject = 'Order Detail';
@@ -42,7 +42,7 @@ $_title = 'Payment';
 include '../head.php';
 ?>
 
-
+<p>Please Check Your Mail Box To Confirm The Payment</p>
 
 <?php
 include '../foot.php';

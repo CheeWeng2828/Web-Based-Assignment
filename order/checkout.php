@@ -34,13 +34,28 @@ if (is_post()) {
         WHERE id = ?
     ');
 
-    $stm->execute([$id,$id,$id]);
+    $stm->execute([$id, $id, $id]);
+
+    $stm = $_db->prepare('
+    UPDATE `inventory`
+    SET `quantity` = `quantity` - ?
+    WHERE `product_id` = ?
+    ');
+
+    foreach ($cart as $product_id => $unit) {
+        $stm->execute([$unit, $product_id]);
+    }
+
+    $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
+    $stm->execute([$id]);
+    $order = $stm->fetch();
+    order($order);
 
     $_db->commit();
 
     set_cart();
-    temp('info','Record inserted');
-    redirect("orderdetail.php");
+    temp('info', 'Make Order Successful');
+    redirect("payment/payment.php");
 }
 
 redirect('cart.php');
