@@ -51,7 +51,7 @@ if (is_post()) {
     INSERT INTO payment (datetime,status,order_id)
     VALUE (NOW(),'PENDING',?)");
     
-    $stm->execute([$_order->id]);
+    $stm->execute([$id]);
 
     $_db->commit();
 

@@ -1,10 +1,9 @@
 <?php
 include '../base.php';
 
-$stm = $_db->prepare("INSERT INTO payment (datetime,status,order_id)VALUE (NOW(),'PAID',?)");
+$stm = $_db->prepare("UPDATE payment SET status = 'PAID' WHERE order_id = ?");
 $stm->execute([$_order->id]);
-
-temp('info','Place Order Successful');
+temp('info', 'Place Order Successful');
 
 $_title = "Confirmation";
 include '../head.php';
