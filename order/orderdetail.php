@@ -51,7 +51,6 @@ include '../head.php';
             <th>Price (RM)</th>
             <th>Unit</th>
             <th>Subtotal (RM)</th>
-            <th>Date Time</th>
             <th>Status</th>
         </tr>
 
@@ -62,7 +61,6 @@ include '../head.php';
                 <td><?= $h->price ?></td>
                 <td><?= $h->unit ?></td>
                 <td><?= $h->subtotal ?></td>
-                <td><?= $h->datetime ?></td>
                 <td><?= $h->status ?></td>
             </tr>
         <?php endforeach ?>

@@ -41,6 +41,9 @@ if (is_post()) {
     SET `quantity` = `quantity` - ?
     WHERE `product_id` = ?
     ');
+    foreach ($cart as $product_id => $unit) {
+        $stm->execute([$unit,$product_id]);
+    }
 
     $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
     $stm->execute([$id]);
