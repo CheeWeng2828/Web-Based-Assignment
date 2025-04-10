@@ -55,9 +55,9 @@ include '../head.php';
 <div class="detail-table-container">
 
     <table class="detail">
+    <?php if ($_user?->role == "Admin"): ?>
         <th>Status</th>
         <th>
-            <?php if ($_user?->role == "Admin"): ?>
                 <form method="post">
                     <?= html_select('status', $_orderStatus) ?>
         <th>
@@ -78,6 +78,7 @@ include '../head.php';
             <?php if ($_user?->role == "Member"): ?>
                 <th>Status</th>
             <?php endif ?>
+            <th>More</th>
 
         </tr>
 
@@ -90,6 +91,9 @@ include '../head.php';
                 <td><?= $h->subtotal ?></td>
                 <?php if ($_user?->role == "Member"): ?>
                     <th><?= $h->status ?></th>
+                    <?php if($h->status == "Cancel"): ?>
+                    <td> <button data-get="cancelOrder.php?id=<?= $h->order_id ?>">Cancel Order</button></td>
+                    <?php endif?>
                 <?php endif ?>
             </tr>
         <?php endforeach ?>
