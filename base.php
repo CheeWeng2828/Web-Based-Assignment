@@ -301,7 +301,7 @@ function get_mail() {
     $m->Username = 'lamcheeweng2006@gmail.com';
     $m->Password = 'pwxs fqwi kkhs impd';
     $m->CharSet = 'utf-8';
-    $m->setFrom($m->Username, '😺 Admin');
+    $m->setFrom($m->Username, '🍞 Admin');
 
     return $m;
 }
