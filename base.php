@@ -154,6 +154,7 @@ function html_select($key, $items, $default = '- Select One -', $attr = '')
     }
     echo '</select>';
 }
+
 function html_hidden($key, $attr = '')
 {
     $value ??= encode($GLOBALS[$key] ?? '');
@@ -311,4 +312,8 @@ function get_mail() {
 
 $_units = array_combine(range(1, 10), range(1, 10));
 
-$_orderStatus = ['Pending','Delivered','To Ship','Out Of Delivery'];
+$_orderStatus = array(
+    'PENDING'   => 'PENDING',
+    'DELIVERED' => 'DELIVERED',
+    'PAID'      => 'PAID'
+);

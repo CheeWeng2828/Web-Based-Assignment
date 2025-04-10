@@ -473,7 +473,7 @@ label.upload img {
     font-size: 20px;
 }
 
-select {
+select.unit {
     border-radius: 5px;
     color: #F8ECD1;
     background-color: #6D4C41;
