@@ -12,6 +12,16 @@ VALUES (NOW(),?)
 $stm->execute([$_user->id]);
 $id = $_db->lastInsertId();
 
+
+$stm = $_db->prepare('
+SELECT i.*,p.name,p.photo,y.datetime
+FROM item AS i
+JOIN product AS p
+ON i.product_id = p.id
+WHERE i.order_id = ?
+');
+$stm->execute([$id]);
+
 /////
 
 $stm = $_db->prepare('

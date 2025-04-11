@@ -23,7 +23,6 @@ require_once '../lib/SimplePager.php';
 $p = new SimplePager("SELECT * FROM user ORDER BY $sort $dir", [], 10, $page);
 $arr = $p->result;
 
-
 // ----------------------------------------------------------------------------
 $_title = 'Member List';
 include '../head.php';
@@ -38,8 +37,8 @@ include '../head.php';
     <tr>
 
         <?= table_headers($fields, $sort, $dir, "page=$page") ?>
-        <th colspan="2"></th>
-        
+        <th>Photo</th>
+        <th>More</th>
     </tr>
 
     <?php foreach ($arr as $s): ?>
@@ -48,10 +47,9 @@ include '../head.php';
             <td><?= $s->email ?></td>
             <td><?= $s->name ?></td>
             <td><?= $s->role ?></td>
-            <td><img src="/photo/<?=$s->photo ?>" ></td>
+            <td><img src="/photo/<?= $s->photo ?>"></td>
             <td>
                 <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
-
             </td>
         </tr>
     <?php endforeach ?>
@@ -59,7 +57,7 @@ include '../head.php';
 
 <br>
 <div class="pager">
-<?= $p->html("sort=$sort&dir=$dir",) ?>
+    <?= $p->html("sort=$sort&dir=$dir",) ?>
 </div>
 <?php
 include '../foot.php';
