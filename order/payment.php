@@ -20,7 +20,7 @@ $n = $stm2->fetchAll();
 $itemsStr = "";
 foreach ($n as $d) {
     // Concatenate product name and unit with a line break.
-    $itemsStr.= $d->name ."<br>"."Quantity: ".$d->unit."<br>Price:  ".$d->price;
+    $itemsStr.= $d->name ."<br>"."Quantity: ".$d->unit."<br>Price:  ".$d->price."<br>";
 }
 
 $m = get_mail();

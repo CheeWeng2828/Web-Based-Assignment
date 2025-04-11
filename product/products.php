@@ -13,11 +13,11 @@ $category = $_GET['category'] ?? '';
 
 
 if ($category === 'cake') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name LIKE '%cake%' AND i.quantity != 0";
+    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name LIKE '%cake%'";
 } elseif ($category === 'bread') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name NOT LIKE '%cake%'AND i.quantity != 0";
+    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name NOT LIKE '%cake%'";
 } elseif ($category === 'pastries') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name  LIKE '%Tart%'AND i.quantity != 0";
+    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name  LIKE '%Tart%'";
 } else {
     $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id";
 }
@@ -44,11 +44,13 @@ include '../head.php';
         <p>RM <?= number_format($product->price, 2) ?></p>
         <p><?=$product->quantity ?> pieces available</p>
         <form method="post">
+        <?php if($product->quantity != 0): ?>
             <label>Quantity</label>
                 <?= html_hidden('id') ?>
                 <?= html_hidden('quantity')?>
                 <?= html_select('unit', $_units, '') ?>
                 <?= $unit ? '✅' : '' ?>
+                <?php endif ?>
             </form>
     </div>
     <?php endforeach; ?>

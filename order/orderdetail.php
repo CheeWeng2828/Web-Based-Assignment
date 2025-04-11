@@ -32,6 +32,10 @@ WHERE i.order_id = ?
 $stm->execute([$id]);
 $arr = $stm->fetchAll();
 
+$stm = $_db->prepare('SELECT status FROM payment WHERE order_id = ?');
+$stm->execute([$id]);
+$status = $stm->fetch();
+
 $_title = "Order Detail";
 include '../head.php';
 ?>
@@ -59,28 +63,29 @@ include '../head.php';
             <th>Status</th>
             <th>
                 <form method="post">
-                    <?= html_select('status', $_orderStatus) ?>
-            <th>
-                <section>
-                    <button>Submit</button>
-                </section>
+                    <?= html_select('order', $_orderStatus) ?>
+                    <section>
+                        <button>Submit</button>
+                    </section>
+                </form>
             </th>
-            </form>
         <?php endif ?>
     </table>
     <table class="detail">
+        <tr>
+            <?php if ($_user?->role == "Member"): ?>
+                <th>Status</th>
+                <?php foreach ($status as $s): ?>
+                    <td><?= $s ?></td>
+                <?php endforeach ?>
+            <?php endif ?>
+        </tr>
         <tr>
             <th>Product ID</th>
             <th>Product Name</th>
             <th>Price (RM)</th>
             <th>Unit</th>
             <th>Subtotal (RM)</th>
-            <?php if ($_user?->role == "Member"): ?>
-                <th>Status</th>
-            <?php endif ?>
-            <th></th>
-            <th></th>
-
         </tr>
 
         <?php foreach ($arr as $h): ?>
@@ -90,19 +95,18 @@ include '../head.php';
                 <td><?= $h->price ?></td>
                 <td><?= $h->unit ?></td>
                 <td><?= $h->subtotal ?></td>
-                <?php if ($_user?->role == "Member"): ?>
-                    <th><?= $h->status ?></th>
-                    <th><button data-get="reorder.php?id=<?=$id?>">Reorder</button></th>
-                    <?php if ($h->status != "CANCEL"): ?>
-                        <td> <button data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button></td>
-                    <?php endif ?>
-                    <?php if($h->status == "PENDING"):?>
-                        <td> <button data-get="payment.php?order_id=<?= $id ?>">Make Payment</button></td>
-                    <?php endif?>
-                <?php endif ?>
             </tr>
         <?php endforeach ?>
     </table>
+    <?php if ($_user?->role == "Member" && $h->status != "PENDING"): ?>
+        <button class="reorder" data-get="reorder.php?id=<?= $id ?>">Reorder</button>
+    <?php endif ?>
+    <?php if ($_user?->role == "Member" && $h->status != "CANCEL"): ?>
+        <button class="cancel" data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button>
+    <?php endif ?>
+    <?php if ($_user?->role == "Member" && $h->status == "PENDING"): ?>
+        <button class="pending" data-get="payment.php?order_id=<?= $id ?>">Make Payment</button>
+    <?php endif ?>
 
 </div>
 <?php
