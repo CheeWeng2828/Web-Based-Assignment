@@ -20,16 +20,20 @@ $n = $stm2->fetchAll();
 $itemsStr = "";
 foreach ($n as $d) {
     // Concatenate product name and unit with a line break.
-    $itemsStr.= $d->name ."<br>"."Quantity: ".$d->unit."<br>Price:  ".$d->price."<br>";
+    $itemsStr .= $d->name . "<br>" . "Quantity: " . $d->unit . "<br>Price:  " . $d->price . "<br>";
 }
 
 $m = get_mail();
 
-$url = base("order/confirm.php?order_id= ". $id);
+$url = base("order/confirm.php?order_id= " . $id);
 $m->addAddress($_user->email, $_user->name);
+$m->addEmbeddedImage("../photo/$_user->photo",'photo');
 $m->isHTML(true);
 $m->Subject = 'Payment Confirmation';
 $m->Body = "
+            <img src='cid:photo'
+            style='width: 50px; height: 50px;
+            border: 1px solid #333'>
             <p>Dear $_user->name,<p>
             <h1>Order Detail</h1>
             <p>

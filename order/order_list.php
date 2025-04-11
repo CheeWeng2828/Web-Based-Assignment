@@ -24,13 +24,12 @@ require_once '../lib/SimplePager.php';
 $p = new SimplePager("SELECT * FROM `order` ORDER BY $sort $dir", [], 10, $page);
 $arr = $p->result;
 
-$i = $_db->prepare('SELECT * FROM `order`');
-$arr1 = $i->fetchAll();
+
 // ----------------------------------------------------------------------------
 $_title = 'Order List';
 include '../head.php';
 ?>
-
+z
 <p>
     <?= $p->count ?> of <?= $p->item_count ?> record(s) |
     Page <?= $p->page ?> of <?= $p->page_count ?>
