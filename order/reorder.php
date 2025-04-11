@@ -3,68 +3,38 @@ include '../base.php';
 
 $id = req('id');
 
+
 $_db->beginTransaction();
 
-$stm = $_db->prepare('
-INSERT INTO `order` (datetime,user_id)
-VALUES (NOW(),?)
-');
-$stm->execute([$_user->id]);
-$id = $_db->lastInsertId();
-
-
-$stm = $_db->prepare('
-SELECT i.*,p.name,p.photo,y.datetime
-FROM item AS i
-JOIN product AS p
-ON i.product_id = p.id
-WHERE i.order_id = ?
-');
+$stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');
 $stm->execute([$id]);
+$arr = $stm->fetch();
 
-/////
+$ins = $_db->prepare('INSERT INTO `order`(datetime,count,total,user_id)VALUES(NOW(),?,?,?)');
+$ins->execute([$arr->count, $arr->total, $arr->user_id]);
+$orderId = $_db->lastInsertId();
 
-$stm = $_db->prepare('
-INSERT INTO item(order_id,product_id,price,unit,subtotal)
-VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
-');
+$stm1 = $_db->prepare('SELECT * FROM item WHERE order_id = ?');
+$stm1->execute([$id]);
+$items = $stm1->fetchAll();
 
-
-$stm = $_db->prepare('
-UPDATE `order`
-SET count = (SELECT SUM(unit) FROM item WHERE order_id = ?),
-    total = (SELECT SUM(subtotal)FROM item WHERE order_id = ?)
-    WHERE id = ?
-');
-
-$stm->execute([$id, $id, $id]);
-
-$stm = $_db->prepare('
-UPDATE `inventory`
-SET `quantity` = `quantity` - ?
-WHERE `product_id` = ?
-');
-foreach ($cart as $product_id => $unit) {
-    $stm->execute([$unit,$product_id]);
+$itm = $_db->prepare('INSERT INTO item(order_id,product_id,price,unit,subtotal)VALUES(?,?,?,?,?)');
+foreach ($items as $item) {
+    $itm->execute([$orderId, $item->product_id, $item->price, $item->unit, $item->subtotal]);
 }
 
-/////
-$stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
-$stm->execute([$id]);
-$order = $stm->fetch();
-order($order);
-////
+$stm = $_db->prepare("INSERT INTO payment (datetime,status,order_id) VALUES (NOW(),'PENDING',?)");
+$stm->execute([$orderId]);
 
-/////
-$stm = $_db->prepare("
-INSERT INTO payment (datetime,status,order_id)
-VALUE (NOW(),'PENDING',?)");
-$stm->execute([$id]);
-/////
+$stm = $_db->prepare('UPDATE `inventory` SET `quantity` = `quantity` - ? WHERE `product_id` = ?');
+foreach ($items as $item) {
+    $stm->execute([$item->unit, $item->product_id]);
+}
 
 $_db->commit();
+
 temp('info', 'Make Order Successful');
-redirect("payment.php");
+redirect("payment.php?order_id=" . $orderId);
 
 $_title = "Reorder";
 include '../head.php';

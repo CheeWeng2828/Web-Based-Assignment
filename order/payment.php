@@ -1,7 +1,7 @@
 <?php
 include '../base.php';
 
-$id = $_order->id;
+$id = req('order_id');
 
 $stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');
 $stm->execute([$id]);
@@ -25,7 +25,7 @@ foreach ($n as $d) {
 
 $m = get_mail();
 
-$url = base("order/confirm.php");
+$url = base("order/confirm.php?order_id= ". $id);
 $m->addAddress($_user->email, $_user->name);
 $m->isHTML(true);
 $m->Subject = 'Payment Confirmation';

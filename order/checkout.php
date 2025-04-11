@@ -45,22 +45,16 @@ if (is_post()) {
         $stm->execute([$unit,$product_id]);
     }
 
-    $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
-    $stm->execute([$id]);
-    $order = $stm->fetch();
-    order($order);
-
     $stm = $_db->prepare("
     INSERT INTO payment (datetime,status,order_id)
     VALUE (NOW(),'PENDING',?)");
-    
     $stm->execute([$id]);
 
     $_db->commit();
 
     set_cart();
     temp('info', 'Make Order Successful');
-    redirect("payment.php");
+    redirect("payment.php?order_id=" . $id);
 }
 
 redirect('cart.php');

@@ -78,7 +78,8 @@ include '../head.php';
             <?php if ($_user?->role == "Member"): ?>
                 <th>Status</th>
             <?php endif ?>
-            <th>More</th>
+            <th></th>
+            <th></th>
 
         </tr>
 
@@ -91,9 +92,13 @@ include '../head.php';
                 <td><?= $h->subtotal ?></td>
                 <?php if ($_user?->role == "Member"): ?>
                     <th><?= $h->status ?></th>
-                    <?php if ($h->status == "Cancel"): ?>
-                        <td> <button data-get="cancelOrder.php?id=<?= $h->order_id ?>">Cancel Order</button></td>
+                    <th><button data-get="reorder.php?id=<?=$id?>">Reorder</button></th>
+                    <?php if ($h->status != "CANCEL"): ?>
+                        <td> <button data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button></td>
                     <?php endif ?>
+                    <?php if($h->status == "PENDING"):?>
+                        <td> <button data-get="payment.php?order_id=<?= $id ?>">Make Payment</button></td>
+                    <?php endif?>
                 <?php endif ?>
             </tr>
         <?php endforeach ?>
