@@ -29,7 +29,6 @@ $arr = $p->result;
 $_title = 'Order List';
 include '../head.php';
 ?>
-z
 <p>
     <?= $p->count ?> of <?= $p->item_count ?> record(s) |
     Page <?= $p->page ?> of <?= $p->page_count ?>
