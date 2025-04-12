@@ -17,7 +17,7 @@ include '../head.php';
         <th>DATE</th>
         <th>Quantity</th>
         <th>Total</th>
-        <th></th>
+        <th>More</th>
     </tr>
     <?php foreach ($arr as $h): ?>
         <tr>

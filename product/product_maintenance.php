@@ -29,7 +29,7 @@ include '../head.php';
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
-        <th>Action</th>
+        <th colspan="2">Action</th>
     </tr>
 
     <?php foreach ($arr as $s) : ?>
@@ -37,9 +37,11 @@ include '../head.php';
             <td><?= $s->id ?></td>
             <td><?= $s->name ?></td>
             <td><?= $s->price ?></td>
-            <td><?= $s->quantity?></td>
+            <td><?= $s->quantity ?></td>
             <td>
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
+            </td>
+            <td>
                 <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
                 <img src="/product_img/<?= $s->photo ?>" class="popup">
             </td>
