@@ -15,7 +15,8 @@ $category = $_GET['category'] ?? '';
 if ($category === 'cake') {
     $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name LIKE '%cake%'";
 } elseif ($category === 'bread') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name NOT LIKE '%cake%'";
+    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name NOT LIKE '%cake%' AND p.name NOT LIKE'%Tart%'";
+
 } elseif ($category === 'pastries') {
     $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name  LIKE '%Tart%'";
 } else {
