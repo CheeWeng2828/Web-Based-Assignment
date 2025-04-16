@@ -40,7 +40,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `description`, `photo`) VALUES
-('B001', 'croissant', 3.50, 'A croissant is a buttery, flaky pastry made from simple ingredients like flour, butter, yeast, milk, sugar, and salt. Its crescent shape and layered texture come from a special folding technique, resulting in a crisp exterior and soft, airy interior.', '67ecea4de7b13.jpg'),
+('B001', 'croissant', 3.50, 'A croissant is a buttery, flaky pastry made from simple ingredients like flour, butter, yeast, milk, sugar, and salt. Its crescent shape and layered texture come from a special folding technique, resulting in a crisp exterior and soft, airy interior.', 'croissant.jpg'),
 ('B002', 'sourdough bread', 4.50, 'Sourdough bread is a tangy, chewy bread made from flour, water, and naturally fermented wild yeast. Its crisp crust and airy interior develop through a slow fermentation process, giving it a rich flavor and hearty texture.', 'sourdoughBread.jpg'),
 ('B003', 'garlic bread', 4.00, 'Garlic bread is a crispy, buttery bread infused with garlic and herbs. Made by spreading garlic butter on bread and baking until golden, it has a rich, savory flavor and a soft, warm interior.', 'garlicBread.jpg'),
 ('B004', 'chocolate cake', 50.00, 'Chocolate cake is a rich, moist dessert made with cocoa or melted chocolate. Baked to a soft, fluffy texture, it has a deep, sweet flavor and is often topped with frosting or ganache for extra indulgence.', 'chocolateCake.jpg'),
