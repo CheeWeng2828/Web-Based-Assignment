@@ -39,14 +39,16 @@ include '../head.php';
             <label for="email">Email</label>
             <div class="login-input">
                 <?= html_text('email', 'maxlength:"100"') ?>
+                <?= err('email') ?>
             </div>
-            <?= err('email') ?>
+            
 
             <label for="password">Password</label>
             <div class="login-input">
                 <?= html_password('password', 'maxlength="100"') ?>
+                <?= err('password') ?>
             </div>
-            <?= err('password') ?>
+            
 
             <section>
                 <button class="login-button">Login</button>

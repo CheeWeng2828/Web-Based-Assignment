@@ -59,6 +59,8 @@ footer {
 }
 
 .navigation {
+    position: sticky;
+    top: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -337,6 +339,7 @@ label.upload img {
 .productList th,
 .productList tr,
 .productList td {
+    text-align: center;
     border: 1px solid black;
     padding: 5px;
     background-color: #f4e8ce;
@@ -349,6 +352,7 @@ label.upload img {
     background-color: #6D4C41;
     color: white;
 }
+
 /*===================================================================================
     Table layout
 ===================================================================================*/
@@ -788,7 +792,7 @@ table.history button:hover {
     transition: background-color 0.2s ease;
 }
 
-button.cancel{
+button.cancel {
     margin-top: 30px;
     background-color: #FF4136;
     color: white;
@@ -799,11 +803,11 @@ button.cancel{
     margin-left: 20px;
 }
 
-button.cancel:hover{
+button.cancel:hover {
     background-color: #E12D22;
 }
 
-button.reorder{
+button.reorder {
     margin-top: 30px;
     background-color: #6D4C41;
     color: white;
@@ -813,11 +817,11 @@ button.reorder{
     cursor: pointer;
 }
 
-button.reorder:hover{
+button.reorder:hover {
     background-color: #5c362d;
 }
 
-button.pending{
+button.pending {
     margin-top: 30px;
     background-color: #4CAF50;
     color: white;
@@ -828,6 +832,6 @@ button.pending{
     margin-left: 20px;
 }
 
-button.pending:hover{
+button.pending:hover {
     background-color: #45a049;
 }
