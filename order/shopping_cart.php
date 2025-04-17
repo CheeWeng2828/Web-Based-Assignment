@@ -48,7 +48,7 @@ include '../head.php';
             <td class="right"><?= $p->price ?></td>
             <td>
                 <form method="post">
-                    <?= html_hidden('id', $id) ?>
+                    <?= html_hidden('id') ?>
                     <?= html_select('unit', $_units, '') ?>
                 </form>
             </td>
@@ -61,14 +61,14 @@ include '../head.php';
 
     <tr>
         <th colspan="3"></th>
-        <th class="right"><?= $count ?></th>
-        <th class="right"><?= sprintf('%.2f', $total) ?></th>
+        <th><?= $count ?></th>
+        <th><?= sprintf('%.2f', $total) ?></th>
     </tr>
 </table>
 
 <p>
     <?php if ($cart): ?>
-        <button data-post="?btn=clear">Clear</button>
+        <button data-post="?btn=clear" class="clear">Clear</button>
 
         <?php if ($_user?->role == 'Member'): ?>
             <button data-post="/order/checkout.php">Checkout</button>
@@ -79,7 +79,7 @@ include '../head.php';
 </p>
 
 <script>
-    $('select').on('change', e => e.target.submit());
+    $('select').on('change', e => e.target.form.submit());
 </script>
 
 <?php

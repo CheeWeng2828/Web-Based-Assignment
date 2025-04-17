@@ -217,6 +217,7 @@ footer {
 .register .submitReg,.register .resetReg{
     float: left;
     width: 50%;
+    cursor: pointer;
 }
 
 .regContainer{
@@ -585,14 +586,19 @@ select.unit {
 }
 
 .cart th {
-    background: #6D4C41;
+    background: #5a3921;
     color: #fff;
     padding: 10px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .cart td {
-    background: #e0e0e0;
+    background: #fff;
     color: #4E342E;
+    padding: 12px 23px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: large;
+    opacity: 0.9;
 }
 
 .cart td:has(.popup) {
@@ -611,10 +617,20 @@ select.unit {
 
 .cart tr:hover .popup {
     display: block;
+    opacity: 1;
 }
 
 .cart tr:hover {
     background: #4E342E;
+}
+
+.clear{
+    color: white;
+    background: red;
+    border: none;
+    border-radius: 5px;
+    padding: 16px 24px;
+    cursor: pointer;
 }
 
 /*===================================================================================
@@ -865,56 +881,4 @@ button.pending {
 
 button.pending:hover {
     background-color: #45a049;
-}
-
-/*===================================================================================
-                Reset Password
-===================================================================================*/
-.resetPass input{
-    padding: 10px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-    width: 100%;
-}
-
-.resetPass label {
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-
-}
-
-.resetPass button{
-    padding: 14px 20px;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    opacity: 0.9;
-    margin: 8px 0;
-}
-
-.resetPass .resetSub{
-    background: #45a049;
-}
-
-.resetPass .rtReset{
-    background: #FF4136;
-}
-
-.resetPass button:hover{
-    opacity: 1.0;
-}
-
-.resetPass .resetSub,.resetPass .rtReset{
-    float: left;
-    width: 50%;
-}
-
-.resetPass .err{
-    color: white;
-    background: #FF4136;
-    padding: 2px 5px;
-    border-radius: 5px
 }
