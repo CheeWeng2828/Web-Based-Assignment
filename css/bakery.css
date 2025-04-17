@@ -724,6 +724,7 @@ table.history button:hover {
     height: 200px;
     object-fit: cover;
     border-bottom: 2px solid #f1c27d;
+    cursor: pointer;
 }
 
 .product-card h3 {

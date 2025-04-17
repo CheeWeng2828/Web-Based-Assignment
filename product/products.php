@@ -39,7 +39,6 @@ include '../head.php';
         ?>
             
     <div class="product-card">
-        
         <img src="/product_img/<?= $product->photo ?>" alt="<?= $product->name ?>" data-get="detail.php?id=<?= $product->id ?>">
         <h3><?= $product->name ?></h3>
         <p>RM <?= number_format($product->price, 2) ?></p>
