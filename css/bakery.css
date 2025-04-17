@@ -177,19 +177,13 @@ footer {
     Register Layout
 ===================================================================================*/
 
-
-.register {
-    display: grid;
-    grid-template-columns: repeat(4, 200px);
-    background-color: #fdebb976;
-    gap: 5px;
+.register input{
     padding: 10px;
-    width: 450px;
-    height: 450px;
-    align-content: center;
-    margin: auto;
-    border: #4E342E;
-    border-radius: 5px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    width: 100%;
 }
 
 .register label {
@@ -198,6 +192,43 @@ footer {
 
 }
 
+.register button{
+    padding: 14px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    opacity: 0.9;
+    margin: 8px 0;
+}
+
+.register .submitReg{
+    background: #45a049;
+}
+
+.register .resetReg{
+    background: #FF4136;
+}
+
+.register button:hover{
+    opacity: 1.0;
+}
+
+.register .submitReg,.register .resetReg{
+    float: left;
+    width: 50%;
+}
+
+.regContainer{
+    padding: 16px;
+}
+
+.register .err{
+    color: white;
+    background: #FF4136;
+    padding: 2px 5px;
+    border-radius: 5px
+}
 /*===================================================================================
     Flash Message
 ===================================================================================*/

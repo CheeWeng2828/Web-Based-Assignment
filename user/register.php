@@ -73,35 +73,43 @@ $_title = 'Register';
 include '../head.php';
 
 ?>
-<form method="post" class="register" enctype="multipart/form-data">
-    <label for="email">Email</label>
-    <?= html_text('email', 'maxlength="100"') ?><br>
-    <?= err('email') ?>
+<hr>
+<div class="regContainer">
+    <form method="post" class="register" enctype="multipart/form-data">
+        <label for="email">Email</label>
+        <?= err('email') ?>
+        <?= html_text('email', 'maxlength="100"') ?>
+        
 
-    <label for="name">Name</label>
-    <?= html_text('name', 'maxlength="100"') ?><br>
-    <?= err('name') ?>
+        <label for="name">Name</label>
+        <?= err('name') ?>
+        <?= html_text('name', 'maxlength="100"') ?>
+        
 
-    <label for="password">Password</label>
-    <?= html_password('password', 'maxlength="100"') ?><br>
-    <?= err('password') ?>
+        <label for="password">Password</label>
+        <?= err('password') ?>
+        <?= html_password('password', 'maxlength="100"') ?>
+        
 
-    <label for="confirm">Confirm</label>
-    <?= html_password('confirm', 'maxlength="100"') ?><br>
-    <?= err('confirm') ?>
+        <label for="confirm">Confirm</label>
+        <?= err('confirm') ?>
+        <?= html_password('confirm', 'maxlength="100"') ?>
+        
 
-    <label for="upload">Upload Photo</label>
-    <label class="upload" tabindex="0">
-        <?= html_file("photo", "image/*","hidden") ?>
-        <img src="../image/placeholder.jpg">
-    </label><br>
-    <?= err("photo") ?>
+        <label for="upload">Upload Photo</label>
+        <?= err("photo") ?>
+        <label class="upload" tabindex="0">
+            <?= html_file('photo', 'image/*', 'hidden') ?>
+            <img src="../image/placeholder.jpg">
+        </label>
 
-    <section>
-        <button>Submit</button>
-        <button type="reset">Reset</button>
-    </section>
-</form>
+        <section>
+            <button class="submitReg">Submit</button>
+            <button type="reset" class="resetReg">Reset</button>
+        </section>
+
+    </form>
+</div>
 
 
 <?php

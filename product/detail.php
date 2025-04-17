@@ -46,7 +46,7 @@ $unit = $cart[$product->id] ?? 0;
     <?= $product->quantity ?> Piece Available
 </form>
 <p>
-    <button data-get="products.php" class="backButton">Back</button>
+    <button data-get="../index.php" class="backButton">Back</button>
 </p>
 <script>
     $('select').on('change', e => e.target.form.submit());
