@@ -866,3 +866,55 @@ button.pending {
 button.pending:hover {
     background-color: #45a049;
 }
+
+/*===================================================================================
+                Reset Password
+===================================================================================*/
+.resetPass input{
+    padding: 10px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+    width: 100%;
+}
+
+.resetPass label {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+
+}
+
+.resetPass button{
+    padding: 14px 20px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    opacity: 0.9;
+    margin: 8px 0;
+}
+
+.resetPass .resetSub{
+    background: #45a049;
+}
+
+.resetPass .rtReset{
+    background: #FF4136;
+}
+
+.resetPass button:hover{
+    opacity: 1.0;
+}
+
+.resetPass .resetSub,.resetPass .rtReset{
+    float: left;
+    width: 50%;
+}
+
+.resetPass .err{
+    color: white;
+    background: #FF4136;
+    padding: 2px 5px;
+    border-radius: 5px
+}
