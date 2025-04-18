@@ -66,8 +66,8 @@ if (is_post()) {
     <?= html_password('confirm', 'maxlength = "100"') ?>
     <? err('confirm') ?><br><br>
     <section>
-        <button>Submit</button>
-        <button type="reset">Reset</button>
+        <button class="resetSub">Submit</button>
+        <button type="reset" class="rtReset">Reset</button>
     </section>
 </form>
 <?php

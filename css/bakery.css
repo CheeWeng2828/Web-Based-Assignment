@@ -354,6 +354,8 @@ label.upload img {
 .memberList td {
     border: 1px solid rgb(0, 0, 0);
     padding: 5px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .memberList {
@@ -361,30 +363,62 @@ label.upload img {
 }
 
 .memberList th {
-    background-color: #fdebb976;
+    background-color: #f2f2f2;
+}
+
+.memberList {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.memberList tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/*===================================================================================
+    Product List
+===================================================================================*/
+
+.productList th a {
+    text-decoration: none;
+    color: #4E342E;
+}
+
+
+.productList th,
+.productList tr,
+.productList td {
+    border: 1px solid rgb(0, 0, 0);
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
 }
 
 .productList {
     border-collapse: collapse;
 }
 
-.productList th,
-.productList tr,
-.productList td {
-    text-align: center;
-    border: 1px solid black;
-    padding: 5px;
-    background-color: #f4e8ce;
-    color: #46322b;
-
-
-}
-
 .productList th {
-    background-color: #6D4C41;
-    color: white;
+    background-color: #f2f2f2;
 }
 
+.productList {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+.productList tr:hover {
+    background-color: #f1f1f1;
+}
 /*===================================================================================
     Table layout
 ===================================================================================*/
@@ -509,6 +543,15 @@ label.upload img {
 
 .backButton {
     font-size: 20px;
+    color: white;
+    background: gray;
+    opacity: 0.9;
+    border: none;
+    border-radius: 5px;
+}
+
+.backButton:hover{
+    opacity: 1;
 }
 
 select.unit {
@@ -680,18 +723,6 @@ table.history button:hover {
 
 
 /*===================================================================================
-                Profile
-===================================================================================*/
-.profile {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 30px;
-    background: #fdebb976;
-    border-radius: 15px;
-
-}
-
-/*===================================================================================
                Password reset page
 ===================================================================================*/
 .reset_password {
@@ -701,6 +732,48 @@ table.history button:hover {
     padding: 30px;
     background: #fdebb976;
     border-radius: 15px;
+}
+
+
+.reset_password input{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 3px;
+}
+
+.resetSub{
+    width: 100%;
+    background-color: #45a049;
+    opacity: 0.8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 3px;
+    margin-top: 40px;
+    font-size: medium;
+}
+
+.rtReset{
+    width: 100%;
+    background-color: #E12D22;
+    opacity: 0.8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 3px;
+    margin-top: 40px;
+    font-size: medium;
+}
+
+.rtReset,.resetSub{
+    width: 50%;
+    float: left;
+    cursor: pointer;
+}
+
+.rtReset:hover,.resetSub:hover{
+    opacity: 1;
 }
 
 /*===================================================================================

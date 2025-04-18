@@ -74,7 +74,7 @@ if (is_post()) {
 $_title = 'Profile';
 include '../head.php'
 ?>
-<form method="post" class="profile" enctype="multipart/form-data">
+<form method="post" class="register" enctype="multipart/form-data">
     <label for="email">Email:</label><br>
     <?= html_text('email', 'maxlength="100"') ?>
     <?= err('email') ?><br><br>
@@ -91,8 +91,8 @@ include '../head.php'
     <?= err('profile') ?>
 
     <section>
-        <button>Submit</button>
-        <button type="reset">Reset</button>
+        <button class="submitReg">Submit</button>
+        <button type="reset" class="resetReg">Reset</button>
     </section>
 </form>
 <?php

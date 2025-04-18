@@ -59,7 +59,7 @@
 
             <a href="/user/login.php">Login</a>
             <a href="/user/register.php">Register</a>
-            <a href="/user/reset.php">Reset Password</a>
+            <a href="/user/reset.php">Forget Password</a>
 
         <?php endif ?>
 

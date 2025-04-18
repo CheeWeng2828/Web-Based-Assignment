@@ -48,12 +48,11 @@ include '../head.php';
                 <?= html_password('password', 'maxlength="100"') ?>
                 <?= err('password') ?>
             </div>
-            
-
             <section>
                 <button class="login-button">Login</button>
                 <button class="login-button" type="reset">Reset</button>
             </section>
+            <p>Forget Password ? <a href="/user/reset.php">Click Me</a> !!!</p>
         </form>
     </div>
 </div>

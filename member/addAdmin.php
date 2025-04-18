@@ -100,8 +100,8 @@ include '../head.php';
     <?= err("photo") ?>
 
     <section>
-        <button>Submit</button>
-        <button type="reset">Reset</button>
+        <button class="submitReg">Submit</button>
+        <button type="reset" class="resetReg">Reset</button>
     </section>
 </form>
 

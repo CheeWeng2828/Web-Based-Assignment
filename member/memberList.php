@@ -5,7 +5,7 @@ include '../base.php';
 // (1) Sorting
 $fields = [
     'id' => 'ID',
-    'email' => 'email',
+    'email' => 'Email',
     'name' => "Name",
     'role' => 'Role'
 ];
