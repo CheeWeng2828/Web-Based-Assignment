@@ -59,17 +59,21 @@ include '../head.php';
 <div class="detail-table-container">
 
     <table class="detail">
-        <?php if ($_user?->role == "Admin"): ?>
-            <th>Status</th>
-            <th>
-                <form method="post">
-                    <?= html_select('order', $_orderStatus) ?>
-                    <section>
-                        <button>Submit</button>
-                    </section>
-                </form>
-            </th>
-        <?php endif ?>
+        <?php foreach ($status as $s): ?>
+            <?php if ($_user?->role == "Admin" && $s != "CANCEL"): ?>
+                <th>Status</th>
+                <th>
+                    <form method="post">
+                        <?= html_select('order', $_orderStatus, $s) ?>
+                        <button class="statusSub">Submit</button>
+                    </form>
+                <?php endif ?>
+                </th>
+                <?php if ($_user?->role == "Admin" && $s == "CANCEL"): ?>
+                    <th>Status</th>
+                    <td><?= $s ?></td>
+                <?php endif ?>
+            <?php endforeach ?>
     </table>
     <table class="detail">
         <tr>
@@ -101,7 +105,7 @@ include '../head.php';
     <?php if ($_user?->role == "Member" && $h->status != "PENDING"): ?>
         <button class="reorder" data-get="reorder.php?id=<?= $id ?>">Reorder</button>
     <?php endif ?>
-    <?php if ($_user?->role == "Member" && $h->status != "CANCEL"): ?>
+    <?php if ($h->status != "CANCEL"): ?>
         <button class="cancel" data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button>
     <?php endif ?>
     <?php if ($_user?->role == "Member" && $h->status == "PENDING"): ?>

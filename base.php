@@ -303,7 +303,6 @@ function get_mail() {
 $_units = array_combine(range(1, 10), range(1, 10));
 
 $_orderStatus = array(
-    'PENDING'   => 'PENDING',
+    'READY TO SHIP' => 'READY TO SHIP',
     'DELIVERED' => 'DELIVERED',
-    'PAID'      => 'PAID'
 );

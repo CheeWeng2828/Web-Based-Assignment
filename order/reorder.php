@@ -3,6 +3,25 @@ include '../base.php';
 
 $id = req('id');
 
+/// Fetch the item unit purchase by customer previously
+$item = $_db->prepare('SELECT * FROM item WHERE order_id = ?');
+$item->execute([$id]);
+$p = $item->fetchAll();
+
+/// Here Start To Check The product Stock
+foreach ($p as $items) {
+    $product = $_db->prepare('SELECT i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.id = ?');
+    $product->execute([$items->product_id]);
+    $stockqty = $product->fetchColumn();
+    $orderqty = $items->unit;
+
+    if ($stockqty < $orderqty) {
+        temp('info', 'Low Stock,Please Modify the Order');
+        redirect('history.php');
+    }
+}
+
+/// Starting copy the data to the table
 $_db->beginTransaction();
 
 $stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');

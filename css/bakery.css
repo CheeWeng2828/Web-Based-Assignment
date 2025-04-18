@@ -848,6 +848,7 @@ button.cancel {
     font-size: large;
     cursor: pointer;
     margin-left: 20px;
+    border-radius: 5px;
 }
 
 button.cancel:hover {
@@ -862,6 +863,7 @@ button.reorder {
     padding: 30px 42px;
     font-size: large;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 button.reorder:hover {
@@ -881,4 +883,27 @@ button.pending {
 
 button.pending:hover {
     background-color: #45a049;
+}
+
+.statusSub{
+    width: 150px;
+    height: 50px;
+    background: #4CAF50;
+    opacity: 0.9;
+    cursor: pointer;
+    border: none;
+    color: white;
+    font-family: 'Muli', sans-serif;
+    border-radius: 5px;
+}
+
+.statusSub:hover{
+    opacity: 1;
+}
+
+#order{
+    width: 50%;
+    padding: 8px 17px;
+    text-align: center;
+    font-size:medium;
 }
