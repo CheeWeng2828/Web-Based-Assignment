@@ -70,7 +70,7 @@
         <?php endif ?>
 
         <?php if ($_user): ?>
-
+            <a href="/order/addresswitpay.php">Payment</a>
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
             <a href="/user/logout.php">Logout</a>
