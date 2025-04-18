@@ -4,7 +4,7 @@ include '../base.php';
 $id = req('id');
 
 if (is_post()) {
-    $status = req('status');
+    $status = req('orderStatus');
     $stm = $_db->prepare("UPDATE payment SET status = ? WHERE order_id = ?");
     $stm->execute([$status, $id]);
 
@@ -64,7 +64,7 @@ include '../head.php';
                 <th>Status</th>
                 <th>
                     <form method="post">
-                        <?= html_select('order', $_orderStatus, $s) ?>
+                        <?= html_select('orderStatus', $_orderStatus, $s) ?>
                         <button class="statusSub">Submit</button>
                     </form>
                 <?php endif ?>
@@ -105,7 +105,7 @@ include '../head.php';
     <?php if ($_user?->role == "Member" && $h->status != "PENDING"): ?>
         <button class="reorder" data-get="reorder.php?id=<?= $id ?>">Reorder</button>
     <?php endif ?>
-    <?php if ($h->status != "CANCEL"): ?>
+    <?php if ($h->status != "CANCEL" && $h->status != "READY TO SHIP" && $h->status != "DELIVERED"): ?>
         <button class="cancel" data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button>
     <?php endif ?>
     <?php if ($_user?->role == "Member" && $h->status == "PENDING"): ?>
