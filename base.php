@@ -263,7 +263,7 @@ function set_cart($cart = [])
     $_SESSION['cart'] = $cart;
 }
 
-function update_cart($id, $unit,$quantity = 0)
+function update_cart($id, $unit,$quantity)
 {
     $cart = get_cart();
 

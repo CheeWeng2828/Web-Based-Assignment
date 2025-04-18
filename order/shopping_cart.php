@@ -1,6 +1,7 @@
 <?php
 include '../base.php';
 
+// ----------------------------------------------------------------------------
 
 if (is_post()) {
     $btn = req('btn');
@@ -8,12 +9,15 @@ if (is_post()) {
         set_cart();
         redirect('?');
     }
-    $id = req('id');
+
+    $id   = req('id');
     $unit = req('unit');
-    update_cart($id, $unit);
+    $quantity = req('quantity');
+    update_cart($id, $unit,$quantity);
     redirect();
 }
 
+// ----------------------------------------------------------------------------
 
 $_title = 'Order | Shopping Cart';
 include '../head.php';
@@ -29,18 +33,20 @@ include '../head.php';
     </tr>
 
     <?php
-    $count = 0;
-    $total = 0;
-
-    $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
-    $cart = get_cart();
-    foreach ($cart as $id => $unit):
-        $stm->execute([$id]);
-        $p = $stm->fetch();
-
-        $subtotal = $p->price * $unit;
-        $count += $unit;
-        $total += $subtotal;
+        $count = 0;
+        $total = 0; 
+        
+        $stm = $_db->prepare('SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.id = ?');
+        $cart = get_cart();
+        
+        foreach ($cart as $id => $unit):
+            $stm->execute([$id]);
+            $p = $stm->fetch();
+            
+            $quantity = $p->quantity;
+            $subtotal = $p->price * $unit;
+            $count += $unit;
+            $total += $subtotal; 
     ?>
         <tr>
             <td><?= $p->id ?></td>
@@ -49,8 +55,9 @@ include '../head.php';
             <td>
                 <form method="post">
                     <?= html_hidden('id') ?>
+                    <?= html_hidden('quantity') ?>
                     <?= html_select('unit', $_units, '') ?>
-                </form>
+                </form>            
             </td>
             <td class="right">
                 <?= sprintf('%.2f', $subtotal) ?>
@@ -61,19 +68,19 @@ include '../head.php';
 
     <tr>
         <th colspan="3"></th>
-        <th><?= $count ?></th>
-        <th><?= sprintf('%.2f', $total) ?></th>
+        <th class="right"><?= $count ?></th>
+        <th class="right"><?= sprintf('%.2f', $total) ?></th>
     </tr>
 </table>
 
 <p>
     <?php if ($cart): ?>
-        <button data-post="?btn=clear" class="clear">Clear</button>
+        <button data-post="?btn=clear">Clear</button>
 
         <?php if ($_user?->role == 'Member'): ?>
-            <button data-post="/order/checkout.php">Checkout</button>
+            <button data-post="checkout.php">Checkout</button>
         <?php else: ?>
-            Please <a href="/user/login.php">login</a> as member to checkout
+            Please <a href="/login.php">login</a> as member to checkout
         <?php endif ?>
     <?php endif ?>
 </p>
