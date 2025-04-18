@@ -7,7 +7,7 @@ include '../head.php';
 auth("Member");
 
 if (is_post()) {
-    //for addres<string>
+    //for address
     $street_number = req('street_number');
     $city = req('city');
     $state = req('state');
@@ -28,17 +28,31 @@ if (is_post()) {
 
 
     //for cardpayment
+    $cardholder_name = req('cardholder_name');
     $card_no = req('card_no');
     $expiry_month = req('expiry_month');
     $expiry_year = req('expiry_year');
     $cvv = req('cvv');
 
+
+
+    if ($cardholder_name == '') {
+        $_err['cardholder_name'] = 'Cardholder name is required.';
+    }
+
     if (strlen($card_no) != 16 || !is_numeric($card_no)) {
         $_err['card_no'] = 'Invalid card number. Must be 16 digits.';
-    }
-    elseif(!is_unique($card_no,'user_payment','card_no')){
+    } elseif (!is_unique($card_no, 'user_payment', 'card_no')) {
         $_err['card_no'] = 'Duplicate Card';
     }
+    /*if ($expiry_month < 1 || $expiry_month > 12) {
+        $_err['expiry_month'] = 'Invalid expiry month. Please enter a value between 1 and 12.';
+    }
+    if ($expiry_year < 25 || $expiry_year > 50) {
+        $_err['expiry_month'] = 'Invalid expiry year. Please enter a value between 25 and 50.';
+    }
+    */
+
     if (empty($cvv) || strlen($cvv) != 3 || !is_numeric($cvv)) {
         $_err['cvv'] = 'Invalid CVV. Must be 3 digits.';
     }
@@ -47,12 +61,13 @@ if (is_post()) {
     if (!$_err) {
         $address = "$street_number,$postcode, $city, $state "; //combine 4in1
         $stm = $_db->prepare('
-        INSERT INTO user_payment (address, card_no, expiry_month, expiry_year, cvv,user_id)
-        VALUES (?, ?, ?, ?,?,?)
+        INSERT INTO user_payment (address, cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
+        VALUES (?, ?, ?, ?,?,?,?)
     ');
-        $stm->execute([$address, $card_no, $expiry_month, $expiry_year, $cvv,$_user->id]);
+        $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
 
-        temp('info','Payment method and address saved successfully!');
+        temp('info', 'Payment method and address saved successfully!');
+        
         redirect('/');
     }
 }
@@ -84,18 +99,25 @@ if (is_post()) {
     <div class="payment-details">
 
         <h3>Payment</h3>
+
+        <label for="cardholder_name">Cardholder Name:</label>
+        <input type="text" id="cardholder_name" name="cardholder_name" maxlength="100" placeholder="Name" required><br><br>
+        <?php err('cardholder_name')  ?>
+
         <label for="card_no">Card Number:</label>
-        <input type="text" id="card_no" name="card_no" maxlength="16" required><br><br>
-        <?php err('card_no')?>
+        <input type="text" id="card_no" name="card_no" maxlength="16" placeholder=" 0000 0000 0000 0000" required><br><br>
+        <?php err('card_no') ?>
 
-        <label for="expiry_month">Expiry Month/Year:</label><br>
-        <input type="number" name="expiry_month" id="expiry_month" min="1" max="12" step="1" maxlength="2" required placeholder="MM" oninput="validateExpiryMonth(this)">
+        <label for="expiry_date">Expiry Month/Year:</label><br>
+        <div class="expiry-date-container">
+            <input type="number" name="expiry_month" id="expiry_month" min="1" max="12" step="1" maxlength="2" required placeholder="MM">
+            <span>/</span>
+            <input type="number" name="expiry_year" id="expiry_year" min="25" max="50" step="1" maxlength="2" required placeholder="YY">
+        </div>
 
-        <label for="expiry_year"></label>
-        <input type="number" name="expiry_year" id="expiry_year" min="25" max="50" step="1" maxlength="2" required placeholder="YY" oninput="validateExpiryYear(this)"><br><br>
 
         <label for="cvv">CVV:</label><br>
-        <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="CVV">
+        <input type="text" name="cvv" id="cvv" maxlength="3" required placeholder="3 digit only">
         <?php err('cvv') ?><br><br>
 
 

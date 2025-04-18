@@ -1084,6 +1084,20 @@ label {
     background-color: #4cae4c;
 }
 
+.expiry-date-container {
+    display: flex;
+    align-items: center; 
+}
+
+.expiry-date-container input {
+    width: 50px; 
+    margin-right: 5px; 
+}
+
+.expiry-date-container span {
+    margin-right: 5px; 
+}
+
 /* Error Message Styles */
 .error {
     color: #ff0000;
