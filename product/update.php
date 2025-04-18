@@ -120,8 +120,8 @@ include '../head.php';
     <?= err('photo') ?>
 
     <section>
-        <button class="updateSub">Submit</button>
-        <button type="reset" class="updateReset">Reset</button>
+        <button class="updateSub">Submit ✔</button>
+        <button type="reset" class="updateReset">Reset ⟳</button>
     </section>
 </form>
 

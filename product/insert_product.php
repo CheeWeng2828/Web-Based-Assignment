@@ -80,8 +80,8 @@ include '../head.php';
     <?= err('photo') ?>
 
     <section>
-        <button>Submit</button><br><br>
-        <button type="reset">Reset</button>
+        <button>Submit ✔</button><br><br>
+        <button type="reset">Reset ⟳</button>
     </section>
 </form>
 

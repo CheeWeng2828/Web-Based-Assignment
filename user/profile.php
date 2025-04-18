@@ -91,8 +91,8 @@ include '../head.php'
     <?= err('profile') ?>
 
     <section>
-        <button class="submitReg">Submit</button>
-        <button type="reset" class="resetReg">Reset</button>
+        <button class="submitReg">Submit ✔</button>
+        <button type="reset" class="resetReg">Reset ⟳</button>
     </section>
 </form>
 <?php
