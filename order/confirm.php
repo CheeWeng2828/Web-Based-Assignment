@@ -1,6 +1,8 @@
 <?php
 include '../base.php';
 
+auth("Member");
+
 $id = req('order_id');
 
 $stm = $_db->prepare("UPDATE payment SET status = 'PAID' WHERE order_id = ?");

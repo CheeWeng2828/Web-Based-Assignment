@@ -3,7 +3,7 @@ include '../base.php';
 
 $_title = 'Reset Password';
 include '../head.php';
-
+auth();
 if (is_post()) {
 
     $password       = req('password');

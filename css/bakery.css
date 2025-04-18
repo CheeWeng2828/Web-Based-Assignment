@@ -980,3 +980,49 @@ button.pending:hover {
     text-align: center;
     font-size:medium;
 }
+
+/*===================================================================================
+    Update Product Page
+===================================================================================*/
+
+.updateProduct{
+    display: inline-block;
+    margin: 15px 10px;
+}
+
+.updateProduct input{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.updateSub{
+    color: white;
+    background-color: #4CAF50;
+    opacity: 0.9;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.updateReset{
+    color: white;
+    background-color: #FF4136;
+    opacity: 0.9;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.updateReset,.updateSub{
+    width: 50%;
+    float: left;
+    cursor: pointer;
+}
+
+.updateReset:hover,.updateSub:hover{
+    opacity: 1;
+}

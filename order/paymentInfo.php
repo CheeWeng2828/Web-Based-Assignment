@@ -1,6 +1,6 @@
 <?php
 include '../base.php';
-
+auth("Member");
 
 $_title = 'Payment Info';
 include '../head.php';

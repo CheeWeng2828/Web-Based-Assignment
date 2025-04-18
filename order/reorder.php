@@ -1,6 +1,6 @@
 <?php
 include '../base.php';
-
+auth("Member");
 $id = req('id');
 
 /// Fetch the item unit purchase by customer previously

@@ -1,6 +1,6 @@
 <?php
 include '../base.php';
-
+auth("Member");
 $id = req('order_id');
 
 $stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');

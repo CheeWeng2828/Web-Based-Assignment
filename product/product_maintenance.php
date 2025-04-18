@@ -2,6 +2,7 @@
 require '../base.php';
 $name = req('name');
 
+auth("Admin");
 
 $stm = $_db->prepare('SELECT p.*,i.quantity
                       FROM product AS p

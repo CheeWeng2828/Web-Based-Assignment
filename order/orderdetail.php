@@ -1,6 +1,6 @@
 <?php
 include '../base.php';
-
+auth();
 $id = req('id');
 
 if (is_post()) {

@@ -1,6 +1,8 @@
 <?php
 require '../base.php';
 
+auth("Admin");
+
 if (is_get()) {
     $id = req('id');
 
@@ -93,7 +95,7 @@ $_title = "Product Update";
 include '../head.php';
 ?>
 
-<form method="post" class="form" enctype="multipart/form-data">
+<form method="post" class="updateProduct" enctype="multipart/form-data">
     <label for="id">Id :</label>
     <b><?= $id ?></b>
     <?= err('id') ?><br>
@@ -118,8 +120,8 @@ include '../head.php';
     <?= err('photo') ?>
 
     <section>
-        <button>Submit</button>
-        <button type="reset">Reset</button>
+        <button class="updateSub">Submit</button>
+        <button type="reset" class="updateReset">Reset</button>
     </section>
 </form>
 
