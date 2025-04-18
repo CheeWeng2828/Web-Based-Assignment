@@ -1050,7 +1050,7 @@ label {
 }
 
 /* Input Fields */
-input[type="text"],  textarea {
+.address_details input[type="text"], .address_details textarea ,.payment-details input[type="text"]{
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -1060,17 +1060,17 @@ input[type="text"],  textarea {
     box-sizing: border-box;
 }
 
-textarea {
+.address_details textarea {
     resize: vertical;
 }
 
-input[type="text"]:focus,  textarea:focus {
+.address_details input[type="text"]:focus,.address_details textarea:focus,.payment-details input[type="text"]:focus {
     border-color: #5cb85c;
     outline: none;
 }
 
 /* Button Styles */
-button[type="submit"] {
+.payment-details button[type="submit"] {
     background-color: #5cb85c;
     color: #fff;
     border: none;
@@ -1080,7 +1080,7 @@ button[type="submit"] {
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+.payment-details button[type="submit"]:hover {
     background-color: #4cae4c;
 }
 

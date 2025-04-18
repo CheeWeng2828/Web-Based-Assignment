@@ -31,8 +31,11 @@ if (is_post()) {
     $stm3 = $_db->prepare("DELETE FROM token WHERE user_id = ?");
     $stm3->execute([$user_id]);
 
-    $stm4 = $_db->prepare('DELETE FROM user WHERE id=?');
+    $stm4 = $_db->prepare('DELETE FROM user_payment WHERE id = ?');
     $stm4->execute([$user_id]);
+
+    $stm5 = $_db->prepare('DELETE FROM user WHERE id=?');
+    $stm5->execute([$user_id]);
 
     $_db->commit();
 
