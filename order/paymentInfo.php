@@ -2,16 +2,15 @@
 include '../base.php';
 auth("Member");
 
+$userInfo = $_db->prepare('SELECT * FROM user_payment WHERE id = ?');
+$userInfo->execute([$_user->id]);
+$u = $userInfo->fetchAll();
+
 $_title = 'Payment Info';
 include '../head.php';
 ?>
 
-<form method="post" class="paymentInfo">
-    <label for='cardNum'>Card Number</label>
-    <?= html_text('cardNum') ?>
-    <?= err('cardNum') ?>
 
-</form>
 
 <?php
 include '../foot.php';

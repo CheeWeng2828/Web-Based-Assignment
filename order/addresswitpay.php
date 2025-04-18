@@ -1,8 +1,9 @@
 <?php
 
 require '../base.php';
-include '../head.php';
 
+$_title = 'Payment Detail';
+include '../head.php';
 auth("Member");
 
 if (is_post()) {
