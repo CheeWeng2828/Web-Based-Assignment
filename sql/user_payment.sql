@@ -67,6 +67,9 @@ ALTER TABLE `user_payment`
 --
 ALTER TABLE `user_payment`
   ADD CONSTRAINT `user_payment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+ALTER TABLE `user_payment`
+  ADD COLUMN `cardholder_name` VARCHAR(100) NOT NULL AFTER `address`;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
