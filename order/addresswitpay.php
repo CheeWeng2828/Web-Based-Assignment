@@ -6,25 +6,27 @@ $_title = 'Payment Detail';
 include '../head.php';
 auth("Member");
 
+$id = req('order_id');
+
 if (is_post()) {
     //for address
-    $street_number = req('street_number');
-    $city = req('city');
-    $state = req('state');
-    $postcode = req('postcode');
+    // $street_number = req('street_number');
+    // $city = req('city');
+    // $state = req('state');
+    // $postcode = req('postcode');
 
-    if ($street_number == '') {
-        $_err['street_number'] = 'Street number is required';
-    }
-    if ($city == '') {
-        $_err['city'] = 'City is required';
-    }
-    if ($state == '') {
-        $_err['state'] = 'State is required';
-    }
-    if ($postcode == '' || !is_numeric($postcode)) {
-        $_err['postcode'] = 'Valid postcode is required.Must be 5 digits.';
-    }
+    // if ($street_number == '') {
+    //     $_err['street_number'] = 'Street number is required';
+    // }
+    // if ($city == '') {
+    //     $_err['city'] = 'City is required';
+    // }
+    // if ($state == '') {
+    //     $_err['state'] = 'State is required';
+    // }
+    // if ($postcode == '' || !is_numeric($postcode)) {
+    //     $_err['postcode'] = 'Valid postcode is required.Must be 5 digits.';
+    // }
 
 
     //for cardpayment
@@ -59,22 +61,22 @@ if (is_post()) {
 
 
     if (!$_err) {
-        $address = "$street_number,$postcode, $city, $state "; //combine 4in1
+        //$address = "$street_number,$postcode, $city, $state "; //combine 4in1
         $stm = $_db->prepare('
-        INSERT INTO user_payment (address, cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
-        VALUES (?, ?, ?, ?,?,?,?)
+        INSERT INTO user_payment (cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
+        VALUES (?, ?, ?, ?,?,?)
     ');
-        $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
+        $stm->execute([$cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
 
-        temp('info', 'Payment method and address saved successfully!');
+        temp('info', 'Payment save successfully!');
         //redirect("payment.php?order_id=" . $id);
-        redirect("payment.php?order_id=" . req('order_id'));
+        redirect("payment.php?order_id=" . $id);
         //redirect('/');
     }
 }
 ?>
 
-<div class="address-container">
+<!-- <div class="address-container">
     <div class="address_details">
         <form method="post">
             <h3>Address Information</h3>
@@ -92,13 +94,13 @@ if (is_post()) {
             <input type="text" name="postcode" id="postcode" maxlength="10" required><br><br>
 
     </div>
-</div>
+</div> -->
 
 
 
 <div class="payment-container">
     <div class="payment-details">
-
+    <form method="post">
         <h3>Payment</h3>
 
         <label for="cardholder_name">Cardholder Name:</label>

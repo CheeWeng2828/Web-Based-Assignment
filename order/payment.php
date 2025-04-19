@@ -7,6 +7,10 @@ $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
 
+if(!$p){
+    redirect('/');
+}
+
 $stm2 = $_db->prepare('SELECT p.name,i.unit,i.price,i.subtotal 
                        FROM product AS p JOIN item AS i 
                        ON p.id = i.product_id 
