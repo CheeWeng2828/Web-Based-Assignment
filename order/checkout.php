@@ -54,7 +54,8 @@ if (is_post()) {
 
     set_cart();
     temp('info', 'Make Order Successful');
-    redirect("payment.php?order_id=" . $id);
+    //redirect("payment.php?order_id=" . $id);
+    redirect("addresswitpay.php");
 }
 
 redirect('cart.php');

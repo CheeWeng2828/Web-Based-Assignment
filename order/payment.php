@@ -3,7 +3,7 @@ include '../base.php';
 auth("Member");
 $id = req('order_id');
 
-$stm = $_db->prepare('SELECT * FROM `order`WHERE id = ?');
+$stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
 

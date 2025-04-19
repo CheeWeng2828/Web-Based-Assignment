@@ -67,8 +67,9 @@ if (is_post()) {
         $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
 
         temp('info', 'Payment method and address saved successfully!');
-        
-        redirect('/');
+        //redirect("payment.php?order_id=" . $id);
+        redirect("payment.php?order_id=" . req('order_id'));
+        //redirect('/');
     }
 }
 ?>
