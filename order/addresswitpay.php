@@ -8,6 +8,10 @@ auth("Member");
 
 $id = req('order_id');
 
+$userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
+$userInfo->execute([$_user->id]);
+$u = $userInfo->fetchAll();
+
 if (is_post()) {
     //for address
     // $street_number = req('street_number');

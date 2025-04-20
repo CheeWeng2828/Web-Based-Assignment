@@ -161,6 +161,20 @@ function html_hidden($key, $attr = '')
     echo "<input type='hidden' id='$key' name='$key' value='$value' $attr>";
 }
 
+function html_radios($key, $items, $br = false) {
+    $value = encode($GLOBALS[$key] ?? '');
+    echo '<div>';
+    foreach ($items as $id => $text) {
+        $state = $id == $value ? 'checked' : '';
+        echo "<label><input type='radio' id='{$key}_$id' name='$key' value='$id' $state>$text</label>";
+        if ($br) {
+            echo '<br>';
+        }
+    }
+    echo '</div>';
+}
+
+
 //===================================================================================
 // Check Format
 //===================================================================================

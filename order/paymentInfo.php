@@ -12,14 +12,14 @@ include '../head.php';
 
 <table class="paymentInfo">
 
-<?php foreach($u as $p): ?> 
-    <tr>
-        <th>Address</th>
+<tr>
+        <!-- <th>Address</th> -->
         <th>Card Number</th>
     </tr>
-
+<?php foreach($u as $p): ?> 
+   
     <tr>
-        <td><?= $p->address ?></td>
+        <!-- <td><?= $p->address ?></td> -->
         <td><?= $p->card_no ?></td>
     </tr>
 
