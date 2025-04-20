@@ -10,7 +10,7 @@ $id = req('order_id');
 
 $userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
 $userInfo->execute([$_user->id]);
-$u = $userInfo->fetchAll();
+$u = $userInfo->fetch();
 
 if (is_post()) {
     //for address
@@ -66,16 +66,25 @@ if (is_post()) {
 
     if (!$_err) {
         //$address = "$street_number,$postcode, $city, $state "; //combine 4in1
+        if($u){
         $stm = $_db->prepare('
-        INSERT INTO user_payment (cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
-        VALUES (?, ?, ?, ?,?,?)
+        UPDATE user_payment SET cardholder_name=?,card_no=?, expiry_month=?, expiry_year=?, cvv=? 
+        WHERE user_id = ?
     ');
         $stm->execute([$cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
 
         temp('info', 'Payment save successfully!');
-        //redirect("payment.php?order_id=" . $id);
+        
+        }else{
+            $stm = $_db->prepare('
+            INSERT INTO user_payment (cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
+            VALUES (?, ?, ?, ?,?,?)
+        ');
+            $stm->execute([$cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
+    
+            temp('info', 'Payment save successfully!');
+        }
         redirect("payment.php?order_id=" . $id);
-        //redirect('/');
     }
 }
 ?>
@@ -107,9 +116,16 @@ if (is_post()) {
     <form method="post">
         <h3>Payment</h3>
 
+        <!-- <label for="cardholder_name">Cardholder Name:</label>
+        <input type="text" id="cardholder_name" name="cardholder_name" maxlength="100" placeholder="Name" 
+        value="<?php //echo ($u && isset($u['cardholder_name'])) ? $u['cardholder_name'] : ''; ?>" required><br><br>
+        <?php //err('cardholder_name')  ?> 
+        -->
+
         <label for="cardholder_name">Cardholder Name:</label>
         <input type="text" id="cardholder_name" name="cardholder_name" maxlength="100" placeholder="Name" required><br><br>
-        <?php err('cardholder_name')  ?>
+        <?php err('cardholder_name') ?>
+
 
         <label for="card_no">Card Number:</label>
         <input type="text" id="card_no" name="card_no" maxlength="16" placeholder=" 0000 0000 0000 0000" required><br><br>
