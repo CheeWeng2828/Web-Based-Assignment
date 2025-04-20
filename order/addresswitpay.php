@@ -116,6 +116,7 @@ if (is_post()) {
     <form method="post">
         <h3>Payment</h3>
 
+        <!-- ai code but not working -->
         <!-- <label for="cardholder_name">Cardholder Name:</label>
         <input type="text" id="cardholder_name" name="cardholder_name" maxlength="100" placeholder="Name" 
         value="<?php //echo ($u && isset($u['cardholder_name'])) ? $u['cardholder_name'] : ''; ?>" required><br><br>
