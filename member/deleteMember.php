@@ -10,6 +10,11 @@ if (is_post()) {
         unlink("../photo/$photo");
     }
 
+    $order = $_db->prepare('SELECT id FROM `order` WHERE user_id = ?');
+    $order->execute([$user_id]);
+    $order_id = $order->fetchAll();
+
+
     $_db->beginTransaction();
 
     $token = $_db->prepare("DELETE FROM `token` WHERE user_id = ?");
@@ -18,11 +23,13 @@ if (is_post()) {
     $userPayment = $_db->prepare('DELETE FROM `user_payment` WHERE user_id = ?');
     $userPayment->execute([$user_id]);
 
-    $payment = $_db->prepare('DELETE p FROM `payment` AS p INNER JOIN `order` AS o ON p.order_id = o.id WHERE o.user_id = ?');
-    $payment->execute([$user_id]);
+    foreach($order_id as $id){
+    $payment = $_db->prepare('DELETE FROM `payment` WHERE order_id = ?');
+    $payment->execute([$id->id]);
 
-    $item = $_db->prepare('DELETE i FROM `item` AS i INNER JOIN `order` AS o ON i.order_id = o.id WHERE o.user_id = ?');
-    $item->execute([$user_id]);
+    $item = $_db->prepare('DELETE FROM `item` WHERE order_id = ?');
+    $item->execute([$id->id]);
+    }
 
     $order = $_db->prepare('DELETE FROM `order` WHERE user_id = ?');
     $order->execute([$user_id]);
