@@ -1135,7 +1135,7 @@ label {
   }
   
   /* Buttons (Update & Confirm) */
-  button[data-get] {
+.paymentInfobutton{
     display: inline-block;
     margin: 1rem 0.5rem 0 0;
     padding: 0.6rem 1.2rem;
@@ -1147,6 +1147,6 @@ label {
     cursor: pointer;
     transition: background-color 0.2s ease;
   }
-  button[data-get]:hover {
+  .paymentInfobutton {
     background-color: #0056b3;
   }

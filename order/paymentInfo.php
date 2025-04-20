@@ -29,10 +29,14 @@ include '../head.php';
 
 </table>
 
-<button data-get="addresswitpay.php?order_id=<?= $order_id ?>">Update</button></td>
+<button data-get="addresswitpay.php?order_id=<?= $order_id ?>" class="paymentInfobutton">Update</button></td>
 
-<?php if ($order_id): ?>
-    <button data-get="payment.php?order_id=<?= $order_id ?>">Confirm</button>
+<?php if(!$u):?>
+<button data-get="addresswitpay.php?order_id=<?= $order_id ?>" class="paymentInfobutton">Insert</button>
+<?php endif ?>
+
+<?php if ($order_id && $u): ?>
+    <button data-get="payment.php?order_id=<?= $order_id ?>" class="paymentInfobutton">Confirm</button>
 <?php endif ?>
 
 

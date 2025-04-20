@@ -87,7 +87,7 @@ if (is_post()) {
         if (!$u) {
             $stm = $_db->prepare('
             INSERT INTO user_payment (address,cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
-            VALUES (?, ?, ?, ?,?,?)
+            VALUES (?,?,?,?,?,?,?)
         ');
             $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
 
