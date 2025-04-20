@@ -97,15 +97,15 @@ function encode($value)
     return htmlentities($value);
 }
 
-function html_textarea($key, $attr = '') {
+function html_textarea($key, $attr = '',$attr2 = '') {
     $value = encode($GLOBALS[$key] ?? '');
-    echo "<textarea id='$key' name='$key' $attr>$value</textarea>";
+    echo "<textarea id='$key' name='$key' $attr $attr2>$value</textarea>";
 }
 
-function html_text($key, $attr = '')
+function html_text($key, $attr = '',$attr2 = '')
 {
     $value = encode($GLOBALS[$key] ?? '');
-    echo "<input type='text' id='$key' name='$key' value='$value' $attr>";
+    echo "<input type='text' id='$key' name='$key' value='$value' $attr $attr2>";
 }
 
 function html_password($key, $attr = ' ')
@@ -120,10 +120,10 @@ function html_search($key, $attr = ' ')
     echo "<input type ='search' id='$key' name='$key' value='$value' $attr>";
 }
 
-function html_number($key, $min = '', $max = '', $step = '', $attr = '')
+function html_number($key, $min = '', $max = '', $step = '', $attr = '',$attr2 = '')
 {
     $value = encode($GLOBALS[$key] ?? '');
-    echo "<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr>";
+    echo "<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr $attr2>";
 }
 
 function table_headers($fields, $sort, $dir, $href = '')
@@ -161,6 +161,7 @@ function html_hidden($key, $attr = '')
     echo "<input type='hidden' id='$key' name='$key' value='$value' $attr>";
 }
 
+// Generate <input type='radio'> list
 function html_radios($key, $items, $br = false) {
     $value = encode($GLOBALS[$key] ?? '');
     echo '<div>';
@@ -173,7 +174,6 @@ function html_radios($key, $items, $br = false) {
     }
     echo '</div>';
 }
-
 
 //===================================================================================
 // Check Format

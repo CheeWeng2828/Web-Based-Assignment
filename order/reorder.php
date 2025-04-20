@@ -52,7 +52,7 @@ foreach ($items as $item) {
 $_db->commit();
 
 temp('info', 'Make Order Successful');
-redirect("payment.php?order_id=" . $orderId);
+redirect("addresswitpay.php?order_id=" . $orderId);
 
 $_title = "Reorder";
 include '../head.php';

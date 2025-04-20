@@ -53,8 +53,8 @@ if (is_post()) {
     $_db->commit();
 
     set_cart();
-    temp('info', 'Make Order Successful');
-    redirect("addresswitpay.php?order_id=" . $id);
+    temp('info', 'Make Order Successful,Please Insert Your Payment Detail');
+    redirect("paymentInfo.php?order_id=" . $id);
 }
 
 redirect('cart.php');

@@ -66,12 +66,13 @@
         <?php if ($_user?->role == "Member"): ?>
 
             <a href="/order/history.php">History</a>
+            <a href="/order/paymentInfo.php">Payment Method</a>
 
         <?php endif ?>
 
         <?php if ($_user): ?>
-            <a href="/order/paymentInfo.php">Info</a>
-            <a href="/order/addresswitpay.php">Payment</a>
+            <!-- <a href="/order/paymentInfo.php">Info</a>
+            <a href="/order/addresswitpay.php">Payment</a> -->
             <a href="/user/profile.php">Profile</a>
             <a href="/user/password.php">Password</a>
             <a href="/user/logout.php">Logout</a>
