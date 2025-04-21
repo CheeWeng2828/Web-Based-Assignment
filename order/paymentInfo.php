@@ -2,7 +2,7 @@
 include '../base.php';
 auth("Member");
 
-$id = req('order_id');
+$id = getOrderId();
 
 // Display user payment card and address
 $userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
@@ -30,10 +30,10 @@ include '../head.php';
 
 </table>
 
-<button data-get="addresswitpay.php" class="paymentInfobutton">Update</button></td>
+<button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Update</button></td>
 
 <?php if (!$u): ?>
-    <button data-get="addresswitpay.php" class="paymentInfobutton">Insert</button>
+    <button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Insert</button>
 <?php endif ?>
 
 <?php if ($u && $id): ?>

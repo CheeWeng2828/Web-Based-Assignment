@@ -18,8 +18,6 @@ if (is_post()) {
     $stm->execute([$_user->id]);
     $id = $_db->lastInsertId();
 
-    setOrderID($id);
-
     $stm = $_db->prepare('
     INSERT INTO item(order_id,product_id,price,unit,subtotal)
     VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
@@ -56,9 +54,11 @@ if (is_post()) {
 
     $_db->commit();
 
+    // Order Id Pass By Session
+    setOrderID($id);
     set_cart();
     temp('info', 'Make Order Successful,Please Insert Your Payment Detail');
-    redirect("paymentInfo.php?order_id=" . $id);
+    redirect("paymentInfo.php");
 }
 
 redirect('cart.php');

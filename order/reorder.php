@@ -1,7 +1,7 @@
 <?php
 include '../base.php';
 auth("Member");
-$id = req('id');
+$id = getOrderId();
 
 /// Fetch the item unit purchase by customer previously
 $item = $_db->prepare('SELECT * FROM item WHERE order_id = ?');

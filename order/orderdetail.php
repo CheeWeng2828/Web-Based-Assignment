@@ -2,6 +2,7 @@
 include '../base.php';
 auth();
 $id = req('id');
+setOrderID($id);
 
 if (is_post()) {
     // Used for admin to update the order status
@@ -107,13 +108,13 @@ include '../head.php';
         <?php endforeach ?>
     </table>
     <?php if ($_user?->role == "Member" && $h->status != "PENDING"): ?>
-        <button class="reorder" data-get="reorder.php?id=<?= $id ?>">Reorder</button>
+        <button class="reorder" data-get="reorder.php">Reorder</button>
     <?php endif ?>
     <?php if ($h->status != "CANCEL" && $h->status != "READY TO SHIP" && $h->status != "DELIVERED"): ?>
-        <button class="cancel" data-get="cancelOrder.php?id=<?= $id ?>">Cancel Order</button>
+        <button class="cancel" data-get="cancelOrder.php">Cancel Order</button>
     <?php endif ?>
     <?php if ($_user?->role == "Member" && $h->status == "PENDING"): ?>
-        <button class="pending" data-get="payment.php?order_id=<?= $id ?>">Make Payment</button>
+        <button class="pending" data-get="payment.php">Make Payment</button>
     <?php endif ?>
 
 </div>
