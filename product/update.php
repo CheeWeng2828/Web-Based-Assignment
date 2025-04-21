@@ -6,10 +6,7 @@ auth("Admin");
 if (is_get()) {
     $id = req('id');
 
-    $stm = $_db->prepare('SELECT p.*, i.quantity 
-                      FROM inventory AS i 
-                      RIGHT JOIN product AS p ON i.product_id = p.id
-                      WHERE p.id = ?');
+    $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
     $stm->execute([$id]);
     $s = $stm->fetch();
 
@@ -22,22 +19,22 @@ if (is_get()) {
     $name = $s->name;
     $price = $s->price;
     $photo = $s->photo;
-    $quantity = $s->quantity;
+    $stock = $s->stock;
 }
 
 if (is_post()) {
     $id         = req('id');
     $name       = req('name');
     $price     = req('price');
-    $quantity   = req('quantity');
+    $stock   = req('stock');
     $f = get_file('photo');
     $photo = $_SESSION['photo'];
 
     if (!$price) {
         $_err['price'] = "Required";
     }
-    if (!$quantity) {
-        $_err['quantity'] = "Required";
+    if (!$stock) {
+        $_err['stock'] = "Required";
     }
 
     if (!$name) {
@@ -67,24 +64,10 @@ if (is_post()) {
             $photo = save_photo($f, '../product_img');
         }
         $stm = $_db->prepare('UPDATE product 
-                              SET price = ?,name = ?,photo = ?
+                              SET price = ?,name = ?,photo = ?,stock = ?
                               WHERE id = ?
                             ');
-        $stm->execute([$price, $name, $photo, $id]);
-
-        $inv = $_db->prepare('SELECT * FROM inventory WHERE product_id = ?');
-        $inv->execute([$id]);
-        $i = $inv->fetchColumn();
-
-        if (!$i) {
-            $stm1 = $_db->prepare('INSERT INTO inventory (quantity,product_id) VALUES(?,?)');
-            $stm1->execute([$quantity, $id]);
-        }
-        if ($i) {
-            $stm1 = $_db->prepare('UPDATE inventory SET quantity = ?
-            WHERE product_id = ?');
-            $stm1->execute([$quantity, $id]);
-        }
+        $stm->execute([$price, $name, $photo,$stock,$id]);
 
         temp('info', 'Update Sucessful');
         redirect('product_maintenance.php');
@@ -105,11 +88,11 @@ include '../head.php';
     <?= err('name') ?><br>
 
     <label for="price">Price(RM) :</label>
-    <?= html_number('price', '1', '30', '0.1') ?>
+    <?= html_number('price', '1', '100', '0.1') ?>
     <?= err('price') ?><br>
 
-    <label for="quantity">Quantity :</label>
-    <?= html_number('quantity', '0', '100', '1', 'value = $quantity') ?>
+    <label for="stock">Stock :</label>
+    <?= html_number('stock', '0', '100', '1', 'value = $stock') ?>
     <?= err('quaantity') ?><br>
 
     <label for="photo">Photo:</label>

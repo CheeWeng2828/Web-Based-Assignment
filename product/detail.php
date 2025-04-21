@@ -4,13 +4,13 @@ include '../base.php';
 if (is_post()) {
     $id = req('id');
     $units = req('unit');
-    $quantity = req('quantity');
-    update_cart($id, $units, $quantity);
+    $stock = req('stock');
+    update_cart($id, $units, $stock);
     redirect();
 }
 
 $id = req('id');
-$stm = $_db->prepare("SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON i.product_id = p.id WHERE p.id = ?");
+$stm = $_db->prepare("SELECT * FROM product WHERE id = ?");
 $stm->execute([$id]);
 $product = $stm->fetch();
 if (!$product) redirect('index.php');
@@ -35,15 +35,15 @@ include '../head.php';
 <?php
 $cart = get_cart();
 $id = $product->id;
-$quantity = $product->quantity;
+$stock = $product->stock;
 $unit = $cart[$product->id] ?? 0;
 ?>
 <form method="post" class="productDetailQuantity">
     <?= html_hidden('id') ?>
-    Quantity: <?= html_hidden('quantity') ?>
+    Stock: <?= html_hidden('stock') ?>
     <?= html_select('unit', $_units, '') ?>
     <?= $unit ? '✅' : '' ?>
-    <?= $product->quantity ?> Piece Available
+    <?= $product->stock ?> Piece Available
 </form>
 <p>
     <button data-get="../index.php" class="backButton">Back</button>

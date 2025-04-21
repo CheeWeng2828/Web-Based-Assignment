@@ -4,10 +4,9 @@ $name = req('name');
 
 auth("Admin");
 
-$stm = $_db->prepare('SELECT p.*,i.quantity
-                      FROM product AS p
-                      LEFT JOIN inventory AS i ON p.id = i.product_id
-                      WHERE p.name LIKE ?');
+$stm = $_db->prepare('SELECT *
+                      FROM product
+                      WHERE name LIKE ?');
 $stm->execute(["%$name%"]);
 $arr = $stm->fetchAll();
 
@@ -29,7 +28,7 @@ include '../head.php';
         <th>Id</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Quantity</th>
+        <th>Stock</th>
         <th colspan="2">Action</th>
     </tr>
 
@@ -38,7 +37,7 @@ include '../head.php';
             <td><?= $s->id ?></td>
             <td><?= $s->name ?></td>
             <td><?= $s->price ?></td>
-            <td><?= $s->quantity ?></td>
+            <td><?= $s->stock ?></td>
             <td>
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
             </td>

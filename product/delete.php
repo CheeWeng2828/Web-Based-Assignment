@@ -11,9 +11,6 @@ if (is_post()) {
     $photo = $stm->fetchColumn();
     unlink("../product_img/$photo");
 
-    $inv = $_db->prepare('DELETE FROM inventory WHERE product_id=?');
-    $inv->execute([$id]);
-
     $stm = $_db->prepare('DELETE FROM product WHERE id=?');
     $stm->execute([$id]);
 

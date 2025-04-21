@@ -10,7 +10,7 @@ $p = $item->fetchAll();
 
 /// Here Start To Check The product Stock
 foreach ($p as $items) {
-    $product = $_db->prepare('SELECT i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.id = ?');
+    $product = $_db->prepare('SELECT stock FROM product WHERE id = ?');
     $product->execute([$items->product_id]);
     $stockqty = $product->fetchColumn();
     $orderqty = $items->unit;
@@ -44,7 +44,7 @@ foreach ($items as $item) {
 $stm = $_db->prepare("INSERT INTO payment (datetime,status,order_id) VALUES (NOW(),'PENDING',?)");
 $stm->execute([$orderId]);
 
-$stm = $_db->prepare('UPDATE `inventory` SET `quantity` = `quantity` - ? WHERE `product_id` = ?');
+$stm = $_db->prepare('UPDATE `product` SET `stock` = `stock` - ? WHERE `id` = ?');
 foreach ($items as $item) {
     $stm->execute([$item->unit, $item->product_id]);
 }
@@ -52,7 +52,7 @@ foreach ($items as $item) {
 $_db->commit();
 
 temp('info', 'Make Order Successful');
-redirect("addresswitpay.php?order_id=" . $orderId);
+redirect("paymentInfo.php?order_id=" . $orderId);
 
 $_title = "Reorder";
 include '../head.php';

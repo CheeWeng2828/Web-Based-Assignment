@@ -37,9 +37,9 @@ if (is_post()) {
     $stm->execute([$id, $id, $id]);
 
     $stm = $_db->prepare('
-    UPDATE `inventory`
-    SET `quantity` = `quantity` - ?
-    WHERE `product_id` = ?
+    UPDATE `product`
+    SET `stock` = `stock` - ?
+    WHERE `id` = ?
     ');
     foreach ($cart as $product_id => $unit) {
         $stm->execute([$unit,$product_id]);

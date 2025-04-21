@@ -12,8 +12,8 @@ if (is_post()) {
 
     $id   = req('id');
     $unit = req('unit');
-    $quantity = req('quantity');
-    update_cart($id, $unit,$quantity);
+    $stock = req('stock');
+    update_cart($id, $unit,$stock);
     redirect();
 }
 
@@ -36,14 +36,14 @@ include '../head.php';
         $count = 0;
         $total = 0; 
         
-        $stm = $_db->prepare('SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.id = ?');
+        $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
         $cart = get_cart();
         
         foreach ($cart as $id => $unit):
             $stm->execute([$id]);
             $p = $stm->fetch();
             
-            $quantity = $p->quantity;
+            $stock = $p->stock;
             $subtotal = $p->price * $unit;
             $count += $unit;
             $total += $subtotal; 
@@ -55,7 +55,7 @@ include '../head.php';
             <td>
                 <form method="post">
                     <?= html_hidden('id') ?>
-                    <?= html_hidden('quantity') ?>
+                    <?= html_hidden('stock') ?>
                     <?= html_select('unit', $_units, '') ?>
                 </form>            
             </td>

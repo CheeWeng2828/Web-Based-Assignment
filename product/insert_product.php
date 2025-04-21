@@ -7,6 +7,7 @@ if (is_post()) {
     $id         = req('id');
     $name       = req('name');
     $price     = req('price');
+    $stock = req('stock');
     $f = get_file('photo');
 
     if ($id == "") {
@@ -22,6 +23,9 @@ if (is_post()) {
         $_err['price'] = "Required";
     }
 
+    if (!$stock) {
+        $_err['stock'] = "Required";
+    }
 
     if (!$name) {
         $_err['name'] = "Required";
@@ -42,10 +46,10 @@ if (is_post()) {
         $photo = save_photo($f, '../product_img');
         $stm = $_db->prepare('
     INSERT INTO product
-    ( id , name , price , photo)
-     VALUES(?,?,?,?)');
+    ( id , name , price , photo,stock)
+     VALUES(?,?,?,?,?)');
 
-        $stm->execute([$id, $name, $price, $photo]);
+        $stm->execute([$id, $name, $price, $photo,$stock]);
 
 
         temp('info', 'Insert Sucessful');
@@ -69,8 +73,12 @@ include '../head.php';
     <?= err('name') ?>
 
     <label for="price">Price</label>
-    <?= html_number('price', '1', '30', '0.5') ?><br>
+    <?= html_number('price', '1', '100', '0.5') ?><br>
     <?= err('price') ?>
+
+    <label for="stock">Stock</label>
+    <?= html_number('stock', '1', '100', '1') ?><br>
+    <?= err('stock') ?>
 
     <label for="photo">Photo</label>
     <label class="upload" tabindex="0">

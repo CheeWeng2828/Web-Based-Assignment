@@ -4,8 +4,8 @@ require '../base.php';
 if (is_post()) {
     $id = req('id');
     $unit = req('unit');
-    $quantity = req('quantity');
-    update_cart($id, $unit,$quantity);
+    $stock = req('stock');
+    update_cart($id, $unit,$stock);
     redirect();
 }
 
@@ -13,14 +13,14 @@ $category = $_GET['category'] ?? '';
 
 
 if ($category === 'cake') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name LIKE '%cake%'";
+    $query = "SELECT * FROM product WHERE name LIKE '%cake%'";
 } elseif ($category === 'bread') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name NOT LIKE '%cake%' AND p.name NOT LIKE'%Tart%'";
+    $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%'";
 
 } elseif ($category === 'pastries') {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id WHERE p.name  LIKE '%Tart%'";
+    $query = "SELECT * FROM product WHERE name LIKE '%Tart%'";
 } else {
-    $query = "SELECT p.*,i.quantity FROM product AS p JOIN inventory AS i ON p.id = i.product_id";
+    $query = "SELECT * FROM product ";
 }
 
 $products = $_db->query($query)->fetchAll();
@@ -34,7 +34,7 @@ include '../head.php';
         <?php
         $cart = get_cart();
         $id = $product->id;
-        $quantity = $product->quantity;
+        $stock = $product->stock;
         $unit = $cart[$product->id] ?? 0;
         ?>
             
@@ -42,12 +42,11 @@ include '../head.php';
         <img src="/product_img/<?= $product->photo ?>" alt="<?= $product->name ?>" data-get="detail.php?id=<?= $product->id ?>">
         <h3><?= $product->name ?></h3>
         <p>RM <?= number_format($product->price, 2) ?></p>
-        <p><?=$product->quantity ?> pieces available</p>
+        <p><?=$product->stock ?> pieces available</p>
         <form method="post">
-        <?php if($product->quantity != 0): ?>
-            <label>Quantity</label>
+        <?php if($product->stock != 0): ?>
                 <?= html_hidden('id') ?>
-                <?= html_hidden('quantity')?>
+                <?= html_hidden('stock')?>
                 <?= html_select('unit', $_units, '') ?>
                 <?= $unit ? '✅' : '' ?>
                 <?php endif ?>
