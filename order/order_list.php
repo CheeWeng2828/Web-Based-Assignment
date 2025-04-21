@@ -20,6 +20,7 @@ in_array($dir, ['asc', 'desc']) || $dir = 'asc';
 // (2) Paging
 $page = req('page', 1);
 
+// For sorting purpose
 require_once '../lib/SimplePager.php';
 $p = new SimplePager("SELECT * FROM `order` ORDER BY $sort $dir", [], 10, $page);
 $arr = $p->result;

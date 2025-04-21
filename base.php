@@ -237,7 +237,27 @@ function auth(...$roles)
 }
 
 //===================================================================================
-//DATABASE
+//          Session For Order Id
+//===================================================================================
+
+$order = $_SESSION['order_id'] ?? null;
+
+function getOrderId(){
+    return $_SESSION['order_id'] ?? null;
+}
+
+function setOrderID($order_id)
+{
+    $_SESSION['order_id'] = $order_id;
+}
+
+function deleteID()
+{
+    unset($_SESSION['order_id']);
+}
+
+//===================================================================================
+//          DATABASE
 //===================================================================================
 $_db = new PDO('mysql:dbname=assign', 'root', '', [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,

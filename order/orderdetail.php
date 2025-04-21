@@ -4,6 +4,7 @@ auth();
 $id = req('id');
 
 if (is_post()) {
+    // Used for admin to update the order status
     $status = req('orderStatus');
     $stm = $_db->prepare("UPDATE payment SET status = ? WHERE order_id = ?");
     $stm->execute([$status, $id]);
@@ -11,6 +12,7 @@ if (is_post()) {
     temp('info', 'Update Status Successful');
     redirect('order_list.php');
 }
+
 $stm = $_db->prepare('
 SELECT * FROM `order`
 WHERE id = ?
@@ -20,7 +22,7 @@ $stm->execute([$id]);
 $o = $stm->fetch();
 if (!$o) redirect('history.php');
 
-
+// Display all the information about the order
 $stm = $_db->prepare('
 SELECT i.*,p.name,p.photo,y.datetime,y.status
 FROM item AS i LEFT JOIN payment AS y
@@ -32,6 +34,7 @@ WHERE i.order_id = ?
 $stm->execute([$id]);
 $arr = $stm->fetchAll();
 
+// For display current order status
 $stm = $_db->prepare('SELECT status FROM payment WHERE order_id = ?');
 $stm->execute([$id]);
 $status = $stm->fetch();
@@ -59,8 +62,9 @@ include '../head.php';
 <div class="detail-table-container">
 
     <table class="detail">
+        <!-- Check User Role if it is admin can update order status -->
         <?php foreach ($status as $s): ?>
-            <?php if ($_user?->role == "Admin" && $s != "CANCEL"): ?>
+            <?php if ($_user?->role == "Admin" && $s != "CANCEL" && $s != "DELIVERED"): ?>
                 <th>Status</th>
                 <th>
                     <form method="post">
@@ -69,7 +73,7 @@ include '../head.php';
                     </form>
                 <?php endif ?>
                 </th>
-                <?php if ($_user?->role == "Admin" && $s == "CANCEL"): ?>
+                <?php if ($_user?->role == "Admin" && $s == "CANCEL" || $s == "DELIVERED"): ?>
                     <th>Status</th>
                     <td><?= $s ?></td>
                 <?php endif ?>

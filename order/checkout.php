@@ -18,6 +18,8 @@ if (is_post()) {
     $stm->execute([$_user->id]);
     $id = $_db->lastInsertId();
 
+    setOrderID($id);
+
     $stm = $_db->prepare('
     INSERT INTO item(order_id,product_id,price,unit,subtotal)
     VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
@@ -36,6 +38,7 @@ if (is_post()) {
 
     $stm->execute([$id, $id, $id]);
 
+    // Update the product stock quantity to latest
     $stm = $_db->prepare('
     UPDATE `product`
     SET `stock` = `stock` - ?
@@ -45,6 +48,7 @@ if (is_post()) {
         $stm->execute([$unit,$product_id]);
     }
 
+    // Insert the payment status to Pending when order place
     $stm = $_db->prepare("
     INSERT INTO payment (datetime,status,order_id)
     VALUE (NOW(),'PENDING',?)");

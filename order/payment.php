@@ -1,8 +1,10 @@
 <?php
 include '../base.php';
 auth("Member");
-$id = req('order_id');
 
+$id = getOrderId();
+
+// Check and verify the order is exist or not
 $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
@@ -11,6 +13,7 @@ if(!$p){
     redirect('/');
 }
 
+// For email to display order detail make by customer
 $stm2 = $_db->prepare('SELECT p.name,i.unit,i.price,i.subtotal 
                        FROM product AS p JOIN item AS i 
                        ON p.id = i.product_id 
@@ -23,13 +26,13 @@ $n = $stm2->fetchAll();
 
 $itemsStr = "";
 foreach ($n as $d) {
-    // Concatenate product name and unit with a line break.
+    // Combine all the order detail within this array
     $itemsStr .= $d->name . "<br>" . "Quantity: " . $d->unit . "<br>Price:  " . $d->price . "<br>";
 }
 
 $m = get_mail();
 
-$url = base("order/confirm.php?order_id= " . $id);
+$url = base("order/confirm.php");
 $m->addAddress($_user->email, $_user->name);
 $m->addEmbeddedImage("../photo/$_user->photo",'photo');
 $m->isHTML(true);

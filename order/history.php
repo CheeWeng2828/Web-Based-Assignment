@@ -3,6 +3,7 @@ include '../base.php';
 
 auth("Member");
 
+// Showing all order make by current user
 $p = $_db->prepare("SELECT * FROM `order` WHERE user_id = ? ORDER BY id DESC");
 $p->execute([$_user->id]);
 $arr = $p->fetchAll();

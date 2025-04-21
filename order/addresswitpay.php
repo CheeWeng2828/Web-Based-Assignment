@@ -6,8 +6,10 @@ $_title = 'Payment Detail';
 include '../head.php';
 auth("Member");
 
-$id = req('order_id');
+// Get Order Id from Session
+$id = getOrderId();
 
+// Display User Address And Card
 $userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
 $userInfo->execute([$_user->id]);
 $u = $userInfo->fetch();
@@ -79,7 +81,7 @@ if (is_post()) {
             temp('info', 'Payment method save successfully!');
 
             if ($id) {
-                redirect("paymentInfo.php?order_id=" . $id);
+                redirect("paymentInfo.php");
             } else {
                 redirect("/");
             }
@@ -94,7 +96,7 @@ if (is_post()) {
             temp('info', 'Payment save successfully!');
 
             if ($id) {
-                redirect("paymentInfo.php?order_id=" . $id);
+                redirect("paymentInfo.php");
             } else {
                 redirect("/");
             }
@@ -132,16 +134,6 @@ if (is_post()) {
 <div class="payment-container">
     <div class="payment-details">
         <h3>Payment</h3>
-
-        <!-- ai code but not working -->
-        <!-- <label for="cardholder_name">Cardholder Name:</label>
-        <input type="text" id="cardholder_name" name="cardholder_name" maxlength="100" placeholder="Name" 
-        value="<?php //echo ($u && isset($u['cardholder_name'])) ? $u['cardholder_name'] : ''; 
-                ?>" required><br><br>
-        <?php //err('cardholder_name')  
-        ?> 
-        -->
-
         <label for="cardholder_name">Cardholder Name:</label>
         <?= html_text('cardholder_name', 'maxlength="100"', 'placeholder="Name"') ?><br><br>
         <?php err('cardholder_name') ?>

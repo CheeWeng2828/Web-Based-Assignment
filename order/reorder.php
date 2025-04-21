@@ -32,6 +32,8 @@ $ins = $_db->prepare('INSERT INTO `order`(datetime,count,total,user_id)VALUES(NO
 $ins->execute([$arr->count, $arr->total, $arr->user_id]);
 $orderId = $_db->lastInsertId();
 
+setOrderID($orderId);
+
 $stm1 = $_db->prepare('SELECT * FROM item WHERE order_id = ?');
 $stm1->execute([$id]);
 $items = $stm1->fetchAll();
