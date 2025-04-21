@@ -55,7 +55,8 @@ include '../head.php';
             <td>
                 <form method="post">
                     <?= html_hidden('id') ?>
-                    <?= html_hidden('stock') ?>
+                    <!-- For Update Stock Quantity -->
+                    <?= html_hidden('stock') ?> 
                     <?= html_select('unit', $_units, '') ?>
                 </form>            
             </td>

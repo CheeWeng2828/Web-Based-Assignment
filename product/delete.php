@@ -6,6 +6,7 @@ if (is_post()) {
 
     $id = req('id');
     
+    // Get the Photo name and delete the photo at file
     $stm = $_db->prepare('SELECT photo FROM product WHERE id = ?');
     $stm->execute([$id]);
     $photo = $stm->fetchColumn();
