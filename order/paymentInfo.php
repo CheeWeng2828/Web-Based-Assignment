@@ -29,8 +29,9 @@ include '../head.php';
     <?php endforeach ?>
 
 </table>
-
+<?php if($u):?>
 <button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Update</button></td>
+<?php endif ?>
 
 <?php if (!$u): ?>
     <button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Insert</button>
