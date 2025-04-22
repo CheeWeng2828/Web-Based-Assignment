@@ -51,7 +51,8 @@ function temp($key, $value = null)
     }
 }
 
-function base($path = '') {
+function base($path = '')
+{
     return "http://$_SERVER[SERVER_NAME]:$_SERVER[SERVER_PORT]/$path";
 }
 
@@ -97,12 +98,13 @@ function encode($value)
     return htmlentities($value);
 }
 
-function html_textarea($key, $attr = '',$attr2 = '') {
+function html_textarea($key, $attr = '', $attr2 = '')
+{
     $value = encode($GLOBALS[$key] ?? '');
     echo "<textarea id='$key' name='$key' $attr $attr2>$value</textarea>";
 }
 
-function html_text($key, $attr = '',$attr2 = '')
+function html_text($key, $attr = '', $attr2 = '')
 {
     $value = encode($GLOBALS[$key] ?? '');
     echo "<input type='text' id='$key' name='$key' value='$value' $attr $attr2>";
@@ -120,7 +122,7 @@ function html_search($key, $attr = ' ')
     echo "<input type ='search' id='$key' name='$key' value='$value' $attr>";
 }
 
-function html_number($key, $min = '', $max = '', $step = '', $attr = '',$attr2 = '')
+function html_number($key, $min = '', $max = '', $step = '', $attr = '', $attr2 = '')
 {
     $value = encode($GLOBALS[$key] ?? '');
     echo "<input type='number' name='$key' id='$key' value='$value' min='$min' max='$max' step='$step' $attr $attr2>";
@@ -162,7 +164,8 @@ function html_hidden($key, $attr = '')
 }
 
 // Generate <input type='radio'> list
-function html_radios($key, $items, $br = false) {
+function html_radios($key, $items, $br = false)
+{
     $value = encode($GLOBALS[$key] ?? '');
     echo '<div>';
     foreach ($items as $id => $text) {
@@ -240,20 +243,14 @@ function auth(...$roles)
 //          Session For Order Id
 //===================================================================================
 
-$order = $_SESSION['order_id'] ?? null;
-
-function getOrderId(){
+function getOrderId()
+{
     return $_SESSION['order_id'] ?? null;
 }
 
-function setOrderID($order_id)
+function setOrderID($order_id = [])
 {
     $_SESSION['order_id'] = $order_id;
-}
-
-function deleteID()
-{
-    unset($_SESSION['order_id']);
 }
 
 //===================================================================================
@@ -288,20 +285,16 @@ function get_cart()
     return $_SESSION['cart'] ?? [];
 }
 
-function remove_cart() {
-    unset($_SESSION['cart']);
-}
-
 function set_cart($cart = [])
 {
     $_SESSION['cart'] = $cart;
 }
 
-function update_cart($id, $unit,$quantity)
+function update_cart($id, $unit, $quantity)
 {
     $cart = get_cart();
 
-    if ($unit >= 1 && $unit <= 10 && is_exist($id, 'product', 'id') && $unit <= $quantity ) {
+    if ($unit >= 1 && $unit <= 10 && is_exist($id, 'product', 'id') && $unit <= $quantity) {
         $cart[$id] = $unit;
     } else {
         unset($cart[$id]);
@@ -313,7 +306,8 @@ function update_cart($id, $unit,$quantity)
 //===================================================================================
 //          Email
 //===================================================================================
-function get_mail() {
+function get_mail()
+{
     require_once 'lib/PHPMailer.php';
     require_once 'lib/SMTP.php';
 

@@ -5,11 +5,13 @@ auth("Member");
 
 if (is_post()) {
 
+    // Get the item from shopping cart
     $cart = get_cart();
     if (!$cart) redirect('shopping_cart.php');
 
     $_db->beginTransaction();
 
+    // Record the user id and current time into order table
     $stm = $_db->prepare('
     INSERT INTO `order` (datetime,user_id)
     VALUES (NOW(),?)
@@ -18,6 +20,7 @@ if (is_post()) {
     $stm->execute([$_user->id]);
     $id = $_db->lastInsertId();
 
+    // To record each product detail purchase by user
     $stm = $_db->prepare('
     INSERT INTO item(order_id,product_id,price,unit,subtotal)
     VALUES (?,?,(SELECT price FROM product WHERE id = ?),?,price * unit)
@@ -27,6 +30,7 @@ if (is_post()) {
         $stm->execute([$id, $product_id, $product_id, $unit]);
     }
 
+    // Record the total unit and subtotal purchase by user
     $stm = $_db->prepare('
     UPDATE `order`
     SET count = (SELECT SUM(unit) FROM item WHERE order_id = ?),
@@ -54,7 +58,7 @@ if (is_post()) {
 
     $_db->commit();
 
-    // Order Id Pass By Session
+    // Save order id to Session
     setOrderID($id);
     set_cart();
     temp('info', 'Make Order Successful,Please Insert Your Payment Detail');

@@ -5,7 +5,7 @@ include '../head.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_logout'])) {
     temp('info', 'Logout successful');
-    remove_cart();
+    set_cart();
     logout();
     exit();
 }

@@ -7,9 +7,11 @@ if (is_post()) {
     $photo = get_file('photo');
 
     if ($photo) {
+        // Delete profile photo from this user at file
         unlink("../photo/$photo");
     }
 
+    // Fetch All the order History make by this member
     $order = $_db->prepare('SELECT id FROM `order` WHERE user_id = ?');
     $order->execute([$user_id]);
     $order_id = $order->fetchAll();

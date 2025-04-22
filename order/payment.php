@@ -2,6 +2,7 @@
 include '../base.php';
 auth("Member");
 
+// Get order Id from Session
 $id = getOrderId();
 
 // Check and verify the order is exist or not
@@ -9,11 +10,43 @@ $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
 
-if(!$p){
+if (!$p) {
     redirect('/');
+    temp('info', 'Order Not Exist !!!');
 }
 
-// For email to display order detail make by customer
+// Check the Payment Status of the order
+$payment_status = $_db->prepare('SELECT * FROM payment WHERE order_id = ?');
+$payment_status->execute([$id]);
+$status = $payment_status->fetchAll();
+
+// Direct the page to index when the order status is paid
+foreach ($status as $ps) {
+    if ($ps->status == "PAID") {
+        temp('info', 'Order Has Paid !!!');
+        redirect('/');
+    }
+}
+
+// For Insert payment token purpose
+$stm2 = $_db->prepare('SELECT * FROM payment WHERE order_id = ?');
+$stm2->execute([$id]);
+$payment = $stm2->fetchAll();
+
+// Generate Random Payment Token Id
+$tokenID = sha1(uniqid() . rand());
+foreach ($payment as $pay) {
+    $stm = $_db->prepare('
+            DELETE FROM payment_token WHERE payment_id=?;
+
+            INSERT INTO payment_token(id,expire,payment_id)
+            VALUES (?,ADDTIME(NOW(),"00:05"),?);
+        ');
+
+    $stm->execute([$pay->id, $tokenID, $pay->id]);
+}
+
+// To display order detail make by customer at Email
 $stm2 = $_db->prepare('SELECT p.name,i.unit,i.price,i.subtotal 
                        FROM product AS p JOIN item AS i 
                        ON p.id = i.product_id 
@@ -32,9 +65,9 @@ foreach ($n as $d) {
 
 $m = get_mail();
 
-$url = base("order/confirm.php");
+$url = base("order/confirm.php?tokenID=$tokenID");
 $m->addAddress($_user->email, $_user->name);
-$m->addEmbeddedImage("../photo/$_user->photo",'photo');
+$m->addEmbeddedImage("../photo/$_user->photo", 'photo');
 $m->isHTML(true);
 $m->Subject = 'Payment Confirmation';
 $m->Body = "

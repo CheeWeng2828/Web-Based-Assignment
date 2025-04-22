@@ -57,7 +57,7 @@ if (is_post()) {
         //Save photo
         $photo = save_photo($f, '../photo');
 
-        // Insert data
+        // Insert data Same like Register Member But Different Role
         $stm = $_db->prepare('
             INSERT INTO user (email, password, name, photo, role)
             VALUES (?,SHA1(?),?,?,"Admin")

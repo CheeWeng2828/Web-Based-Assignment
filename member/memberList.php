@@ -35,7 +35,7 @@ include '../head.php';
 
 <table class="memberList">
     <tr>
-
+        <!-- The table header become clickable -->
         <?= table_headers($fields, $sort, $dir, "page=$page") ?>
         <th>Photo</th>
         <th>More</th>
@@ -57,6 +57,7 @@ include '../head.php';
 
 <br>
 <div class="pager">
+    <!-- The pager below the table -->
     <?= $p->html("sort=$sort&dir=$dir",) ?>
 </div>
 <?php

@@ -6,7 +6,7 @@ $_title = 'Payment Detail';
 include '../head.php';
 auth("Member");
 
-// Get Order Id from Session
+// Get and hold the order id for pass to the payment page
 $id = getOrderId();
 
 // Display User Address And Card
@@ -15,7 +15,7 @@ $userInfo->execute([$_user->id]);
 $u = $userInfo->fetch();
 
 if (is_post()) {
-    //for address
+    //for address validation
     $street_number = req('street_number');
     $city = req('city');
     $state = req('state');
@@ -35,14 +35,12 @@ if (is_post()) {
     }
 
 
-    //for cardpayment
+    //for cardpayment validation
     $cardholder_name = req('cardholder_name');
     $card_no = req('card_no');
     $expiry_month = req('expiry_month');
     $expiry_year = req('expiry_year');
     $cvv = req('cvv');
-
-
 
     if ($cardholder_name == '') {
         $_err['cardholder_name'] = 'Cardholder name is required.';
