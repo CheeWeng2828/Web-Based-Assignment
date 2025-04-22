@@ -316,8 +316,8 @@ function get_mail()
     $m->SMTPAuth = true;
     $m->Host = 'smtp.gmail.com';
     $m->Port = 587;
-    $m->Username = 'lamcheeweng2006@gmail.com';
-    $m->Password = 'pwxs fqwi kkhs impd';
+    $m->Username = 'sem3sbakery@gmail.com';
+    $m->Password = 'kgki ehuc jrgb riiv';
     $m->CharSet = 'utf-8';
     $m->setFrom($m->Username, '🍞 Admin');
 
