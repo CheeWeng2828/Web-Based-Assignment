@@ -49,6 +49,7 @@ include '../head.php';
             <td><?= $s->role ?></td>
             <td><img src="/photo/<?= $s->photo ?>"></td>
             <td>
+                <button data-get="memberDetail.php?id=?<?=$s->id ?>">Detail</button>
                 <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
             </td>
         </tr>
