@@ -37,10 +37,5 @@ include '../head.php';
     <button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Insert</button>
 <?php endif ?>
 
-<?php if ($u && $id): ?>
-    <button data-get="payment.php" class="paymentInfobutton">Select</button>
-<?php endif ?>
-
-
 <?php
 include '../foot.php';

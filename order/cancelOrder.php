@@ -21,7 +21,7 @@ foreach ($i as $item) {
 }
 
 // Clear the Session which hold the order id
-setOrderID();
+deleteOrderID();
 temp('info', 'Cancel Successful');
 redirect('/');
 

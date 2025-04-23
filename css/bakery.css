@@ -2,6 +2,9 @@
 
 body {
     font-family: 'Muli', sans-serif;
+    margin: 0;
+    height:100vh;
+    display: grid;
 }
 
 h1,
@@ -59,7 +62,6 @@ footer {
 }
 
 .navigation {
-    position: sticky;
     top: 0;
     display: flex;
     flex-wrap: wrap;

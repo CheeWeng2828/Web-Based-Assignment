@@ -31,7 +31,7 @@ include '../head.php';
 ?>
 
 <!-- Clear order id at Session -->
-<?= setOrderID();?>
+<?= deleteOrderID();?>
 <p>Your Payment Is Make Successful</p>
 <p>Click Here For More Information<button data-get="orderdetail.php?id=<?= $id ?>">Detail</button></p>
 

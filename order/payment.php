@@ -10,6 +10,16 @@ $stm = $_db->prepare('SELECT * FROM `order` WHERE id = ?');
 $stm->execute([$id]);
 $p = $stm->fetch();
 
+$userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
+$userInfo->execute([$_user->id]);
+$u = $userInfo->fetch();
+
+if(!$u) {
+    temp('info', 'Please Insert Your Payment Method');
+    redirect("addresswitpay.php");
+}
+
+
 if (!$p) {
     redirect('/');
     temp('info', 'Order Not Exist !!!');

@@ -94,7 +94,7 @@ if (is_post()) {
             temp('info', 'Payment save successfully!');
 
             if ($id) {
-                redirect("paymentInfo.php");
+                redirect("payment.php");
             } else {
                 redirect("/");
             }
