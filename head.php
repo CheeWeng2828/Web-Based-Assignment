@@ -12,33 +12,35 @@
 </head>
 
 <body>
-<header>
-         <a href="/">
-             <img src="/image/icon.jpg" alt="logo" class="logo">
-             <h1 class="name">SEM 3's Bakery</h1>
-         </a>
-         <div></div>
-         <?php if ($_user): ?>
- 
-             <div class="user">
-                 <img src="/photo/<?= $_user->photo ?>">
-                 <?= $_user->name ?>
-             </div>
- 
-         <?php endif ?>
-     </header>
+    <header>
+        <a href="/">
+            <img src="/image/icon.jpg" alt="logo" class="logo">
+            <h1 class="name">SEM 3's Bakery</h1>
+        </a>
+        <?php if ($_user): ?>
+            <div class="user">
+                <?php if ($_user->role == "Admin"): ?>
+                    <?= $_user->role ?><br>
+                <?php endif ?>
+                <?= $_user->name ?>
+                <img src="/photo/<?= $_user->photo ?>">
+            </div>
+
+        <?php endif ?>
+             
+    </header>
     <div id="info"><?= temp('info') ?></div>
     <nav class="navigation">
         <a href="/">Home</a>
         <?php if (!$_user || $_user?->role == "Member"): ?>
-        <a href="/order/shopping_cart.php">
-            Shopping Cart
-            <?php
-            $cart = get_cart();
-            $count = array_sum($cart);
-            if ($count) echo "($count)";
-            ?>
-        </a>
+            <a href="/order/shopping_cart.php">
+                Shopping Cart
+                <?php
+                $cart = get_cart();
+                $count = array_sum($cart);
+                if ($count) echo "($count)";
+                ?>
+            </a>
         <?php endif ?>
 
         <?php if ($_user?->role == "Admin"): ?>
@@ -52,7 +54,7 @@
 
         <div></div>
 
-        
+
 
         <?php if (!$_user): ?>
 
@@ -81,4 +83,3 @@
 
     <main>
         <h1><?= $_title ?? 'Untitled' ?></h1>
-

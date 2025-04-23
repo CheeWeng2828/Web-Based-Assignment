@@ -27,17 +27,40 @@ main {
     padding-bottom: 100px;
 }
 
-header div {
-    flex: 1;
-
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
 }
 
 header a {
-    color: #4E342E;
-    text-align: left;
-    text-decoration: none;
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    text-decoration: none;
+    color: #4E342E;
+}
+
+header .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+}
+
+header .user {
+    display: flex;
+    align-items: center;
+    text-align: right;
+    gap: 8px;
+    margin-left: auto; /* This ensures it's pushed to the right */
+}
+
+header .user img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 }
 
 h1 {
