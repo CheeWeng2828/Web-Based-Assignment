@@ -64,7 +64,7 @@
 
         <?php if ($_user?->role == "Member"): ?>
 
-            <a href="/order/history.php">History</a>
+            <a href="/order/history.php">Order History</a>
             <a href="/order/paymentInfo.php">Payment Method</a>
 
         <?php endif ?>
