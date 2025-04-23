@@ -2,6 +2,14 @@
 include '../base.php';
 //-----------------------------------------------------------------------------
 auth("Admin");
+
+// Searching Function
+$search = req('search');
+$search_sql = $search ? "WHERE o.id LIKE ? OR o.user_id LIKE ? OR p.status LIKE ?" : "";
+$params = $search ? ["%$search", "%$search", "%$search"] : [];
+
+
+
 // (1) Sorting
 $fields = [
     'o.id' => 'ID',
@@ -23,7 +31,8 @@ $page = req('page', 1);
 
 // For sorting purpose
 require_once '../lib/SimplePager.php';
-$p = new SimplePager("SELECT o.*,p.status FROM `order` AS o JOIN payment AS p ON o.id = p.order_id ORDER BY $sort $dir", [], 10, $page);
+$sql = "SELECT o.*,p.status FROM `order` o JOIN payment p ON o.id = p.order_id $search_sql ORDER BY $sort $dir";
+$p = new SimplePager($sql, $params, 10, $page);
 $arr = $p->result;
 
 
@@ -31,6 +40,13 @@ $arr = $p->result;
 $_title = 'Order List';
 include '../head.php';
 ?>
+<form method="get">
+    <?= html_search('search', 'placeholder = "Search..."') ?>
+    <button type="submit">Search</button>
+</form>
+
+
+
 <p>
     <?= $p->count ?> of <?= $p->item_count ?> record(s) |
     Page <?= $p->page ?> of <?= $p->page_count ?>
@@ -50,15 +66,15 @@ include '../head.php';
             <td><?= $s->count ?></td>
             <td><?= $s->total ?></td>
             <td><?= $s->user_id ?></td>
-            <td><?= $s->status?></td>
-            <td> <button data-get="orderdetail.php?id=<?= $s->id?>">Detail</button></td>
+            <td><?= $s->status ?></td>
+            <td> <button data-get="orderdetail.php?id=<?= $s->id ?>">Detail</button></td>
         </tr>
     <?php endforeach ?>
 </table>
 
 <br>
 <div class="pager">
-<?= $p->html("sort=$sort&dir=$dir",) ?>
+    <?= $p->html("search=$search&sort=$sort&dir=$dir",) ?>
 </div>
 <?php
 include '../foot.php';

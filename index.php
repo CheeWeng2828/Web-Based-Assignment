@@ -28,7 +28,8 @@ include 'head.php';
                 <span>Pastries</span>
             </a>
         </div>
+    <?php else: ?>
+        <h2>This is Admin Page</h2>
     <?php endif ?>
-    <h2>This is Admin Page</h2>
-    <?php
-    include 'foot.php';
+<?php
+include 'foot.php';
