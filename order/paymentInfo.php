@@ -30,7 +30,7 @@ include '../head.php';
 
 </table>
 <?php if($u):?>
-<button data-get="addresswitpay.php?order_id=<?=$id?>" class="paymentInfobutton">Update</button></td>
+<button data-get="addresswitpay.php?user_id=<?=$_user->id?>" class="paymentInfobutton">Update</button></td>
 <?php endif ?>
 
 <?php if (!$u): ?>

@@ -154,7 +154,7 @@ if (is_post()) {
         <?php err('cvv') ?><br><br>
 
 
-        <button type="submit">Proceed Payment</button>
+        <button type="submit">Confirm</button>
 
     </div>
     </form>

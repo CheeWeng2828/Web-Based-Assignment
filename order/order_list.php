@@ -8,8 +8,6 @@ $search = req('search');
 $search_sql = $search ? "WHERE o.id LIKE ? OR o.user_id LIKE ? OR p.status LIKE ?" : "";
 $params = $search ? ["%$search", "%$search", "%$search"] : [];
 
-
-
 // (1) Sorting
 $fields = [
     'o.id' => 'ID',
@@ -35,7 +33,6 @@ $sql = "SELECT o.*,p.status FROM `order` o JOIN payment p ON o.id = p.order_id $
 $p = new SimplePager($sql, $params, 10, $page);
 $arr = $p->result;
 
-
 // ----------------------------------------------------------------------------
 $_title = 'Order List';
 include '../head.php';
@@ -44,8 +41,6 @@ include '../head.php';
     <?= html_search('search', 'placeholder = "Search..."') ?>
     <button type="submit">Search</button>
 </form>
-
-
 
 <p>
     <?= $p->count ?> of <?= $p->item_count ?> record(s) |
