@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&family=Muli:wght@400;600&display=swap');
 
+body, input, button, textarea, select {
+    font: 16px 'Quicksand', sans-serif;
+}
 body {
     font-family: 'Muli', sans-serif;
     margin: 0;
     height:100vh;
     display: grid;
+    grid: auto auto 1fr auto / auto;
 }
 
 h1,
@@ -62,17 +66,10 @@ footer {
 }
 
 .navigation {
-    top: 0;
+    padding: 0px 50px;
+    background: #6D4C41;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    background-color: #6D4C41;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-    gap: 10px;
 }
-
 .navigation div {
     flex: 1;
 }
@@ -80,15 +77,14 @@ footer {
 .navigation a {
     color: #fff;
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 5px 10px;
+    white-space: nowrap;
 }
 
 
 .navigation a:hover {
     background-color: #4E342E;
-    border-radius: 4px;
 }
-
 
 #img {
     width: 200px;
@@ -313,7 +309,7 @@ label.upload img {
 /*===================================================================================
     Table layout
 ===================================================================================*/
-.pager {
+nav.pager {
     text-align: center;
     background: #6D4C41;
     color: #F8ECD1;
@@ -321,14 +317,14 @@ label.upload img {
 
 }
 
-.pager a {
+nav.pager a {
     color: #F8ECD1;
     text-decoration: none;
     padding: 5px;
     margin: 5px;
 }
 
-.pager a:hover {
+nav.pager a:hover {
     background-color: #4E342E;
     color: #fdebb976;
 }
@@ -575,17 +571,6 @@ select.unit {
 .cart tr:hover {
     background: #4E342E;
 }
-
-.clear{
-    color: white;
-    background: red;
-    border: none;
-    border-radius: 5px;
-    padding: 16px 24px;
-    cursor: pointer;
-}
-
-
 
 /*===================================================================================
                 History,Product List and Order List(Admin)
