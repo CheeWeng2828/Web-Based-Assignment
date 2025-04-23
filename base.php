@@ -338,3 +338,8 @@ $_orderStatus = array(
     'READY TO SHIP' => 'READY TO SHIP',
     'DELIVERED' => 'DELIVERED',
 );
+
+$_userRole = array(
+    'Member' => 'Member',
+    'Admin' => 'Admin',
+);

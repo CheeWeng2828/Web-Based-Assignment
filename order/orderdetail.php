@@ -11,7 +11,6 @@ if (is_post()) {
     $stm->execute([$status, $id]);
 
     temp('info', 'Update Status Successful');
-    redirect('order_list.php');
 }
 
 $stm = $_db->prepare('
@@ -70,7 +69,6 @@ include '../head.php';
                 <th>
                     <form method="post">
                         <?= html_select('orderStatus', $_orderStatus, $s) ?>
-                        <button class="statusSub">Submit</button>
                     </form>
                 <?php endif ?>
                 </th>
@@ -118,5 +116,8 @@ include '../head.php';
     <?php endif ?>
 
 </div>
+<script>
+    $('select').on('change', e => e.target.form.submit());
+</script>
 <?php
 include '../foot.php';

@@ -23,7 +23,7 @@ include '../head.php';
 
 
 
-<table class="productList">
+<table class="orderList">
     <tr>
         <th>Id</th>
         <th>Name</th>
@@ -42,7 +42,7 @@ include '../head.php';
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
             </td>
             <td>
-                <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
+                <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?" class="productDelete">Delete</button>
                 <img src="/product_img/<?= $s->photo ?>" class="popup">
             </td>
         <?php endforeach ?>

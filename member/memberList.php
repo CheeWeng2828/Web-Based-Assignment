@@ -27,7 +27,9 @@ $arr = $p->result;
 $_title = 'Member List';
 include '../head.php';
 ?>
-
+<p>
+    Create New Admin Account ? <a href="addAdmin.php">Click Me</a>
+</p>
 <p>
     <?= $p->count ?> of <?= $p->item_count ?> record(s) |
     Page <?= $p->page ?> of <?= $p->page_count ?>
@@ -49,7 +51,7 @@ include '../head.php';
             <td><?= $s->role ?></td>
             <td><img src="/photo/<?= $s->photo ?>"></td>
             <td>
-                <button data-get="memberDetail.php?id=?<?=$s->id ?>">Detail</button>
+                <button data-get="memberDetail.php?id=<?=$s->id ?>">Detail</button>
                 <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
             </td>
         </tr>

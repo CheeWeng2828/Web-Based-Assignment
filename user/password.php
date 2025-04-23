@@ -52,7 +52,7 @@ if (is_post()) {
 }
 
 ?>
-<form method="post" class="reset_password" enctype="multipart/form-data">
+<form method="post" class="register" enctype="multipart/form-data">
 
     <label for="password">Password:</label><br>
     <?= html_password('password', 'maxlength = "100"') ?>
@@ -66,8 +66,8 @@ if (is_post()) {
     <?= html_password('confirm', 'maxlength = "100"') ?>
     <? err('confirm') ?><br><br>
     <section>
-        <button class="resetSub">Submit ✔</button>
-        <button type="reset" class="rtReset">Reset ⟳</button>
+        <button class="submitReg">Submit ✔</button>
+        <button type="reset" class="resetReg">Reset ⟳</button>
     </section>
 </form>
 <?php

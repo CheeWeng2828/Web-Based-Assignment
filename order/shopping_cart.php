@@ -4,12 +4,6 @@ include '../base.php';
 // ----------------------------------------------------------------------------
 
 if (is_post()) {
-    $btn = req('btn');
-    if ($btn == 'clear') {
-        set_cart();
-        redirect('?');
-    }
-
     $id   = req('id');
     $unit = req('unit');
     $stock = req('stock');
@@ -76,8 +70,6 @@ include '../head.php';
 
 <p>
     <?php if ($cart): ?>
-        <button data-post="?btn=clear">Clear</button>
-
         <?php if ($_user?->role == 'Member'): ?>
             <button data-post="checkout.php">Checkout</button>
         <?php else: ?>

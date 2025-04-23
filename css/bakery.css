@@ -176,7 +176,7 @@ footer {
 }
 
 /*===================================================================================
-    Register Layout
+    Register and Profile Layout
 ===================================================================================*/
 
 .register input{
@@ -381,81 +381,8 @@ label.upload img {
     background-color: #f1f1f1;
 }
 
-
 /*===================================================================================
-    Product List
-===================================================================================*/
-
-.productList th a {
-    text-decoration: none;
-    color: #4E342E;
-}
-
-
-.productList th,
-.productList tr,
-.productList td {
-    border: 1px solid rgb(0, 0, 0);
-    padding: 5px;
-    font-size: 15px;
-    text-align: center;
-}
-
-.productList {
-    border-collapse: collapse;
-}
-
-.productList th {
-    background-color: #f2f2f2;
-}
-
-.productList {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-}
-
-.productList tr:hover {
-    background-color: #f1f1f1;
-}
-/*===================================================================================
-    Table layout
-===================================================================================*/
-.orderList {
-    border-collapse: collapse;
-}
-
-.orderList th,
-.orderList tr,
-.orderList td {
-    border: 1px solid black;
-    padding: 5px;
-
-}
-
-.orderList th {
-    background-color: #fdebb976;
-    color: #4E342E;
-}
-
-.orderList th a {
-    text-decoration: none;
-    color: #4E342E;
-}
-
-.orderList th a.asc::after {
-    content: ' ▴';
-}
-
-.orderList th a.desc::after {
-    content: ' ▾';
-}
-
-/*===================================================================================
-                Product List
+                Product
 ===================================================================================*/
 
 .productContainer {
@@ -599,27 +526,7 @@ select.unit {
     color: #fff;
 }
 
-.productList td:has(.popup) {
-    position: relative;
-}
 
-.productList .popup {
-    position: absolute;
-    top: 50%;
-    left: 100%;
-    translate: 5px -50%;
-    z-index: 1;
-    border: 1px solid #333;
-    display: none;
-}
-
-.productList tr:hover .popup {
-    display: block;
-}
-
-.productList tr:hover {
-    background: #4E342E;
-}
 
 /*===================================================================================
                 Shopping cart
@@ -678,10 +585,12 @@ select.unit {
     cursor: pointer;
 }
 
+
+
 /*===================================================================================
-                History
+                History,Product List and Order List(Admin)
 ===================================================================================*/
-table.history {
+table.orderList {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 1rem;
@@ -690,24 +599,24 @@ table.history {
     color: #333;
 }
 
-table.history th {
+table.orderList th {
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     padding: 12px 15px;
     text-align: left;
 }
 
-table.history td {
+table.orderList td {
     border: 1px solid #ddd;
     padding: 12px 15px;
 }
 
-table.history tr:hover {
+table.orderList tr:hover {
     background-color: #f1f1f1;
 }
 
 
-table.history button {
+table.orderList button {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -719,67 +628,53 @@ table.history button {
     cursor: pointer;
 }
 
-table.history button:hover {
+table.orderList button:hover {
     background-color: #45a049;
 }
+.orderList th a {
+    text-decoration: none;
+    color: #4E342E;
+}
 
+.orderList th a.asc::after {
+    content: ' ▴';
+}
 
+.orderList th a.desc::after {
+    content: ' ▾';
+}
+
+.orderList td:has(.popup) {
+    position: relative;
+}
+
+.orderList .popup {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    translate: 5px -50%;
+    z-index: 1;
+    border: 1px solid #333;
+    display: none;
+}
+
+.orderList tr:hover .popup {
+    display: block;
+}
+
+.orderList tr:hover {
+    background: #4E342E;
+}
+
+.orderList .productDelete{
+    background-color: #c7261d;
+}
+
+.orderList .productDelete:hover{
+    background-color: #c7261d;
+}
 /*===================================================================================
-               Password reset page
-===================================================================================*/
-.reset_password {
-    position: center;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 30px;
-    background: #fdebb976;
-    border-radius: 15px;
-}
-
-
-.reset_password input{
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 3px;
-}
-
-.resetSub{
-    width: 100%;
-    background-color: #45a049;
-    opacity: 0.8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 3px;
-    margin-top: 40px;
-    font-size: medium;
-}
-
-.rtReset{
-    width: 100%;
-    background-color: #E12D22;
-    opacity: 0.8;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 6px 3px;
-    margin-top: 40px;
-    font-size: medium;
-}
-
-.rtReset,.resetSub{
-    width: 50%;
-    float: left;
-    cursor: pointer;
-}
-
-.rtReset:hover,.resetSub:hover{
-    opacity: 1;
-}
-
-/*===================================================================================
-               menu
+               Menu
 ===================================================================================*/
 
 .category-cards {
@@ -838,6 +733,7 @@ table.history button:hover {
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .product-card:hover {
@@ -850,7 +746,6 @@ table.history button:hover {
     height: 200px;
     object-fit: cover;
     border-bottom: 2px solid #f1c27d;
-    cursor: pointer;
 }
 
 .product-card h3 {
@@ -886,7 +781,7 @@ table.history button:hover {
 }
 
 /*===================================================================================
-    Order History
+    Order Detail
 ===================================================================================*/
 /* Container for responsive scroll on small screens */
 .detail-table-container {

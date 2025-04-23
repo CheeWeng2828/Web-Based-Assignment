@@ -65,7 +65,7 @@ if (is_post()) {
         $stm->execute([$email, $password, $name, $photo]);
 
         temp('info', 'Record inserted');
-        redirect('/');
+        redirect('memberList.php');
     }
 }
 

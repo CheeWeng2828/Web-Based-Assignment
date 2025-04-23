@@ -4,15 +4,16 @@ include '../base.php';
 auth("Admin");
 // (1) Sorting
 $fields = [
-    'id' => 'ID',
-    'datetime' => 'Date Time',
-    'count' => "Quantity",
-    'total' => 'Total Amount(RM)',
-    'user_id' => 'User_Id',
+    'o.id' => 'ID',
+    'o.datetime' => 'Date Time',
+    'o.count' => "Quantity",
+    'o.total' => 'Total Amount(RM)',
+    'o.user_id' => 'User_Id',
+    'p.status' => 'Order Status'
 ];
 
 $sort = req('sort');
-key_exists($sort, $fields) || $sort = 'id';
+key_exists($sort, $fields) || $sort = 'o.id';
 
 $dir = req('dir');
 in_array($dir, ['asc', 'desc']) || $dir = 'asc';
@@ -22,7 +23,7 @@ $page = req('page', 1);
 
 // For sorting purpose
 require_once '../lib/SimplePager.php';
-$p = new SimplePager("SELECT * FROM `order` ORDER BY $sort $dir", [], 10, $page);
+$p = new SimplePager("SELECT o.*,p.status FROM `order` AS o JOIN payment AS p ON o.id = p.order_id ORDER BY $sort $dir", [], 10, $page);
 $arr = $p->result;
 
 
@@ -49,6 +50,7 @@ include '../head.php';
             <td><?= $s->count ?></td>
             <td><?= $s->total ?></td>
             <td><?= $s->user_id ?></td>
+            <td><?= $s->status?></td>
             <td> <button data-get="orderdetail.php?id=<?= $s->id?>">Detail</button></td>
         </tr>
     <?php endforeach ?>

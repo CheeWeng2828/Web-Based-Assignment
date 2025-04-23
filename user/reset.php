@@ -63,14 +63,14 @@ $_title = 'User | Reset Password';
 include '../head.php';
 ?>
 
-<form method="post" class="reset_password">
+<form method="post" class="register">
     <label for="email">Email</label>
     <?= html_text('email', 'maxlength="100"') ?>
     <?= err('email') ?>
 
     <section>
-        <button class="resetSub">Submit</button>
-        <button type="reset" class="rtReset">Reset</button>
+        <button class="submitReg">Submit</button>
+        <button type="reset" class="resetReg">Reset</button>
     </section>
 </form>
 
