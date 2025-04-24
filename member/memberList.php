@@ -57,7 +57,6 @@ include '../head.php';
         </tr>
     <?php endforeach ?>
 </table>
-
 <br>
 <div class="pager">
     <!-- The pager below the table -->

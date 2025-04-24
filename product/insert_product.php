@@ -62,7 +62,7 @@ $_title = "Insert Product";
 include '../head.php';
 ?>
 
-<form method="post" class="insert" enctype="multipart/form-data">
+<form method="post" class="register" enctype="multipart/form-data">
     <label for="id">Id</label>
     <?= html_text('id', 'maxlength="4" data-upper') ?><br>
     <?= err('id') ?>
@@ -88,8 +88,8 @@ include '../head.php';
     <?= err('photo') ?>
 
     <section>
-        <button>Submit ✔</button><br><br>
-        <button type="reset">Reset ⟳</button>
+        <button class="submitReg">Submit ✔</button>
+        <button type="reset" class="resetReg">Reset ⟳</button>
     </section>
 </form>
 

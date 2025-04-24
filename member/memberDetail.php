@@ -29,27 +29,29 @@ include '../head.php'
     <?php foreach ($detail as $d): ?>
 
         <tr>
-            <th>Name</th>
+            <th>Name :</th>
             <td><?= $d->name ?></td>
         </tr>
 
         <tr>
-            <th>Email</th>
+            <th>Email :  </th>
             <td><?= $d->email ?></td>
         </tr>
 
         <tr>
-            <th>Role</th>
+            <th>Role :  </th>
             <?php if($d->role == 'Member'): ?>
             <form method="post">
             <td><?= html_select('role', $_userRole, $d->role) ?></td>
-            <?php endif ?>
-            <td><?= $d->role?></td>
             </form>
+            <?php endif ?>
+            <?php if($d->role == 'Admin'):?>
+            <td><?= $d->role?></td>
+            <?php endif ?>
         </tr>
         <?php if ($d->role == 'Member'): ?>
             <tr>
-                <th>Address</th>
+                <th>Address :   </th>
                 <td><?= $address ?></td>
             </tr>
         <?php endif ?>

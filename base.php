@@ -163,19 +163,11 @@ function html_hidden($key, $attr = '')
     echo "<input type='hidden' id='$key' name='$key' value='$value' $attr>";
 }
 
-// Generate <input type='radio'> list
-function html_radios($key, $items, $br = false)
-{
+// Generate SINGLE <input type='checkbox'>
+function html_checkbox($key, $label = '', $attr = '') {
     $value = encode($GLOBALS[$key] ?? '');
-    echo '<div>';
-    foreach ($items as $id => $text) {
-        $state = $id == $value ? 'checked' : '';
-        echo "<label><input type='radio' id='{$key}_$id' name='$key' value='$id' $state>$text</label>";
-        if ($br) {
-            echo '<br>';
-        }
-    }
-    echo '</div>';
+    $status = $value == 1 ? 'checked' : '';
+    echo "<label><input type='checkbox' id='$key' name='$key' value='1' $status $attr>$label</label>";
 }
 
 //===================================================================================
@@ -342,4 +334,10 @@ $_orderStatus = array(
 $_userRole = array(
     'Member' => 'Member',
     'Admin' => 'Admin',
+);
+
+$categories = array(
+    'cake' => 'cake',
+    'bread' => 'bread',
+    'pastries' => 'pastries'
 );

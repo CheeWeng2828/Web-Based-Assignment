@@ -31,7 +31,6 @@ $p = new SimplePager($query, [$_user->id], 10, $page);
 $arr = $p->result;
 
 
-
 $_title = 'Order History';
 include '../head.php';
 ?>

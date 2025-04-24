@@ -1,32 +1,47 @@
 <?php
 require '../base.php';
 
-if (is_post()) {
-    $id = req('id');
-    $unit = req('unit');
-    $stock = req('stock');
-    update_cart($id, $unit, $stock);
-    redirect();
-}
-
 $category = req('category');
-
+$search = req('name');
 
 if ($category === 'cake') {
     $query = "SELECT * FROM product WHERE name LIKE '%cake%'";
-} elseif ($category === 'bread') {
+    $products = $_db->query($query)->fetchAll();
+} 
+
+elseif ($category === 'bread') {
     $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%'";
-} elseif ($category === 'pastries') {
+    $products = $_db->query($query)->fetchAll();
+} 
+
+elseif ($category === 'pastries') {
     $query = "SELECT * FROM product WHERE name LIKE '%Tart%'";
-} else {
+    $products = $_db->query($query)->fetchAll();
+} 
+
+// elseif ($search) {
+//     $searchName = $_db->prepare("SELECT * FROM product WHERE name LIKE ?");
+//     $searchName->execute(["%$search%"]);
+//     $products = $searchName->fetchAll();
+// } 
+
+else {
     $query = "SELECT * FROM product ";
+    $products = $_db->query($query)->fetchAll();
 }
 
-$products = $_db->query($query)->fetchAll();
 
 $_title = ucfirst($category) ?: 'All Products';
 include '../head.php';
 ?>
+
+<!-- Searching Product -->
+<form method="get">
+    <!-- <?= html_search('name', 'placeholder="Search..."') ?>
+    <button>Search</button><br><br> -->
+    <?= html_select('category',$categories,'All Product')?>
+</form>
+
 
 <div class="product-grid">
     <?php foreach ($products as $product): ?>
@@ -36,20 +51,11 @@ include '../head.php';
         $stock = $product->stock;
         $unit = $cart[$product->id] ?? 0;
         ?>
-
-        <div class="product-card" data-get="detail.php?id=<?= $product->id ?>">
+        <div class="product-card">
             <img src="/product_img/<?= $product->photo ?>" alt="<?= $product->name ?>" data-get="detail.php?id=<?= $product->id ?>">
             <h3><?= $product->name ?></h3>
             <p>RM <?= number_format($product->price, 2) ?></p>
             <p><?= $product->stock ?> pieces available</p>
-            <form method="post">
-                <?php if ($product->stock != 0): ?>
-                    <?= html_hidden('id') ?>
-                    <?= html_hidden('stock') ?>
-                    <?= html_select('unit', $_units, '') ?>
-                    <?= $unit ? '✅' : '' ?>
-                <?php endif ?>
-            </form>
         </div>
     <?php endforeach; ?>
 </div>

@@ -510,23 +510,6 @@ select.unit {
     width: 50px;
 }
 
-/*Insert Product Layout*/
-.insert {
-    display: grid;
-    grid-template-columns: repeat(2, 100px);
-    gap: 5px;
-    width: 500px;
-    height: 500px;
-    margin: auto;
-    background-color: #4E342E;
-    padding: 10px;
-    align-items: center;
-}
-
-.insert label {
-    color: #F8ECD1;
-}
-
 /*===================================================================================
                 Product image pop up 
 ===================================================================================*/
@@ -544,8 +527,6 @@ select.unit {
     background: #6D4C41;
     color: #fff;
 }
-
-
 
 /*===================================================================================
                 Shopping cart
