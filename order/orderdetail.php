@@ -39,6 +39,13 @@ $stm = $_db->prepare('SELECT status FROM payment WHERE order_id = ?');
 $stm->execute([$id]);
 $status = $stm->fetch();
 
+// For display address of user
+$stm = $_db->prepare('SELECT p.address FROM `order` AS o JOIN user AS u ON o.user_id = u.id
+                      JOIN user_payment AS p ON p.user_id = u.id WHERE o.id = ?');
+$stm->execute([$id]);
+$ad = $stm->fetch();
+
+
 $_title = "Order Detail";
 include '../head.php';
 ?>
@@ -87,6 +94,12 @@ include '../head.php';
                 <?php endforeach ?>
             <?php endif ?>
         </tr>
+
+        <tr>
+            <th colspan="2">Address</th>
+            <td colspan="3"><?= $ad->address ?></td>
+        </tr>
+
         <tr>
             <th>Product ID</th>
             <th>Product Name</th>

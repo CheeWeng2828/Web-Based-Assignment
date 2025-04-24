@@ -25,7 +25,7 @@ $_title = 'User Detail';
 include '../head.php'
 ?>
 
-<table>
+<table class="detail">
     <?php foreach ($detail as $d): ?>
 
         <tr>

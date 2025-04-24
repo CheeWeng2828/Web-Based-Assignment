@@ -1,44 +1,33 @@
 <?php
 include '../base.php';
-//-----------------------------------------------------------------------------
 
-// (1) Sorting
-$fields = [
-    'id' => 'ID',
-    'email' => 'Email',
-    'name' => "Name",
-    'role' => 'Role'
-];
+auth('Admin');
 
-$sort = req('sort');
-key_exists($sort, $fields) || $sort = 'id';
+$search = req('search');
 
-$dir = req('dir');
-in_array($dir, ['asc', 'desc']) || $dir = 'asc';
+$result = $_db->prepare('SELECT * FROM user WHERE name LIKE ?');
+$result->execute(["%$search%"]);
+$arr = $result->fetchAll();
 
-// (2) Paging
-$page = req('page', 1);
-
-require_once '../lib/SimplePager.php';
-$p = new SimplePager("SELECT * FROM user ORDER BY $sort $dir", [], 10, $page);
-$arr = $p->result;
-
-// ----------------------------------------------------------------------------
 $_title = 'Member List';
 include '../head.php';
 ?>
 <p>
     Create New Admin Account ? <a href="addAdmin.php">Click Me</a>
 </p>
-<p>
-    <?= $p->count ?> of <?= $p->item_count ?> record(s) |
-    Page <?= $p->page ?> of <?= $p->page_count ?>
-</p>
+
+<form method="get">
+    <?= html_search('search', 'placeholder = "Search..."') ?>
+    <button type="submit">Search</button>
+</form>
+<p><?= count($arr) ?> record(s)</p>
 
 <table class="memberList">
     <tr>
-        <!-- The table header become clickable -->
-        <?= table_headers($fields, $sort, $dir, "page=$page") ?>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Role</th>
         <th>Photo</th>
         <th>More</th>
     </tr>
@@ -51,16 +40,12 @@ include '../head.php';
             <td><?= $s->role ?></td>
             <td><img src="/photo/<?= $s->photo ?>"></td>
             <td>
-                <button data-get="memberDetail.php?id=<?=$s->id ?>">Detail</button>
+                <button data-get="memberDetail.php?id=<?= $s->id ?>">Detail</button>
                 <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
             </td>
         </tr>
     <?php endforeach ?>
 </table>
-<br>
-<div class="pager">
-    <!-- The pager below the table -->
-    <?= $p->html("sort=$sort&dir=$dir",) ?>
-</div>
+
 <?php
 include '../foot.php';

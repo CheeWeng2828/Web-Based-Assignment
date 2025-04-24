@@ -28,8 +28,8 @@ in_array($dir, ['asc', 'desc']) || $dir = 'asc';
 $page = req('page', 1);
 
 // For sorting purpose
-require_once '../lib/SimplePager.php';
 $sql = "SELECT o.*,p.status FROM `order` o JOIN payment p ON o.id = p.order_id $search_sql ORDER BY $sort $dir";
+require_once '../lib/SimplePager.php';
 $p = new SimplePager($sql, $params, 10, $page);
 $arr = $p->result;
 
@@ -50,7 +50,7 @@ include '../head.php';
 <table class="orderList">
     <tr>
 
-        <?= table_headers($fields, $sort, $dir, "page=$page") ?>
+        <?= table_headers($fields, $sort, $dir, "search=$search&page=$page") ?>
         <th>More</th>
     </tr>
 
@@ -69,7 +69,7 @@ include '../head.php';
 
 <br>
 <div class="pager">
-    <?= $p->html("search=$search&sort=$sort&dir=$dir",) ?>
+    <?= $p->html("search=$search&sort=$sort&dir=$dir") ?>
 </div>
 <?php
 include '../foot.php';
