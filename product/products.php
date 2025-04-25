@@ -4,21 +4,21 @@ require '../base.php';
 $category = req('category');
 
 if ($category === 'cake') {
-    $query = "SELECT * FROM product WHERE name LIKE '%cake%' AND status == 'Yes'";
+    $query = "SELECT * FROM product WHERE name LIKE '%cake%' AND active == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
 
 elseif ($category === 'bread') {
-    $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%' AND status == 'Yes'";
+    $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%' AND active == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
 
 elseif ($category === 'pastries') {
-    $query = "SELECT * FROM product WHERE name LIKE '%Tart%' AND status == 'Yes'";
+    $query = "SELECT * FROM product WHERE name LIKE '%Tart%' AND active == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
 else {
-    $query = "SELECT * FROM product WHERE status == 'Yes'";
+    $query = "SELECT * FROM product WHERE active == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 }
 
