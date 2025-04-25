@@ -51,7 +51,33 @@ if (is_post()) {
         }
     }
 
+
+    // Address Validation
+    $street_number = req('street_number');
+    $city = req('city');
+    $state = req('state');
+    $postcode = req('postcode');
+
+    if ($street_number == '') {
+        $_err['street_number'] = 'Street number is required';
+    }
+    if ($city == '') {
+        $_err['city'] = 'City is required';
+    }
+    if ($state == '') {
+        $_err['state'] = 'State is required';
+    }
+    if ($postcode == '' || !is_numeric($postcode)) {
+        $_err['postcode'] = 'Valid postcode is required.Must be 5 digits.';
+    }
+    $address = "$street_number,$postcode, $city, $state "; //combine 4in1
+
     if (!$_err) {
+
+        $ad = $_db->prepare('SELECT address FROM user WHERE id = ?');
+        $ad->execute([$_user->id]);
+        $add = $ad->fetch();
+
         if ($f) {
             unlink("../photo/$profile");
             $profile = save_photo($f, '../photo');
@@ -63,9 +89,26 @@ if (is_post()) {
         ');
         $stm->execute([$email, $name, $profile, $_user->id]);
 
+        if ($add) {
+            $stm = $_db->prepare('
+            UPDATE user
+            SET address = ?
+            WHERE id = ?
+        ');
+            $stm->execute([$address, $_user->id]);
+        } elseif (!$add) {
+            $stm = $_db->prepare('
+            INSERT INTO user
+            (address)VALUES (?)
+            WHERE id = ?
+        ');
+            $stm->execute([$address, $_user->id]);
+        }
+
         $_user->email = $email;
         $_user->name = $name;
         $_user->photo = $profile;
+        $_user->address = $address;
 
         temp('info', 'Update Sucessful');
         redirect('/');
@@ -74,26 +117,52 @@ if (is_post()) {
 $_title = 'Profile';
 include '../head.php'
 ?>
-<form method="post" class="register" enctype="multipart/form-data">
-    <label for="email">Email:</label><br>
-    <?= html_text('email', 'maxlength="100"') ?>
-    <?= err('email') ?><br><br>
+<div class="address-container">
+    <div class="address_details">
+        <form method="post" enctype="multipart/form-data">
+            <h3>Address Information</h3>
 
-    <label for="name">Name:</label><br>
-    <?= html_text('name', 'maxlength="100"') ?>
-    <?= err('name') ?><br><br>
+            <label for="street_number">Street Number :</label>
+            <?= html_textarea('street_number', 'rows="4"', 'cols="55"') ?>
+            <?= err("street_number") ?>
 
-    <label for="profile">Photo:</label><br>
-    <label class="upload" tabindex="0">
-        <?= html_file('profile', 'image/*', 'hidden') ?>
-        <img src="/photo/<?= $_user->photo ?>"><br><br>
-    </label>
-    <?= err('profile') ?>
+            <label for="city">City:</label>
+            <?= html_text('city', 'maxlength = "50"') ?>
+            <?= err("city") ?>
 
-    <section>
-        <button class="submitReg">Submit ✔</button>
-        <button type="reset" class="resetReg">Reset ⟳</button>
-    </section>
-</form>
+            <label for="state">State:</label>
+            <?= html_text('state', 'maxlength = "50"') ?>
+            <?= err("state") ?>
+
+            <label for="postcode">Postcode:</label>
+            <?= html_text('postcode', 'maxlength="10"') ?>
+            <?= err("postcode") ?>
+
+    </div>
+</div>
+<div class="address-container">
+    <div class="address_details">
+        <label for="email">Email:</label><br>
+        <?= html_text('email', 'maxlength="100"') ?>
+        <?= err('email') ?><br><br>
+
+        <label for="name">Name:</label><br>
+        <?= html_text('name', 'maxlength="100"') ?>
+        <?= err('name') ?><br><br>
+
+        <label for="profile">Photo:</label><br>
+        <label class="upload" tabindex="0">
+            <?= html_file('profile', 'image/*', 'hidden') ?>
+            <img src="/photo/<?= $_user->photo ?>"><br><br>
+        </label>
+        <?= err('profile') ?>
+
+        <section>
+            <button class="submitReg">Submit ✔</button>
+            <button type="reset" class="resetReg">Reset ⟳</button>
+        </section>
+        </form>
+    </div>
+</div>
 <?php
 include '../foot.php';

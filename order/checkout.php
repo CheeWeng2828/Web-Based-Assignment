@@ -56,27 +56,16 @@ if (is_post()) {
     VALUE (NOW(),'PENDING',?)");
     $stm->execute([$id]);
 
-
-    $userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
-    $userInfo->execute([$_user->id]);
-    $u = $userInfo->fetch();
-
     $_db->commit();
 
     // Save order id to Session
     setOrderID($id);
     set_cart();
     temp('info', 'Make Order Successful');
-
-    if ($u) {
-        redirect("payment.php");
-    } else {
-        temp('info', 'Please Insert Your Payment Method');
-        redirect("addresswitpay.php");
-    }
+    redirect("paymentCard.php");
 }
 
-redirect('cart.php');
+redirect('shopping_cart.php');
 
 $_title = "Check Out";
 include '../head.php';

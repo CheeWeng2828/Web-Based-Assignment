@@ -40,8 +40,7 @@ $stm->execute([$id]);
 $status = $stm->fetch();
 
 // For display address of user
-$stm = $_db->prepare('SELECT p.address FROM `order` AS o JOIN user AS u ON o.user_id = u.id
-                      JOIN user_payment AS p ON p.user_id = u.id WHERE o.id = ?');
+$stm = $_db->prepare('SELECT u.address FROM `order` AS o JOIN user AS u ON o.user_id = u.id WHERE o.id = ?');
 $stm->execute([$id]);
 $ad = $stm->fetch();
 
@@ -125,7 +124,7 @@ include '../head.php';
         <button class="cancel" data-get="cancelOrder.php">Cancel Order</button>
     <?php endif ?>
     <?php if ($_user?->role == "Member" && $h->status == "PENDING"): ?>
-        <button class="pending" data-get="payment.php">Make Payment</button>
+        <button class="pending" data-get="paymentCard.php">Make Payment</button>
     <?php endif ?>
 
 </div>

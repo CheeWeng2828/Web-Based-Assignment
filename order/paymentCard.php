@@ -9,6 +9,10 @@ auth("Member");
 
 if (is_post()) {
 
+    $userInfo = $_db->prepare('SELECT * FROM user_payment WHERE user_id = ?');
+    $userInfo->execute([$_user->id]);
+    $u = $userInfo->fetchAll();
+
     //for cardpayment validation
     $cardholder_name = req('cardholder_name');
     $card_no = req('card_no');
@@ -22,8 +26,6 @@ if (is_post()) {
 
     if (strlen($card_no) != 16 || !is_numeric($card_no)) {
         $_err['card_no'] = 'Invalid card number. Must be 16 digits.';
-    } elseif (!is_unique($card_no, 'user_payment', 'card_no')) {
-        $_err['card_no'] = 'Duplicate Card';
     }
     if ($expiry_month < 1 || $expiry_month > 12) {
         $_err['expiry_month'] = 'Invalid expiry month. Please enter a value between 1 and 12.';
@@ -38,36 +40,23 @@ if (is_post()) {
 
 
     if (!$_err) {
+
         if ($u) {
             $stm = $_db->prepare('
-        UPDATE user_payment SET address=?,cardholder_name=?,card_no=?, expiry_month=?, expiry_year=?, cvv=? 
+        UPDATE user_payment SET cardholder_name=?,card_no=?, expiry_month=?, expiry_year=?, cvv=? 
         WHERE user_id = ?
     ');
-            $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
-
-            temp('info', 'Payment method save successfully!');
-
-            if ($id) {
-                redirect("paymentInfo.php");
-            } else {
-                redirect("/");
-            }
-        }
-        if (!$u) {
+            $stm->execute([$cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
+        } else if (!$u) {
             $stm = $_db->prepare('
-            INSERT INTO user_payment (address,cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
+            INSERT INTO user_payment (cardholder_name,card_no, expiry_month, expiry_year, cvv,user_id)
             VALUES (?,?,?,?,?,?,?)
         ');
-            $stm->execute([$address, $cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
-
-            temp('info', 'Payment save successfully!');
-
-            if ($id) {
-                redirect("payment.php");
-            } else {
-                redirect("/");
-            }
+            $stm->execute([$cardholder_name, $card_no, $expiry_month, $expiry_year, $cvv, $_user->id]);
         }
+
+        temp('info', 'Payment save successfully!');
+        redirect("payment.php");
     }
 }
 ?>
