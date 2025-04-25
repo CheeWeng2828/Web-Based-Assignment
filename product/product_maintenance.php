@@ -48,7 +48,7 @@ include '../head.php';
                 <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Diactive Product?" class="productDelete">Diactive</button>
                 <?php endif?>
                 <?php if($s->active == "No"): ?>
-                <button data-post="reactive.php?id=<?= $s->id ?>" data-confirm="Reactive Product?">Reactive</button>
+                <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Reactive Product?">Reactive</button>
                     <?php endif?>
                     <img src="/product_img/<?= $s->photo ?>" class="popup">
             </td>
