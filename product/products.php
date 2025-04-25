@@ -2,31 +2,23 @@
 require '../base.php';
 
 $category = req('category');
-$search = req('name');
 
 if ($category === 'cake') {
-    $query = "SELECT * FROM product WHERE name LIKE '%cake%'";
+    $query = "SELECT * FROM product WHERE name LIKE '%cake%' AND status == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
 
 elseif ($category === 'bread') {
-    $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%'";
+    $query = "SELECT * FROM product WHERE name NOT LIKE '%cake%' AND name NOT LIKE'%Tart%' AND status == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
 
 elseif ($category === 'pastries') {
-    $query = "SELECT * FROM product WHERE name LIKE '%Tart%'";
+    $query = "SELECT * FROM product WHERE name LIKE '%Tart%' AND status == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 } 
-
-// elseif ($search) {
-//     $searchName = $_db->prepare("SELECT * FROM product WHERE name LIKE ?");
-//     $searchName->execute(["%$search%"]);
-//     $products = $searchName->fetchAll();
-// } 
-
 else {
-    $query = "SELECT * FROM product ";
+    $query = "SELECT * FROM product WHERE status == 'Yes'";
     $products = $_db->query($query)->fetchAll();
 }
 

@@ -47,7 +47,7 @@ include '../head.php';
                 <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Diactive Account?">Diactive</button>
                 <?php endif?>
                 <?php if($s->active == "No"): ?>
-                <button data-post="reactive.php?id=<?= $s->id ?>" data-confirm="Reactive Account?">Reactive</button>
+                <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Reactive Account?">Reactive</button>
                 <?php endif?>
             </td>
         </tr>

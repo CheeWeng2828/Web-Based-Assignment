@@ -5,8 +5,8 @@ auth("Admin");
 
 // Searching Function
 $search = req('search');
-$search_sql = $search ? "WHERE o.id LIKE ? OR o.user_id LIKE ? OR p.status LIKE ?" : "";
-$params = $search ? ["%$search", "%$search", "%$search"] : [];
+$search_sql = $search ? "WHERE o.id LIKE ? OR o.user_id LIKE ? OR p.status LIKE ? OR u.name LIKE ?" : "";
+$params = $search ? ["%$search%", "%$search%", "%$search%","%$search%"] : [];
 
 // (1) Sorting
 $fields = [
@@ -14,7 +14,7 @@ $fields = [
     'o.datetime' => 'Date Time',
     'o.count' => "Quantity",
     'o.total' => 'Total Amount(RM)',
-    'o.user_id' => 'User_Id',
+    'u.name' => 'Name',
     'p.status' => 'Order Status'
 ];
 
@@ -28,7 +28,7 @@ in_array($dir, ['asc', 'desc']) || $dir = 'asc';
 $page = req('page', 1);
 
 // For sorting purpose
-$sql = "SELECT o.*,p.status FROM `order` o JOIN payment p ON o.id = p.order_id $search_sql ORDER BY $sort $dir";
+$sql = "SELECT o.*,p.status,u.name FROM `order` o JOIN payment p ON o.id = p.order_id JOIN user AS u ON o.user_id = u.id $search_sql ORDER BY $sort $dir";
 require_once '../lib/SimplePager.php';
 $p = new SimplePager($sql, $params, 10, $page);
 $arr = $p->result;
@@ -60,7 +60,7 @@ include '../head.php';
             <td><?= $s->datetime ?></td>
             <td><?= $s->count ?></td>
             <td><?= $s->total ?></td>
-            <td><?= $s->user_id ?></td>
+            <td><?= $s->name ?></td>
             <td><?= $s->status ?></td>
             <td> <button data-get="orderdetail.php?id=<?= $s->id ?>">Detail</button></td>
         </tr>
