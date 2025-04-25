@@ -55,7 +55,7 @@ foreach ($items as $item) {
 $_db->commit();
 
 temp('info', 'Make Order Successful');
-redirect("payment.php");
+redirect("paymentCard.php");
 
 $_title = "Reorder";
 include '../head.php';

@@ -7,7 +7,7 @@ if (is_post()) {
     $id   = req('id');
     $unit = req('unit');
     $stock = req('stock');
-    update_cart($id, $unit,$stock);
+    update_cart($id, $unit, $stock);
     redirect();
 }
 
@@ -27,20 +27,20 @@ include '../head.php';
     </tr>
 
     <?php
-        $count = 0;
-        $total = 0; 
-        
-        $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
-        $cart = get_cart();
-        
-        foreach ($cart as $id => $unit):
-            $stm->execute([$id]);
-            $p = $stm->fetch();
-            
-            $stock = $p->stock;
-            $subtotal = $p->price * $unit;
-            $count += $unit;
-            $total += $subtotal; 
+    $count = 0;
+    $total = 0;
+
+    $stm = $_db->prepare('SELECT * FROM product WHERE id = ?');
+    $cart = get_cart();
+
+    foreach ($cart as $id => $unit):
+        $stm->execute([$id]);
+        $p = $stm->fetch();
+
+        $stock = $p->stock;
+        $subtotal = $p->price * $unit;
+        $count += $unit;
+        $total += $subtotal;
     ?>
         <tr>
             <td><?= $p->id ?></td>
@@ -50,9 +50,9 @@ include '../head.php';
                 <form method="post">
                     <?= html_hidden('id') ?>
                     <!-- For Update Stock Quantity -->
-                    <?= html_hidden('stock') ?> 
+                    <?= html_hidden('stock') ?>
                     <?= html_select('unit', $_units, '') ?>
-                </form>            
+                </form>
             </td>
             <td class="right">
                 <?= sprintf('%.2f', $subtotal) ?>
@@ -71,8 +71,13 @@ include '../head.php';
 <p>
     <?php if ($cart): ?>
         <?php if ($_user?->role == 'Member'): ?>
-            <button data-post="checkout.php">Checkout</button>
-        <?php else: ?>
+            <?php if ($_user?->address): ?>
+                <button data-post="checkout.php">Checkout</button>
+            <?php endif ?>
+            <?php if (!$_user?->address): ?>
+                Please update your shipping <a href="/user/profile.php">Address</a> to checkout
+            <?php endif ?>
+        <?php elseif (!$_user): ?>
             Please <a href="/user/login.php">login</a> as member to checkout
         <?php endif ?>
     <?php endif ?>
