@@ -47,7 +47,8 @@ if (is_post()) {
         $stm = $_db->prepare('
     INSERT INTO product
     ( id , name , price , photo,stock)
-     VALUES(?,?,?,?,?)');
+     ( id , name , price , photo,stock,active)
+     VALUES(?,?,?,?,?,"Yes")');
 
         $stm->execute([$id, $name, $price, $photo,$stock]);
 

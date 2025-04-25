@@ -1,13 +1,11 @@
-<?php
-require '../base.php';
-
+auth("Admin");
 if (is_post()) {
 
-    $user_id = req('id');
+    $id = req('id');
+    
+    $stm = $_db->prepare('UPDATE product SET active = "No" WHERE id = ? ');
+    $stm->execute([$id]);
 
-    $stm = $_db->prepare('UPDATE user SET active = "No" WHERE id = ? ');
-    $stm->execute([$user_id]);
-
-    temp('info', 'Deleted');
-    redirect('memberList.php');
+    temp('info', 'Diactive');
+    redirect('product_maintenance.php');
 }
