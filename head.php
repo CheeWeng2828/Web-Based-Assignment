@@ -46,7 +46,7 @@
         <?php if ($_user?->role == "Admin"): ?>
 
             <?= set_cart() ?>
-            <a href="/product/product_maintenance.php">Product CRUD</a>
+            <a href="/product/product_maintenance.php">Product</a>
             <a href="/member/memberList.php">Member List</a>
             <a href="/order/order_list.php">Order List</a>
 

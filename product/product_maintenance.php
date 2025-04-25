@@ -29,6 +29,7 @@ include '../head.php';
         <th>Name</th>
         <th>Price</th>
         <th>Stock</th>
+        <th>Active</th>
         <th colspan="2">Action</th>
     </tr>
 
@@ -38,12 +39,18 @@ include '../head.php';
             <td><?= $s->name ?></td>
             <td><?= $s->price ?></td>
             <td><?= $s->stock ?></td>
+            <td><?=$s ->active ?></td>
             <td>
                 <button data-get="update.php?id=<?= $s->id ?>">Update</button>
             </td>
             <td>
-                <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?" class="productDelete">Delete</button>
-                <img src="/product_img/<?= $s->photo ?>" class="popup">
+            <?php if($s->active == "Yes"): ?>
+                <button data-post="delete.php?id=<?= $s->id ?>" data-confirm="Diactive Product?" class="productDelete">Diactive</button>
+                <?php endif?>
+                <?php if($s->active == "No"): ?>
+                <button data-post="reactive.php?id=<?= $s->id ?>" data-confirm="Reactive Product?">Reactive</button>
+                    <?php endif?>
+                    <img src="/product_img/<?= $s->photo ?>" class="popup">
             </td>
         <?php endforeach ?>
         </tr>
