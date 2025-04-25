@@ -59,8 +59,8 @@ if (is_post()) {
 
         // Insert data
         $stm = $_db->prepare('
-            INSERT INTO user (email, password, name, photo, role)
-            VALUES (?,SHA1(?),?,?,"Member")
+            INSERT INTO user (email, password, name, photo, role,active)
+            VALUES (?,SHA1(?),?,?,"Member","Yes")
         ');
         $stm->execute([$email, $password, $name, $photo]);
 

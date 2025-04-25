@@ -2,12 +2,6 @@
 include '../base.php';
 
 auth("Member");
-
-$search = req('search');
-$search_sql = $search ? "WHERE o.id LIKE ? OR p.status LIKE ?" : "";
-$params = $search ? ["%$search", "%$search"] : [];
-
-
 /// Sorting Field
 $fields = [
     'o.id' => 'ID',
@@ -29,8 +23,25 @@ in_array($dir, ['asc', 'desc']) || $dir = 'asc';
 // (2) Paging
 $page = req('page', 1);
 
-// Select all order make by current user
-$sql = "SELECT o.*,p.status FROM `order` o JOIN payment p ON o.id = p.order_id $search_sql ORDER BY $sort $dir";
+
+$search      = req('search');
+$params      = [$_user->id];
+if ($search) {
+    // wrap the ORs in parens to keep your logic clear
+    $search_sql = " AND (o.id     LIKE ? OR 
+                         p.status LIKE ?) ";
+    $params[]   = "%{$search}";
+    $params[]   = "%{$search}";
+} else {
+    $search_sql = "";
+}
+
+$sql = "SELECT o.*, p.status
+        FROM `order` o 
+        JOIN payment p ON o.id = p.order_id
+        WHERE o.user_id = ? 
+        {$search_sql}
+        ORDER BY {$sort} {$dir}";
 
 require_once '../lib/SimplePager.php';
 $p = new SimplePager($sql, $params, 10, $page);
@@ -51,8 +62,8 @@ include '../head.php';
 </p>
 <table class="orderList">
     <tr>
-    <?= table_headers($fields, $sort, $dir, "search=$search&page=$page") ?>
-    <th>More</th>
+        <?= table_headers($fields, $sort, $dir, "search=$search&page=$page") ?>
+        <th>More</th>
     </tr>
     <?php foreach ($arr as $h): ?>
         <tr>
@@ -60,7 +71,7 @@ include '../head.php';
             <td><?= $h->datetime ?></td>
             <td><?= $h->count ?></td>
             <td><?= $h->total ?></td>
-            <td><?= $h->status?></td>
+            <td><?= $h->status ?></td>
             <td> <button data-get="orderdetail.php?id=<?= $h->id ?>">Detail</button></td>
         </tr>
     <?php endforeach ?>
@@ -68,7 +79,7 @@ include '../head.php';
 
 <br>
 <div class="pager">
-<?= $p->html("search=$search&sort=$sort&dir=$dir") ?>
+    <?= $p->html("search=$search&sort=$sort&dir=$dir") ?>
 </div>
 <?php
 include '../foot.php';

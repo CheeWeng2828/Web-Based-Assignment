@@ -4,42 +4,9 @@ require '../base.php';
 if (is_post()) {
 
     $user_id = req('id');
-    $photo = get_file('photo');
 
-    if ($photo) {
-        // Delete profile photo from this user at file
-        unlink("../photo/$photo");
-    }
-
-    // Fetch All the order History make by this member
-    $order = $_db->prepare('SELECT id FROM `order` WHERE user_id = ?');
-    $order->execute([$user_id]);
-    $order_id = $order->fetchAll();
-
-
-    $_db->beginTransaction();
-
-    $token = $_db->prepare("DELETE FROM `token` WHERE user_id = ?");
-    $token->execute([$user_id]);
-
-    $userPayment = $_db->prepare('DELETE FROM `user_payment` WHERE user_id = ?');
-    $userPayment->execute([$user_id]);
-
-    foreach($order_id as $id){
-    $payment = $_db->prepare('DELETE FROM `payment` WHERE order_id = ?');
-    $payment->execute([$id->id]);
-
-    $item = $_db->prepare('DELETE FROM `item` WHERE order_id = ?');
-    $item->execute([$id->id]);
-    }
-
-    $order = $_db->prepare('DELETE FROM `order` WHERE user_id = ?');
-    $order->execute([$user_id]);
-
-    $user = $_db->prepare('DELETE FROM `user` WHERE id = ?');
-    $user->execute([$user_id]);
-
-    $_db->commit();
+    $stm = $_db->prepare('UPDATE user SET active = "No" WHERE id = ? ');
+    $stm->execute([$user_id]);
 
     temp('info', 'Deleted');
     redirect('memberList.php');

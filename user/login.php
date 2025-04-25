@@ -21,7 +21,7 @@ if (is_post()) {
         $stm->execute([$email, $password]);
         $u = $stm->fetch();
 
-        if ($u) {
+        if ($u && $u->active == "Yes") {
             temp('info', 'Login Successful');
             login($u);
         } else {

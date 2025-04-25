@@ -28,6 +28,7 @@ include '../head.php';
         <th>Email</th>
         <th>Name</th>
         <th>Role</th>
+        <th>Active</th>
         <th>Photo</th>
         <th>More</th>
     </tr>
@@ -38,10 +39,16 @@ include '../head.php';
             <td><?= $s->email ?></td>
             <td><?= $s->name ?></td>
             <td><?= $s->role ?></td>
+            <td><?= $s->active?></td>
             <td><img src="/photo/<?= $s->photo ?>"></td>
             <td>
                 <button data-get="memberDetail.php?id=<?= $s->id ?>">Detail</button>
-                <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Permanently Delete?">Delete</button>
+                <?php if($s->active == "Yes"): ?>
+                <button data-post="deleteMember.php?id=<?= $s->id ?>" data-confirm="Diactive Account?">Diactive</button>
+                <?php endif?>
+                <?php if($s->active == "No"): ?>
+                <button data-post="reactive.php?id=<?= $s->id ?>" data-confirm="Reactive Account?">Reactive</button>
+                <?php endif?>
             </td>
         </tr>
     <?php endforeach ?>
