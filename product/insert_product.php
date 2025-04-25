@@ -46,7 +46,6 @@ if (is_post()) {
         $photo = save_photo($f, '../product_img');
         $stm = $_db->prepare('
     INSERT INTO product
-    ( id , name , price , photo,stock)
      ( id , name , price , photo,stock,active)
      VALUES(?,?,?,?,?,"Yes")');
 
