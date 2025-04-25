@@ -20,6 +20,6 @@ if (is_post()) {
     }
     
 
-    temp('info', 'Diactive');
+    temp('info', 'Update Successful');
     redirect('product_maintenance.php');
 }
