@@ -17,9 +17,6 @@ $profile = $_db->prepare('SELECT * FROM user WHERE id = ?');
 $profile->execute([$id]);
 $detail = $profile->fetchAll();
 
-$addr = $_db->prepare('SELECT address FROM user_payment WHERE user_id = ?');
-$addr->execute([$id]);
-$address = $addr->fetchColumn();
 
 $_title = 'User Detail';
 include '../head.php'
@@ -34,25 +31,20 @@ include '../head.php'
         </tr>
 
         <tr>
-            <th>Email :  </th>
+            <th>Email : </th>
             <td><?= $d->email ?></td>
         </tr>
 
         <tr>
-            <th>Role :  </th>
-            <?php if($d->role == 'Member'): ?>
+            <th>Role : </th>
             <form method="post">
-            <td><?= html_select('role', $_userRole, $d->role) ?></td>
+                <td><?= html_select('role', $_userRole, $d->role) ?></td>
             </form>
-            <?php endif ?>
-            <?php if($d->role == 'Admin'):?>
-            <td><?= $d->role?></td>
-            <?php endif ?>
         </tr>
         <?php if ($d->role == 'Member'): ?>
             <tr>
-                <th>Address :   </th>
-                <td><?= $address ?></td>
+                <th>Address : </th>
+                <td><?= $d->address ?></td>
             </tr>
         <?php endif ?>
         <tr>

@@ -23,18 +23,22 @@ in_array($dir, ['asc', 'desc']) || $dir = 'asc';
 // (2) Paging
 $page = req('page', 1);
 
-
-$search      = req('search');
+$search      = trim(req('search'));
 $params      = [$_user->id];
-if ($search) {
+$search_sql = "";
+
+if ($search !== '') {
     // wrap the ORs in parens to keep your logic clear
-    $search_sql = " AND (o.id     LIKE ? OR 
-                         p.status LIKE ?) ";
-    $params[]   = "%{$search}";
-    $params[]   = "%{$search}";
-} else {
-    $search_sql = "";
+    $search_sql = " AND (o.id LIKE ? OR p.status LIKE ?) ";
+    $params[]   = "%{$search}%";
+    $params[]   = "%{$search}%";
 }
+
+$count_sql = "SELECT COUNT(*) FROM `order` o JOIN payment p ON o.id = p.order_id WHERE o.user_id = ? {$search_sql}";
+$stm = $_db->prepare($count_sql);
+$stm->execute($params);
+$total = (int)$stm->fetchColumn();
+
 
 $sql = "SELECT o.*, p.status
         FROM `order` o 
@@ -47,6 +51,8 @@ require_once '../lib/SimplePager.php';
 $p = new SimplePager($sql, $params, 10, $page);
 $arr = $p->result;
 
+$p->item_count = $total;
+$p->page_count = (int)ceil($total / 10);
 
 $_title = 'Order History';
 include '../head.php';
@@ -57,7 +63,7 @@ include '../head.php';
 </form>
 
 <p>
-    <?= $p->count ?> of <?= $p->item_count ?> record(s) |
+    <?= count($arr) ?> of <?= $total ?> record(s) |
     Page <?= $p->page ?> of <?= $p->page_count ?>
 </p>
 <table class="orderList">

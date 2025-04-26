@@ -17,7 +17,7 @@ include '../head.php';
 </p>
 
 <form method="get">
-    <?= html_search('search', 'placeholder = "Search..."') ?>
+    <?= html_search('search', 'placeholder = "Name..."') ?>
     <button type="submit">Search</button>
 </form>
 <p><?= count($arr) ?> record(s)</p>

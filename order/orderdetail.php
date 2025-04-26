@@ -78,7 +78,7 @@ include '../head.php';
                     </form>
                 <?php endif ?>
                 </th>
-                <?php if ($_user?->role == "Admin" && $s == "CANCEL" || $s == "DELIVERED"): ?>
+                <?php if ($_user?->role == "Admin" && ($s == "CANCEL" || $s == "DELIVERED")): ?>
                     <th>Status</th>
                     <td><?= $s ?></td>
                 <?php endif ?>
