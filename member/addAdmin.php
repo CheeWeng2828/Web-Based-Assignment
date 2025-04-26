@@ -59,13 +59,13 @@ if (is_post()) {
 
         // Insert data Same like Register Member But Different Role
         $stm = $_db->prepare('
-            INSERT INTO user (email, password, name, photo, role)
-            VALUES (?,SHA1(?),?,?,"Admin")
+            INSERT INTO user (email, password, name, photo, role,active)
+            VALUES (?,SHA1(?),?,?,"Admin","Yes")
         ');
         $stm->execute([$email, $password, $name, $photo]);
 
         temp('info', 'Record inserted');
-        redirect('memberList.php');
+        redirect('userList.php');
     }
 }
 

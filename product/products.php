@@ -27,6 +27,10 @@ $_title = ucfirst($category) ?: 'All Products';
 include '../head.php';
 ?>
 
+<form method="get">
+    Category : <?= html_select('category',$categories,'All Product')?>
+</form>
+
 <div class="product-grid">
     <?php foreach ($products as $product): ?>
         <?php

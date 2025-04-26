@@ -22,7 +22,7 @@ if (is_post()) {
 
 
     temp('info', 'Update Successful');
-    redirect('memberList.php');
+    redirect('userList.php');
 }
 
 $_title = "Account Status Update";
