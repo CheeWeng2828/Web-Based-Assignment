@@ -14,6 +14,16 @@ if (is_get()) {
     }
     extract((array)$u);
     $_SESSION['profile'] = $u->photo;
+    $address = trim((string)$u->address);
+
+    if($address !== ''){
+        $parts = array_map('trim',explode(',',$address));
+        list($street_number,$postcode,$city,$state) = array_pad($parts,4,'');
+    }
+    else{
+        $street_number = $postcode = $city = $state = '';
+    }
+    
 }
 if (is_post()) {
 

@@ -27,14 +27,6 @@ $_title = ucfirst($category) ?: 'All Products';
 include '../head.php';
 ?>
 
-<!-- Searching Product -->
-<form method="get">
-    <!-- <?= html_search('name', 'placeholder="Search..."') ?>
-    <button>Search</button><br><br> -->
-    <?= html_select('category',$categories,'All Product')?>
-</form>
-
-
 <div class="product-grid">
     <?php foreach ($products as $product): ?>
         <?php
