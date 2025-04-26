@@ -1,3 +1,7 @@
-Web Based Bakery Assignment
+Member
+Email : sem3sbakery2025@gmail.com
+Password : 123456
 
-遇到什么error就pm我
+Admin:
+Email   : admin@gmail.com
+Password : 123456
