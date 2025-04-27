@@ -88,7 +88,7 @@ include '../head.php';
     <?= err('name') ?><br>
 
     <label for="price">Price(RM) :</label>
-    <?= html_number('price', '1', '100', '0.1') ?>
+    <?= html_number('price', '1', '100', '0.01') ?>
     <?= err('price') ?><br>
 
     <label for="stock">Stock :</label>

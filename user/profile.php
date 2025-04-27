@@ -17,7 +17,7 @@ if (is_get()) {
     $address = trim((string)$u->address);
 
     if($address !== ''){
-        $parts = array_map('trim',explode(',',$address));
+        $parts = array_map('trim',explode('|',$address));
         list($street_number,$postcode,$city,$state) = array_pad($parts,4,'');
     }
     else{
@@ -80,7 +80,7 @@ if (is_post()) {
         if ($postcode == '' || !is_numeric($postcode)) {
             $_err['postcode'] = 'Valid postcode is required.Must be 5 digits.';
         }
-        $address = "$street_number,$postcode, $city, $state "; //combine 4in1
+        $address = "$street_number|$postcode| $city| $state "; //combine 4in1
     }
 
 

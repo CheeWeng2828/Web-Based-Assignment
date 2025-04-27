@@ -1,8 +1,6 @@
 <?php
 include '../base.php';
 
-$_title = 'Reset Password';
-include '../head.php';
 auth();
 if (is_post()) {
 
@@ -35,7 +33,7 @@ if (is_post()) {
     } else if (strlen($confirm) < 5 || strlen($confirm) > 100) {
         $_err['confirm'] = 'Between 5 - 100 charaters';
     } else if ($new_password != $confirm) {
-        $_err['$confirm'] = 'Not Matched';
+        $_err['confirm'] = 'Not Matched';
     }
 
     if (!$_err) {
@@ -51,20 +49,22 @@ if (is_post()) {
     }
 }
 
+$_title = 'Reset Password';
+include '../head.php';
 ?>
 <form method="post" class="register" enctype="multipart/form-data">
 
     <label for="password">Password:</label><br>
     <?= html_password('password', 'maxlength = "100"') ?>
-    <? err('password') ?><br><br>
+    <?= err('password') ?><br><br>
 
     <label for="new_password">New Password:</label><br>
     <?= html_password('new_password', 'maxlength = "100"') ?>
-    <? err('new_password') ?><br><br>
+    <?= err('new_password') ?><br><br>
 
     <label for="confirm">Confirm:</label><br>
     <?= html_password('confirm', 'maxlength = "100"') ?>
-    <? err('confirm') ?><br><br>
+    <?= err('confirm') ?><br><br>
     <section>
         <button class="submitReg">Submit ✔</button>
         <button type="reset" class="resetReg">Reset ⟳</button>
