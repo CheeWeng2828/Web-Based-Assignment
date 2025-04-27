@@ -176,7 +176,7 @@ function html_checkbox($key, $label = '', $attr = '') {
 
 function is_email($value)
 {
-    return filter_var($value, FILTER_VALIDATE_EMAIL) !== null;
+    return filter_var($value, FILTER_VALIDATE_EMAIL) !== false;
 }
 
 //===================================================================================

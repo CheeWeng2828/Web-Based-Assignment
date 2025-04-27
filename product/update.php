@@ -20,6 +20,7 @@ if (is_get()) {
     $price = $s->price;
     $photo = $s->photo;
     $stock = $s->stock;
+    $description = $s->description;
 }
 
 if (is_post()) {
@@ -27,6 +28,7 @@ if (is_post()) {
     $name       = req('name');
     $price     = req('price');
     $stock   = req('stock');
+    $description = req('description');
     $f = get_file('photo');
     $photo = $_SESSION['photo'];
 
@@ -35,6 +37,10 @@ if (is_post()) {
     }
     if (!$stock) {
         $_err['stock'] = "Required";
+    }
+
+    if(!$description){
+        $_err['description'] = "Required";
     }
 
     if (!$name) {
@@ -64,10 +70,10 @@ if (is_post()) {
             $photo = save_photo($f, '../product_img');
         }
         $stm = $_db->prepare('UPDATE product 
-                              SET price = ?,name = ?,photo = ?,stock = ?
+                              SET price = ?,name = ?,photo = ?,stock = ?,description = ?
                               WHERE id = ?
                             ');
-        $stm->execute([$price, $name, $photo,$stock,$id]);
+        $stm->execute([$price, $name, $photo, $stock,$description,$id]);
 
         temp('info', 'Update Sucessful');
         redirect('product_maintenance.php');
@@ -94,6 +100,10 @@ include '../head.php';
     <label for="stock">Stock :</label>
     <?= html_number('stock', '0', '100', '1', 'value = $stock') ?>
     <?= err('stock') ?><br>
+
+    <label for="description">Description</label>
+    <?= html_textarea('description', 'rows="4"', 'cols="55"') ?>
+    <?= err("description") ?>
 
     <label for="photo">Photo:</label>
     <label class="upload" tabindex="0">

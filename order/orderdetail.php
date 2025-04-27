@@ -95,7 +95,7 @@ include '../head.php';
         </tr>
 
         <tr>
-            <th colspan="2">Address</th>
+            <th colspan="2">Address (Street Number | Postcode | City | State)</th>
             <td colspan="3"><?= $ad->address ?></td>
         </tr>
 

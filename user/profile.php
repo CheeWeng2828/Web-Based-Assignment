@@ -14,6 +14,7 @@ if (is_get()) {
     }
     extract((array)$u);
     $_SESSION['profile'] = $u->photo;
+
     $address = trim((string)$u->address);
 
     if($address !== ''){
@@ -32,22 +33,22 @@ if (is_post()) {
     $profile = $_SESSION['profile'];
     $f = get_file('profile');
 
-    if (!$email) {
+    if ($email == '') {
         $_err['email'] = "Required";
     } else if (!is_email($email)) {
         $_err['email'] = "Invalid email";
     } else if (strlen($email) > 100) {
         $_err['email'] = "Maximun 100 charater";
     } else {
-        $stm = $_db->prepare('SELECT COUNT(*) FROM user WHERE email=? AND id != ?');
-        $stm->execute([$_user->email, $_user->id]);
+        $stm = $_db->prepare('SELECT COUNT(*) FROM user WHERE email= ? AND id != ?');
+        $stm->execute([$email, $_user->id]);
 
         if ($stm->fetchColumn() > 0) {
             $_err['email'] = 'Duplicated';
         }
     }
 
-    if (!$name) {
+    if ($name == '') {
         $_err['name'] = "Required";
     } else if (strlen($name) > 100) {
         $_err['name'] = "Maximun 100 charater";

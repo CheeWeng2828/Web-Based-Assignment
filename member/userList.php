@@ -20,7 +20,7 @@ else{
 
 
 
-$_title = 'Member List';
+$_title = 'User List';
 include '../head.php';
 ?>
 <p>

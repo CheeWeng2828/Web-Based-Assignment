@@ -8,6 +8,7 @@ if (is_post()) {
     $name       = req('name');
     $price     = req('price');
     $stock = req('stock');
+    $description = req('description');
     $f = get_file('photo');
 
     if ($id == "") {
@@ -27,6 +28,10 @@ if (is_post()) {
         $_err['stock'] = "Required";
     }
 
+    if (!$description) {
+        $_err['description'] = "Required";
+    }
+
     if (!$name) {
         $_err['name'] = "Required";
     } else if (strlen($name) > 100) {
@@ -42,14 +47,14 @@ if (is_post()) {
     }
 
 
-    if (!$_err) {       
+    if (!$_err) {
         $photo = save_photo($f, '../product_img');
         $stm = $_db->prepare('
     INSERT INTO product
-     ( id , name , price , photo,stock,active)
-     VALUES(?,?,?,?,?,"Yes")');
+     ( id , name , price , photo,stock,description,active)
+     VALUES(?,?,?,?,?,?,"Yes")');
 
-        $stm->execute([$id, $name, $price, $photo,$stock]);
+        $stm->execute([$id, $name, $price, $photo, $stock,$description]);
 
 
         temp('info', 'Insert Sucessful');
@@ -79,6 +84,10 @@ include '../head.php';
     <label for="stock">Stock</label>
     <?= html_number('stock', '1', '100', '1') ?><br>
     <?= err('stock') ?>
+
+    <label for="description">Description</label>
+    <?= html_textarea('description', 'rows="4"', 'cols="55"') ?>
+    <?= err("description") ?>
 
     <label for="photo">Photo</label>
     <label class="upload" tabindex="0">
