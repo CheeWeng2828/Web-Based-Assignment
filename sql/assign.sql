@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2025 at 01:41 PM
+-- Generation Time: Apr 27, 2025 at 04:41 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -97,7 +97,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `price`, `description`, `photo`, `stock`, `active`) VALUES
-('B001', 'croissant', 3.50, 'A croissant is a buttery, flaky pastry made from simple ingredients like flour, butter, yeast, milk, sugar, and salt. Its crescent shape and layered texture come from a special folding technique, resulting in a crisp exterior and soft, airy interior.', 'croissant.jpg', 60, 'Yes'),
+('B001', 'croissant', 3.61, 'A croissant is a buttery, flaky pastry made from simple ingredients like flour, butter, yeast, milk, sugar, and salt. Its crescent shape and layered texture come from a special folding technique, resulting in a crisp exterior and soft, airy interior.', 'croissant.jpg', 49, 'Yes'),
 ('B002', 'sourdough bread', 4.50, 'Sourdough bread is a tangy, chewy bread made from flour, water, and naturally fermented wild yeast. Its crisp crust and airy interior develop through a slow fermentation process, giving it a rich flavor and hearty texture.', 'sourdoughBread.jpg', 40, 'Yes'),
 ('B003', 'garlic bread', 4.00, 'Garlic bread is a crispy, buttery bread infused with garlic and herbs. Made by spreading garlic butter on bread and baking until golden, it has a rich, savory flavor and a soft, warm interior.', 'garlicBread.jpg', 90, 'Yes'),
 ('B004', 'chocolate cake', 50.00, 'Chocolate cake is a rich, moist dessert made with cocoa or melted chocolate. Baked to a soft, fluffy texture, it has a deep, sweet flavor and is often topped with frosting or ganache for extra indulgence.', 'chocolateCake.jpg', 95, 'Yes'),
@@ -132,8 +132,18 @@ CREATE TABLE `user` (
   `password` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `photo` varchar(100) NOT NULL,
-  `role` varchar(100) NOT NULL
+  `role` varchar(100) NOT NULL,
+  `address` varchar(300) NOT NULL,
+  `active` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `password`, `name`, `photo`, `role`, `address`, `active`) VALUES
+(1, 'admin@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'Hello', '680d993c337d7.jpg', 'Admin', '', 'Yes'),
+(3, 'sem3sbakery2025@gmail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'h', '680d9909a3433.jpg', 'Member', '', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -144,7 +154,7 @@ CREATE TABLE `user` (
 CREATE TABLE `user_payment` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `address` varchar(300) NOT NULL,
+  `cardholder_name` varchar(100) NOT NULL,
   `card_no` int(16) NOT NULL,
   `cvv` varchar(3) NOT NULL,
   `expiry_month` int(2) NOT NULL,
@@ -230,7 +240,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_payment`
@@ -241,6 +251,13 @@ ALTER TABLE `user_payment`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `item`
+--
+ALTER TABLE `item`
+  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`);
 
 --
 -- Constraints for table `order`
@@ -265,6 +282,12 @@ ALTER TABLE `payment_token`
 --
 ALTER TABLE `token`
   ADD CONSTRAINT `token_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `user_payment`
+--
+ALTER TABLE `user_payment`
+  ADD CONSTRAINT `user_payment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
