@@ -93,7 +93,7 @@ include '../head.php';
 
     <label for="stock">Stock :</label>
     <?= html_number('stock', '0', '100', '1', 'value = $stock') ?>
-    <?= err('quaantity') ?><br>
+    <?= err('stock') ?><br>
 
     <label for="photo">Photo:</label>
     <label class="upload" tabindex="0">
